@@ -10,9 +10,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=9" >
         <title>Village Makeover</title>
         <!-- STYLES -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/smoothness/jquery-ui.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <!-- let's see what jquery 3 breaks -->
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
         <script src="jquery.fullscreen.js"></script>
         <script src="jquery.easing.1.3.js"></script>
         <link href="./css/game.css" rel="stylesheet" type="text/css" />
@@ -48,28 +49,28 @@
                 <li id="goalButton" ><img  src="assets/textures/ui/star.png"/></li>
                 <li id="dropDownIcon"  class="rightli"><img src="assets/textures/ui/Menu.png" /></li>
             </ul>
+            <div class="gamedialog" id="goalDialog" title="" style="display:none"><div id="goalDialogContent"></div></div>
             <div class="editorTopNavBar" id="editorTopNavBar" style="display:none;"><ul class="editorTopNavList" id="editorTopNavList"></ul></div>
-            <div id="newsFeedDialog" title="News Feed" style="display:none"><ul id="newsList"></ul></div>
-            <div id="goalDialog" title="" style="display:none"><div id="goalDialogContent"></div></div>
-            <div id="mouseOverDialog" title="About Object" style="display:none"><div id="mouseOverObjectText"></div></div>
-            <div id="tutorialDialog" title="Tutorial" style="display:none"><div id="tutorialContent"></div></div>
-            <div id="editorDialog" title="Editor" style="display:none"><div id="editorContent"></div></div>
-            <div id="shareMyVillageDialog" title="Share Village" style="display:none"><div id="shareMyVillageContent"></div></div>
-            <div id="dropDownDialog" title="" style="display:none"><div id="dropDownContent"></div></div>
+            <div class="gamedialog" id="newsFeedDialog" title="News Feed" style="display:none"><ul id="newsList"></ul></div>
+            <div class="gamedialog" id="mouseOverDialog" title="About Object" style="display:none"><div id="mouseOverObjectText"></div></div>
+            <div class="gamedialog" id="tutorialDialog" title="Tutorial" style="display:none"><div id="tutorialContent"></div></div>
+            <div class="gamedialog" id="editorDialog" title="Editor" style="display:none"><div id="editorContent"></div></div>
+            <div class="gamedialog" id="shareMyVillageDialog" title="Share Village" style="display:none"><div id="shareMyVillageContent"></div></div>
+            <div class="gamedialog" id="dropDownDialog" title="" style="display:none"><div id="dropDownContent"></div></div>
             <div id="objectClickDialogPositionItem" ></div>
-            <div id="objectClickDialog" title="" style="display:none"><ul id="objectClickContent"></ul></div>
-            <div id="savingDialog" title="Saving" style="display:none"><div id="savingContent"></div></div>
-        </div> <!-- End hudcontainer -->
-        <script>
-        mixpanel.track("Main Page Load")
-        </script>
-        <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-5656121-3', 'auto');
-        ga('send', 'pageview');
-        </script>
-    </body>
-</html>
+            <div class="gamedialog" id="objectClickDialog" title="" style="display:none"><ul id="objectClickContent"></ul></div>
+            <div class="gamedialog" id="savingDialog" title="Saving" style="display:none"><div id="savingContent"></div></div>
+            </div> <!-- End hudcontainer -->
+            <script>
+            mixpanel.track("Main Page Load")
+            </script>
+            <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            ga('create', 'UA-5656121-3', 'auto');
+            ga('send', 'pageview');
+            </script>
+        </body>
+    </html>

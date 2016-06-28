@@ -592,7 +592,7 @@ var Client = IgeClass.extend({
 
 
 					// Play the audio
-					ige.client.audio.monster_footstep.play();
+					//ige.client.audio.monster_footstep.play();
 
 					// Build the cursorObject by releasing it from our control
 					// and switching state
@@ -799,7 +799,7 @@ var Client = IgeClass.extend({
                     }
 
                     // Play the audio
-                    ige.client.audio.monster_footstep.play();
+                    //ige.client.audio.monster_footstep.play();
 
                     // Build the cursorObject by releasing it from our control
                     // and switching state
