@@ -55,6 +55,8 @@ Enable the following APIs:
   - https://console.developers.google.com/apis/api/drive/overview?project=[your-project-name]
   - https://console.developers.google.com/apis/api/script/overview?project=[your-project-name]
   - https://console.developers.google.com/apis/api/plus/overview?project=[your-project-name]
+  - https://console.cloud.google.com/apis/api/appengine/overview?project=[your-project-name]
+  - https://console.cloud.google.com/apis/api/storage-api.googleapis.com/overview?project=[your-project-name]
 
 To see the list of the enabled Google APIs: https://console.developers.google.com/apis/enabled?project=[your-project-name]
 
@@ -81,6 +83,28 @@ Consider updating:
   - loginGroupEmail
   - driveFolderID
   - all of the spreadsheet and app script docids
+
+Deploy via Bitbucket Pipelines
+-----------
+Create an api key
+  - Go to https://console.cloud.google.com/apis/credentials?project=[your-project-name]
+  - Select 'Create credentials > API key'
+Create a service account 
+  - Go to https://console.cloud.google.com/iam-admin/serviceaccounts/project?project=[your-project-name]
+  - Select 'Create service account'
+  - Type a name and select 'Furnish a new private key'
+  - Click 'Create' and a json file will be downloaded (This file can be downloaded only one time, so keep it or create a new account in the future)
+Set 'Environment variables' in https://bitbucket.org/darian_hickman/village-makeover/admin/addon/admin/pipelines/repository-variables#!/variables
+  - CLOUDSDK_CORE_PROJECT = [your-project-name]
+  - CONFIG_DOCID = [your-main-config-sheet]
+  - GOOGLE_API_KEY = [your-api-key]
+  - GOOGLE_CLIENT_SECRET = [your-downloaded-json-file-contents]
+  
+From now on new pushed commits to the bitbucket repository will trigger an automatic deployment.
+If you want a manual deployment:
+  - Go to https://bitbucket.org/darian_hickman/village-makeover/addon/pipelines/home#!/
+  - Select latest Successful build
+  - And click 'Rerun'
 
 Helper Routes
 -----------
