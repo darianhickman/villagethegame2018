@@ -532,6 +532,7 @@ var Client = IgeClass.extend({
                 dataLayer.push({'event': 'tutorial'});
 
                 if(API.state.isTutorialShown !== true){
+                    vlg.bindSounds();
                     // start Level Music.
                     vlg.music['welcome'].fadeOut(0, 2000);
                     vlg.music['levelfull1'].fadeIn(1.0, 2000);
