@@ -1,0 +1,126 @@
+Navigated to http://game.villagethegame.com/cache/flush
+Navigated to http://game.villagethegame.com/client/
+log4javascript.js:148 vlg.log is global logger ref.
+log4javascript.js:148 Enabling sound and mute
+log4javascript.js:148 #volume [li#volume.allPointerEvents, context: document, selector: "#volume"]
+log4javascript.js:148 #volume kids [img, img, prevObject: n.fn.init(1), context: document]
+log4javascript.js:148 toogleSound  function toggleSound(){
+    vlg.log.info('toggling Sound ', vlg.muted);
+    if (vlg.muted){
+        Howler.unmute();
+        vlg.muted = false;
+    } else{
+        Howler.mute();
+        vlg.muted = true;
+   …
+usehowler.js:41 using sounds from GameConfig loaded from config sheet.
+usehowler.js:42 defaultClickSound /client/assets/audio/click.mp3
+game.js:7 ------------------------------------------------------------------------------
+game.js:7 * Powered by the Isogenic Game Engine v1.5.5@2014-03-23.001                  *
+game.js:7 * (C)opyright 2017 Irrelon Software Limited                                  *
+game.js:7 * http://www.isogenicengine.com                                              *
+game.js:7 ------------------------------------------------------------------------------
+game.js:1 IGE *log* [$i_54] : Texture script "./assets/textures/rectangle.js" loaded successfully
+game.js:1 IGE *log* [$i_54] : Texture script "./assets/textures/outline.js" loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/Banknotes.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/actionIconSelect.png) loaded successfully
+game.js:1 IGE *log* [$i_54] : Texture script "./assets/textures/arrow.js" loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/Shop-48.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/fonts/aharoni_26px.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/Coin1.png) loaded successfully
+game.js:1 IGE *log* [$i_57] : Loaded font sheet for font: Aharoni @ 26px in #000000
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/cash.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/cashBar.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/close.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/Expand_2.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/sprites/clothingLine.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/coin.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/coinsBar.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/friendTile.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/giftButton.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/backgrounds/dirtBackground.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/backgrounds/greenBackground.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/sprites/flowerPot1.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/gold_menu_small.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/greendot.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/green+.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/sprites/fenceSW.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/leftButton2.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/leftButton1.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/leftButton3.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/marketItemBack.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/mainMenuBackground.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/marketMenuBack.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/Shop_2.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/fonts/press_start_2p_26pt.png
+) loaded successfully
+game.js:1 IGE *log* [$i_57] : Loaded font sheet for font: Press Start 2P @ 16px in #000000
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/reddot.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/star.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/rightButton1.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/rightButton2.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/dollar_menu_small.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/rightButton3.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/whats_new_icon.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/Water-48.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/fonts/villagedash_24px.png) loaded successfully
+game.js:1 IGE *log* [$i_57] : Loaded font sheet for font: VillageDash @ 24px in FFFFFF
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/xbutton.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/Sickle-48.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/sprites/wallSE.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/sprites/villager.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/ui/WateringCan-48.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/woodSmall.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/well2.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/plantsSmall.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/hut2.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/hut1.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/woodLarge.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (./assets/textures/backgrounds/valleyBackground.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/well.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/well3.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/computerRoom.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/sewingRoom.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/drilling_truck.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/smokeyHut.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/generator.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (assets/textures/sprites/shop.png) loaded successfully
+game.js:1 IGE *log* [$i_114:ige] : Texture image (/assets/textures/sprites/farm03.png) loaded successfully
+game.js:1 Stack:     at e.i (http://game.villagethegame.com/client/deploy/game.js:1:10967)
+ ----     at e._applyCells (http://game.villagethegame.com/client/deploy/game.js:4:11976)
+ ----     at e._textureLoaded (http://game.villagethegame.com/client/deploy/game.js:4:11351)
+ ----     at HTMLImageElement.ige.isClient.ige._textureImageStore.(anonymous function).e.onload (http://game.villagethegame.com/client/deploy/game.js:4:1540)
+game.js:1 IGE *warning* [$i_55] : Cell width is a floating-point number! (Image Width 274 / Number of Columns 3 = 91.33333333333333) in file: /assets/textures/sprites/farm03.png
+game.js:1 IGE *log* [$i_114:ige] : All textures have loaded
+game.js:1 IGE *log* [$i_14] : Setting up input event listeners...
+game.js:1 IGE *log* [$i_114:ige] : Starting engine...
+game.js:1 IGE *log* [$i_114:ige] : Engine started
+game.js:11 loaded state from local storage {"coins":5000,"cash":1200,"water":100}
+game.js:1 IGE *log* [$i_114:ige] : Loading SceneGraph data class: $i_1Scene
+game.js:1 IGE *log* [$i_114:ige] : Loading SceneGraph data class: GraphLevel1
+game.js:1 IGE *log* [$i_114:ige] : Loading SceneGraph data class: GraphUi
+log4javascript.js:148 entering state this.fsm.tutorial
+game.js:1 IGE *log* [$i_114:ige] : Loading SceneGraph data class: GraphTutorial
+game.js:11 Query variable pay not found
+log4javascript.js:148 exiting state this.fsm.tutorial
+game.js:1 IGE *log* [$i_114:ige] : Removing SceneGraph data class: GraphTutorial
+game.js:11 tutorial is shown
+log4javascript.js:148 entering state this.fsm.select
+log4javascript.js:148 exiting state this.fsm.select
+log4javascript.js:148 entering state this.fsm.showMessage
+log4javascript.js:148 exiting state this.fsm.showMessage
+game.js:11 ige create goal 1001
+log4javascript.js:148 entering state this.fsm.select
+log4javascript.js:148 exiting state this.fsm.select
+log4javascript.js:148 entering state this.fsm.playerMenu
+log4javascript.js:148 exiting state this.fsm.playerMenu
+log4javascript.js:148 entering state this.fsm.login
+jquery.min.js:4 POST http://game.villagethegame.com/api/login 500 (Internal Server Error)
+send @ jquery.min.js:4
+ajax @ jquery.min.js:4
+window.signInCallback @ game.js:8
+h.r2 @ cb=gapi.loaded_0:53
+xs @ cb=gapi.loaded_0:56
+Wq @ cb=gapi.loaded_0:56
+_.C.uea @ cb=gapi.loaded_0:55
+Ap @ cb=gapi.loaded_0:49

@@ -3,8 +3,25 @@ version: 2
 runtime: python27
 api_version: 1
 threadsafe: true
+secure: always
+
 
 handlers:
+
+- url: /about
+  static_files: about.htm
+  upload: about.html
+
+- url: /about_files
+  static_dir: about_files
+
+- url: /connect
+  static_files: connect.htm
+  upload: connect.htm
+
+- url: /connect_files
+  static_dir: connect_files
+
 - url: /client/assets
   static_dir: assets
 
