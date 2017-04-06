@@ -7,24 +7,32 @@ handlers:
 
 - url: /client/assets
   static_dir: assets
+  secure: always
 
 - url: /assets
   static_dir: assets
+  secure: always
 
 - url: /client/$
   static_files: client/index_deploy.html
   upload: client/index_deploy.html
+  secure: always
 
 - url: /client/dev$
   static_files: client/index.html
   upload: client/index.html
+  secure: always
 
 - url: /favicon.ico
   static_files: assets/textures/ui/faviconlogo.svg
   upload: assets/textures/ui/faviconlogo.svg
+  secure: always
+  
 
 - url: /js
   static_dir: client/js
+  secure: always
+
 
 - url: /client/
   static_dir: client
@@ -33,12 +41,17 @@ handlers:
 
 - url: /client/mailchimp/.*
   static_dir: client/mailchimp
+  secure: always
 
 - url: /ige
   static_dir: ige
+  secure: always
+
 
 - url: /api/.*
   script: village.api.root
+  secure: always
+
 
 - url: /.*
   script: village.main.root
