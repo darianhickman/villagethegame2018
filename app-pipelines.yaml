@@ -1,10 +1,10 @@
 runtime: python27
 api_version: 1
 threadsafe: true
-secure: always
 
 
 handlers:
+
 - url: /client/assets
   static_dir: assets
 
@@ -28,6 +28,8 @@ handlers:
 
 - url: /client/
   static_dir: client
+  secure: always
+
 
 - url: /client/mailchimp/.*
   static_dir: client/mailchimp
@@ -40,6 +42,8 @@ handlers:
 
 - url: /.*
   script: village.main.root
+  secure: always
+
 
 libraries:
 - name: pycrypto
