@@ -175,7 +175,7 @@ var MarketDialog = Dialog.extend({
 			dataLayer.push({'event': 'unlockItemByCash'});
 			self.removeItemCover(itemData);
 			self.bindItemAction(itemData);
-			self.showUnlockMessage(itemData.title);
+			ige.client.gameLogic.showUnlockedItemMessage(itemData.id);
 			API.addUnlockedItem(itemData.id);
 		}
 
@@ -215,15 +215,6 @@ var MarketDialog = Dialog.extend({
 			});
 		}
 		itemData.isActionBound = true;
-	},
-
-	showUnlockMessage: function(itemName){
-		var message = GameConfig.config['itemUnlockMessageString'];
-		message = message.replace("{itemName}", itemName);
-		ige.client.eventEmitter.emit('showMessage', {
-			"title" : GameConfig.config['itemUnlockTitleString'],
-			"message" : message
-		});
 	},
 
 	getItemByID: function(id){

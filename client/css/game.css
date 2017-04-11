@@ -364,6 +364,14 @@ button, input, textarea {
 	max-width: 800px;
 	text-align: center;
 }
+.messageDialogUnlockImage{
+	width: 70px;
+	vertical-align: middle;
+}
+.messageDialogUnlockSpan{
+	padding-left: 10px;
+	vertical-align: middle;
+}
 #buyConfirmDialog{
 	max-width: 800px;
 	text-align: center;

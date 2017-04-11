@@ -289,12 +289,7 @@ var GameLogic = IgeObject.extend({
             if(options && options.enabled && options.dependency !== "none" && API.getUnlockedItem(data.unlocks) === null){
                 self.unlockMarketDialogItem(marketDialog.getItemByID(data.unlocks));
                 data.callback();
-                var message = GameConfig.config['itemUnlockMessageString'];
-                message = message.replace("{itemName}", options.name);
-                ige.client.eventEmitter.emit('showMessage', {
-                    "title" : GameConfig.config['itemUnlockTitleString'],
-                    "message" : message
-                });
+                self.showUnlockedItemMessage(data.unlocks);
             }else{
                 data.callback();
                 // Enter the select state
@@ -314,5 +309,19 @@ var GameLogic = IgeObject.extend({
         marketDialog.removeItemCover(itemData);
         marketDialog.bindItemAction(itemData);
         API.addUnlockedItem(itemData.id);
+    },
+
+    showUnlockedItemMessage: function(itemID){
+        var message, messageHTML, options;
+
+        options = GameObjects.catalogLookup[itemID];
+        message = GameConfig.config['itemUnlockMessageString'];
+        message = message.replace("{itemName}", options.name);
+        messageHTML = "<img class='messageDialogUnlockImage' src='" + options.iconUrl + "'>";
+        messageHTML += "<span class='messageDialogUnlockSpan'>" + message + "</span>";
+        ige.client.eventEmitter.emit('showMessage', {
+            "title" : GameConfig.config['itemUnlockTitleString'],
+            "message" : messageHTML
+        });
     }
 })
