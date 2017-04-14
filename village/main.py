@@ -26,8 +26,6 @@ def index():
 def warmup():
     get_config()
     get_catalog()
-    get_news_feed()
-    get_secret_key()
     get_config_assets()
     get_config_earnings()
     get_problems()
@@ -36,7 +34,7 @@ def warmup():
     get_goals_settings()
     get_dropdown_menu()
     get_special_events()
-    return "ok"
+    return flask.Response('ok')
 
 @root.route('/view/<village_id>')
 def view_village(village_id):
