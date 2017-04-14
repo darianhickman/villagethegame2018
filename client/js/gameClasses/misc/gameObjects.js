@@ -39,7 +39,7 @@ var GameObjects = {
         }
     },
     createGameObjectClass: function(classId, options) {
-        GameObjects.gameObjectTextures[classId] = [options.textureUrl, options.cellCount || 1]
+        GameObjects.gameObjectTextures[classId] = [options.textureUrl, options.cellCount || 1, options.textureID]
 
         if(options.enabled) GameObjects._marketCallbacks.push(function(marketDialog) {
             marketDialog.addItem({

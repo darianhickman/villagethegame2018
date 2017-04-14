@@ -1494,53 +1494,73 @@ var Client = IgeClass.extend({
             }
 
             checkAssetImages = function(assetIndex){
-                $.ajax({
-                    type: "HEAD",
-                    async: true,
-                    url: GameAssets.assets[assetIndex].url
-                }).done(function(message,text,jqXHR){
-                    assetIndex++;
-                    if(assetIndex === GameAssets.assets.length){
-                        checkGameObjectImages(gameObjectIndex);
-                        return;
-                    }
-                    checkAssetImages(assetIndex);
-                }).fail(function(message,text,jqXHR){
-                    if(GameAssets.assets[assetIndex].type !== "Audio")
+                if(GameAssets.assets[assetIndex].enabled === "TRUE" && GameAssets.assets[assetIndex].type !== "Audio" && GameAssets.assets[assetIndex].type !== "FontSheet" && !self.isAssetInAtlas(uiAtlas, GameAssets.assets[assetIndex].id)){
+                    $.ajax({
+                        type: "HEAD",
+                        async: true,
+                        url: GameAssets.assets[assetIndex].url
+                    }).done(function(message,text,jqXHR){
+                        assetIndex++;
+                        if(assetIndex === GameAssets.assets.length){
+                            checkGameObjectImages(gameObjectIndex);
+                            return;
+                        }
+                        checkAssetImages(assetIndex);
+                    }).fail(function(message,text,jqXHR){
                         GameAssets.assets[assetIndex].url = GameConfig.config['notFoundImageURL'];
+                        assetIndex++;
+                        if(assetIndex === GameAssets.assets.length){
+                            checkGameObjectImages(gameObjectIndex);
+                            return;
+                        }
+                        checkAssetImages(assetIndex);
+                    });
+                }else{
                     assetIndex++;
                     if(assetIndex === GameAssets.assets.length){
                         checkGameObjectImages(gameObjectIndex);
                         return;
                     }
                     checkAssetImages(assetIndex);
-                });
+                }
             }
 
             checkGameObjectImages = function(gameObjectIndex){
-                $.ajax({
-                    type: "HEAD",
-                    async: true,
-                    url: GameObjects.gameObjectTextures[gameObjectTexturesKeys[gameObjectIndex]][0]
-                }).done(function(message,text,jqXHR){
+                if(!self.isAssetInAtlas(catalogAtlas, GameObjects.gameObjectTextures[gameObjectTexturesKeys[gameObjectIndex]][2])){
+                    $.ajax({
+                        type: "HEAD",
+                        async: true,
+                        url: GameObjects.gameObjectTextures[gameObjectTexturesKeys[gameObjectIndex]][0]
+                    }).done(function(message,text,jqXHR){
+                        gameObjectIndex++;
+                        if(gameObjectIndex === gameObjectTexturesKeys.length){
+                            createTextures();
+                            return;
+                        }
+                        checkGameObjectImages(gameObjectIndex);
+                    }).fail(function(message,text,jqXHR){
+                        GameObjects.gameObjectTextures[gameObjectTexturesKeys[gameObjectIndex]][0] = GameConfig.config['notFoundImageURL'];
+                        gameObjectIndex++;
+                        if(gameObjectIndex === gameObjectTexturesKeys.length){
+                            createTextures();
+                            return;
+                        }
+                        checkGameObjectImages(gameObjectIndex);
+                    });
+                }else{
                     gameObjectIndex++;
                     if(gameObjectIndex === gameObjectTexturesKeys.length){
                         createTextures();
                         return;
                     }
                     checkGameObjectImages(gameObjectIndex);
-                }).fail(function(message,text,jqXHR){
-                    GameObjects.gameObjectTextures[gameObjectTexturesKeys[gameObjectIndex]][0] = GameConfig.config['notFoundImageURL'];
-                    gameObjectIndex++;
-                    if(gameObjectIndex === gameObjectTexturesKeys.length){
-                        createTextures();
-                        return;
-                    }
-                    checkGameObjectImages(gameObjectIndex);
-                });
+                }
             }
 
             createTextures = function(){
+                self.textures['uiAtlas'] = new TexturePackerAtlas('uiAtlas','./assets/textures/sprites/atlas/uiAtlas.png','./assets/textures/sprites/atlas/uiAtlas.json');
+                self.textures['catalogAtlas'] = new TexturePackerAtlas('catalogAtlas','./assets/textures/sprites/atlas/catalogAtlas.png','./assets/textures/sprites/atlas/catalogAtlas.json');
+
                 for (var i = 0; i < GameAssets.assets.length; i++) {
                     if (GameAssets.assets[i].enabled === "FALSE")
                         continue;
@@ -1551,14 +1571,23 @@ var Client = IgeClass.extend({
                         continue;
                     // working through moving Audio to outside Ige entirely.
                     //self[asset.attachTo][asset.name] = new IgeAudio(asset.url);
-                    else if (asset.type === "Texture")
-                        self[asset.attachTo][asset.name] = new IgeTexture(asset.url);
+                    else if (asset.type === "Texture"){
+                        if(!self.isAssetInAtlas(uiAtlas, asset.id))
+                            self[asset.attachTo][asset.name] = new IgeTexture(asset.url);
+                        else{
+                            self[asset.attachTo][asset.name] = self.textures['uiAtlas'].textureFromCell(asset.id);
+                            self[asset.attachTo][asset.name]._url = asset.url;
+                        }
+                    }
                     else if (asset.type === "FontSheet")
                         self[asset.attachTo][asset.name] = new IgeFontSheet(asset.url);
                 }
                 for (var key in GameObjects.gameObjectTextures) {
                     var tex = GameObjects.gameObjectTextures[key]
-                    self.textures[key] = new IgeCellSheet(tex[0], tex[1], 1)
+                    if(!self.isAssetInAtlas(catalogAtlas, tex[2]))
+                        self.textures[key] = new IgeCellSheet(tex[0], tex[1], 1)
+                    else
+                        self.textures[key] = self.textures['catalogAtlas'].textureFromCell(tex[2]);
                 }
             }
 
@@ -1587,6 +1616,50 @@ var Client = IgeClass.extend({
 
         // Wait for our textures to load before continuing
         ige.on('texturesLoaded', function () {
+            for (var key in GameObjects.gameObjectTextures) {
+                var self = ige.client;
+                var tex = GameObjects.gameObjectTextures[key]
+
+                var imgWidth, imgHeight,
+                    rows, columns,
+                    cellWidth, cellHeight,
+                    cellIndex,
+                    xPos, yPos;
+
+                imgWidth = self.textures[key]._sizeX;
+                imgHeight = self.textures[key]._sizeY;
+
+                // Store the width and height of a single cell
+                cellWidth = imgWidth / tex[1];
+                cellHeight = imgHeight;
+
+                // Check if the cell width and height are non-floating-point
+                if (cellWidth !== parseInt(cellWidth, 10)) {
+                    self.log('Cell width is a floating-point number! (Image Width ' + imgWidth + ' / Number of Columns ' + 3 + ' = ' + cellWidth + ') in file: ' + self.textures[key]._url, 'warning');
+                }
+
+                if (cellHeight !== parseInt(cellHeight, 10)) {
+                    self.log('Cell height is a floating-point number! (Image Height ' + imgHeight + ' / Number of Rows ' + 1 + ' = ' + cellHeight + ')  in file: ' + self.textures[key]._url, 'warning');
+                }
+
+                // Check if we need to calculate individual cell data
+                if (tex[1] > 1) {
+                    for (cellIndex = 1; cellIndex <= (1 * tex[1]); cellIndex++) {
+                        yPos = (Math.ceil(cellIndex / tex[1]) - 1);
+                        xPos = ((cellIndex - (tex[1] * yPos)) - 1);
+
+                        // Store the xy in the sheet frames variable
+                        self.textures[key]._cells[cellIndex] = [(xPos * cellWidth), (yPos * cellHeight), cellWidth, cellHeight];
+                    }
+                } else {
+                    // The cell data shows only one cell so just store the whole image data
+                    self.textures[key]._cells[1] = [0, 0, self.textures[key]._sizeX, self.textures[key]._sizeY];
+                }
+                self.textures[key]._url = tex[0];
+                self.textures[key]._cellColumns = tex[1];
+                self.textures[key]._cellRows = 1;
+            }
+
             // Create the HTML canvas
             if (true) {
                 ige.createFrontBuffer(true);
@@ -1781,6 +1854,13 @@ var Client = IgeClass.extend({
 
         ige.$('outlineEntity').tileWidth = objectTileWidth;
         ige.$('outlineEntity').tileHeight = objectTileHeight;
+    },
+    isAssetInAtlas: function(atlasRef, id){
+        for(var i = 0; i < atlasRef.frames.length; i++){
+            if(atlasRef.frames[i].filename === id)
+                return true;
+        }
+        return false;
     }
 });
 
