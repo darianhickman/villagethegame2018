@@ -34,4 +34,4 @@ pipelines:
             - node server/ige.js -deploy ../client
             - cd ..
             - gcloud auth activate-service-account --key-file client-secret.json
-            - gcloud --quiet --verbosity=error app deploy app-pipelines.yaml --promote
+            - gcloud --quiet --verbosity=error app deploy app-pipelines.yaml --version=${APP_VERSION} --promote
