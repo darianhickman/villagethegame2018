@@ -47,14 +47,14 @@ function soundinit() {
         vlg.sfx['cancel'] = new Howl({urls: [GameConfig.config['defaultCancelSound']], volume: 0.8});
         //cheating a little.
         vlg.music['welcome'] = new Howl({
-            urls: ['/client/assets/audio/music/Welcome.wav'],
+            urls: ['/client/assets/audio/music/Welcome.mp3'],
             autoplay: true,
             loop: false,
             volume: 1.0
         });
 
         vlg.music['levelfull1'] = new Howl({
-            urls: ['/client/assets/audio/music/Level1Full.wav'],
+            urls: ['/client/assets/audio/music/Level1Full.mp3'],
             autoplay: false,
             loop: true,
             volume: 1.0
@@ -73,14 +73,14 @@ function soundinit() {
         vlg.sfx['select'] = new Howl({urls: ['/client/assets/audio/click.mp3'], volume: 1.0});
         vlg.sfx['cancel'] = new Howl({urls: ['/client/assets/audio/cancel.mp3'], volume: 0.9});
         vlg.music['welcome'] = new Howl({
-            urls: ['/client/assets/audio/music/Welcome.wav'],
+            urls: ['/client/assets/audio/music/Welcome.mp3'],
             autoplay: false,
             loop: false,
             volume: 1.0
         });
 
         vlg.music['levelfull1'] = new Howl({
-            urls: ['/client/assets/audio/music/Level1Full.wav'],
+            urls: ['/client/assets/audio/music/Level1Full.mp3'],
             autoplay: false,
             loop: true,
             volume: 1.0
