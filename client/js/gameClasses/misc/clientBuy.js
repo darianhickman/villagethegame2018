@@ -11,7 +11,7 @@ var Buy = {
             ige.$('buyStatus').transactionSuccess(amount, vbucks)
         }, function(amount, vbucks) {
             ige.$('buyStatus').transactionFailed(function() {
-                location.href = 'pay.html?param=' + Buy.createReason(assets) + '&loginStatus=' + API.loginStatus + '&userID=' + API.user.id + '&amount=' + amount + '&vbucks=' + vbucks;
+                location.href = '/pay?param=' + Buy.createReason(assets) + '&loginStatus=' + API.loginStatus + '&userID=' + API.user.id + '&amount=' + amount + '&vbucks=' + vbucks;
             })
         });
     },
@@ -38,7 +38,7 @@ var Buy = {
             success: function(ret) {
                 console.log('pay -> ', ret);
                 if(ret.status == 'register')
-                    location.href = 'pay.html?param=' + Buy.createReason(assets) + '&loginStatus=' + API.loginStatus + '&userID=' + API.user.id + '&amount=' + ret.amount + '&vbucks=' + ret.vbucks;
+                    location.href = '/pay?param=' + Buy.createReason(assets) + '&loginStatus=' + API.loginStatus + '&userID=' + API.user.id + '&amount=' + ret.amount + '&vbucks=' + ret.vbucks;
                 else if(ret.status == 'ok')
                     success(ret.amount, ret.vbucks)
                 else

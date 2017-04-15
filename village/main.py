@@ -18,10 +18,6 @@ root = flask.Flask(__name__)
 
 root.secret_key  = get_secret_key()
 
-@root.route('/')
-def index():
-    return flask.redirect('/client/')
-
 @root.route('/_ah/warmup')
 def warmup():
     get_config()
@@ -38,7 +34,7 @@ def warmup():
 
 @root.route('/view/<village_id>')
 def view_village(village_id):
-    return flask.redirect('/client/?v=' + village_id)
+    return flask.redirect('/?v=' + village_id)
 
 @root.route('/config', methods=['POST'])
 def config_route():
@@ -125,7 +121,7 @@ def create_client():
     state.customer_id = result.customer.id
     state.customer_id_once = not remember
     state.put()
-    return flask.redirect('/client/#pay=' + urllib.quote(param))
+    return flask.redirect('/#pay=' + urllib.quote(param))
 
 @root.route('/newsFeed')
 def news_feed_route():

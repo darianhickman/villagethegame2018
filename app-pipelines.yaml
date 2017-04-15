@@ -16,14 +16,19 @@ handlers:
   static_dir: assets
   secure: always
 
-- url: /client/$
+- url: /$
   static_files: client/index_deploy.html
   upload: client/index_deploy.html
   secure: always
 
-- url: /client/dev$
+- url: /dev$
   static_files: client/index.html
   upload: client/index.html
+  secure: always
+
+- url: /pay
+  static_files: client/pay.html
+  upload: client/pay.html
   secure: always
 
 - url: /favicon.ico
@@ -31,16 +36,22 @@ handlers:
   upload: assets/textures/ui/faviconlogo.svg
   secure: always
   
+- url: /ClientConfig.js
+  static_files: client/ClientConfig.js
+  upload: client/ClientConfig.js
+  secure: always
 
 - url: /js
   static_dir: client/js
   secure: always
 
-
-- url: /client/
+- url: /client
   static_dir: client
   secure: always
 
+- url: /$
+  static_dir: client
+  secure: always
 
 - url: /client/mailchimp/.*
   static_dir: client/mailchimp
@@ -50,16 +61,13 @@ handlers:
   static_dir: ige
   secure: always
 
-
 - url: /api/.*
   script: village.api.root
   secure: always
 
-
 - url: /.*
   script: village.main.root
   secure: always
-
 
 libraries:
 - name: pycrypto
