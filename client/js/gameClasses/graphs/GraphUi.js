@@ -201,7 +201,7 @@ var GraphUi = IgeSceneGraph.extend({
             }
         }
         $('#fullscreenIcon').on('click',function(){
-            mixpanel.track("Go fullscreen");
+            ga("send",  "Go fullscreen");
             $( "#fullscreenIcon" ).find('img').toggle();
             if($.FullScreen.isFullScreen()){
                 $.FullScreen.cancelFullScreen();
@@ -216,12 +216,12 @@ var GraphUi = IgeSceneGraph.extend({
         })
 
         $('#loginLink').on('click',function(){
-            mixpanel.track("Click login");
+            ga("send",  "Click login");
             ige.client.fsm.enterState('login');
         })
 
         $('#logoutLink').on('click',function(){
-            mixpanel.track("Logout");
+            ga("send",  "Logout");
             ige.client.fsm.enterState('logout');
         })
 
@@ -288,7 +288,7 @@ var GraphUi = IgeSceneGraph.extend({
 		$('#marketButton')
 			.click(function () {
 				// Open the build menu
-                mixpanel.track("Open market dialog");
+                ga("send",  "Open market dialog");
                 self.toggleDialog('marketDialog');
 			});
 
@@ -299,19 +299,19 @@ var GraphUi = IgeSceneGraph.extend({
 
         $('#cashbar')
             .click(function() {
-                mixpanel.track("Open cash dialog");
+                ga("send",  "Open cash dialog");
                 self.toggleDialog('cashDialog');
             });
 
         $('#coinbar')
             .click(function() {
-                mixpanel.track("Open coin dialog");
+                ga("send",  "Open coin dialog");
                 self.toggleDialog('coinDialog');
             });
 
         $('#waterbar')
             .click(function() {
-                mixpanel.track("Open water dialog");
+                ga("send",  "Open water dialog");
                 self.toggleDialog('waterDialog');
             });
 
@@ -356,7 +356,7 @@ var GraphUi = IgeSceneGraph.extend({
         }
         else{
             // Open the goal dialog
-            mixpanel.track("Open goal dialog");
+            ga("send",  "Open goal dialog");
             $('#newGoalNotification').hide();
             $('#goalCompleteNotification').hide();
             ige.client.fsm.enterState('goalDialog', null, function (err) {

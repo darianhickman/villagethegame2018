@@ -12,8 +12,8 @@ var Tutorial = IgeEventingClass.extend({
         self.currentGoalStep = 1;
         self.isMoneyAdded = false;
         self.tutorialViews = new TutorialViews();
-        self.marketItems = $('<ul></ul>')
-        self.tutorialObjects = []
+        self.marketItems = $('<ul></ul>');
+        self.tutorialObjects = [];
 
         self.tutorialArrow = $("<span id='tutorialArrowSpan'></span>")
             .appendTo("#hudcontainer").insertAfter("#topToolbarTutorial");
@@ -27,7 +27,7 @@ var Tutorial = IgeEventingClass.extend({
             .appendTo("#hudcontainer")
             .position({my: "right bottom", at: "right bottom", of: window})
             .click(function(){
-                mixpanel.track("Skip tutorial");
+                ga("send", "Skip tutorial");
                 self.gotoStep('finishTutorial');
             });
 

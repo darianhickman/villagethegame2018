@@ -411,7 +411,7 @@ var GameObjects = {
                                 {coins: parseInt(price.coins, 10),
                                     cash: parseInt(price.cash, 10)}).status) {
                             // Not enough money?
-                            mixpanel.track("Not enough money");
+                            ga("send",  "Not enough money");
                             new BuyConfirm(GameConfig.config['notEnoughCashString'],
                                 function () {
                                     ige.$('cashDialog').show();
@@ -470,7 +470,7 @@ var GameObjects = {
                             water: parseInt(price.water, 10)});
                     if(!result.status) {
                         // Not enough assets?
-                        mixpanel.track("Not enough assets");
+                        ga("send",  "Not enough assets");
                         var message = "You don't have enough ";
                         if(!result.coins)
                             message += "Coins "

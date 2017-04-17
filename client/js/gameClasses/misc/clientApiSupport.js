@@ -11,7 +11,7 @@ var API = {
                     return;
                 }
                 if(result.status === 'ok') {
-                    mixpanel.track("Online user");
+                    ga("send",  "Online user");
                     dataLayer.push({'userEmail': API.user.email});
                     API.loginStatus = "online"
                     history.replaceState({'villageID':API.user.key_id},"load_village",'?v='+API.user.key_id+location.hash);
@@ -19,7 +19,7 @@ var API = {
                     location.href = result.login_url
                 } else {
                     API.loginStatus = "offline"
-                    mixpanel.track("Offline user");
+                    ga("send",  "Offline user");
                     dataLayer.push({'userEmail': "offline"});
                     if(localStorage.getItem('id') === null){
                         localStorage.setItem('id',ige.newIdHex())
@@ -120,7 +120,7 @@ var API = {
     },
 
     addCoins: function(by) {
-        mixpanel.track("Add Coins");
+        ga("send",  "Add Coins");
         ClientHelpers.guiAnimateCoins(API.state.coins, by)
         API.state.coins += by
         API.saveState()
@@ -128,7 +128,7 @@ var API = {
     },
 
     addCash: function(by) {
-        mixpanel.track("Add Cash");
+        ga("send",  "Add Cash");
         ClientHelpers.guiAnimateCash(API.state.cash, by)
         API.state.cash += by
         API.saveState()
@@ -136,7 +136,7 @@ var API = {
     },
 
     addWater: function(by){
-        mixpanel.track("Add Cash");
+        ga("send",  "Add Cash");
         ClientHelpers.guiAnimateWater(API.state.water, by)
         API.state.water += by
         API.saveState()
@@ -197,7 +197,7 @@ var API = {
     },
 
     createObject: function(obj) {
-        mixpanel.track("Create object");
+        ga("send",  "Create object");
         console.log("ige create object", obj)
         if(!API.state.objects)
             API.state.objects = []
@@ -207,7 +207,7 @@ var API = {
     },
 
     updateObject: function(obj, newX, newY) {
-        mixpanel.track("Update object");
+        ga("send",  "Update object");
         console.log("ige update object", obj)
         API.stateObjectsLookup[obj.id()].x = newX
         API.stateObjectsLookup[obj.id()].y = newY
@@ -244,7 +244,7 @@ var API = {
     },
 
     createGoal: function(goalID) {
-        mixpanel.track("Create goal");
+        ga("send",  "Create goal");
         console.log("ige create goal", goalID)
         if(!API.state.goals)
             API.state.goals = []
@@ -255,7 +255,7 @@ var API = {
     },
 
     updateGoal: function(goalID, taskID, value) {
-        mixpanel.track("Update goal");
+        ga("send",  "Update goal");
         console.log("ige update goal", goalID, taskID, value)
         if(!API.stateGoalsLookup[goalID].tasks)
             API.stateGoalsLookup[goalID].tasks = []
@@ -268,7 +268,7 @@ var API = {
     },
 
     setGoalAsComplete: function(goalID) {
-        mixpanel.track("Complete goal");
+        ga("send",  "Complete goal");
         console.log("goal is complete")
         API.stateGoalsLookup[goalID].isComplete = true
         API.saveState()
@@ -290,7 +290,7 @@ var API = {
     addUnlockedItem: function(itemID){
         API.state.unlockedItems = API.state.unlockedItems || [];
         if(API.state.unlockedItems.indexOf(itemID) === -1){
-            mixpanel.track("Add unlocked item to state");
+            ga("send",  "Add unlocked item to state");
             API.state.unlockedItems.push(itemID);
             API.saveState()
         }

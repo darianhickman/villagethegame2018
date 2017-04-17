@@ -59,7 +59,7 @@ var GraphUiEditor = IgeSceneGraph.extend({
 
         $('#marketButtonEditor')
 			.click(function () {
-                mixpanel.track("Open editor dialog");
+                ga("send",  "Open editor dialog");
                 ige.$('editorMarketDialog').show();
 			});
 

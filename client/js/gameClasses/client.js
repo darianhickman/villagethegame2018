@@ -1066,7 +1066,7 @@ var Client = IgeClass.extend({
                                 cash: parseInt(ige.client.cursorObjectData.cash, 10)
                             }).status) {
                         // Not enough money?
-                        mixpanel.track("Not enough money");
+                        ga("send",  "Not enough money");
                         ige.client.cursorObject.destroy();
                         ige.client.cursorObject = null;
                         ige.client.cursorObjectData = null;

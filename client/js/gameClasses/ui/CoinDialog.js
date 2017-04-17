@@ -32,7 +32,7 @@ var CoinDialog = Dialog.extend({
                             {coins: parseInt(price.coins, 10),
                                 cash: parseInt(price.cash, 10)}).status) {
                             // Not enough money?
-                            mixpanel.track("Not enough money");
+                            ga("send",  "Not enough money");
                             ige.$('cashDialog').show();
                             return;
                         }
@@ -43,7 +43,7 @@ var CoinDialog = Dialog.extend({
 
                     if(price.cash > API.state.cash){
                         // Not enough money?
-                        mixpanel.track("Not enough money");
+                        ga("send",  "Not enough money");
                         message = GameConfig.config['notEnoughCashString'];
                         callBack = function() {
                             ige.$('cashDialog').show();

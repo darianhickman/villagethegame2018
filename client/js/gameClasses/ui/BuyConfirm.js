@@ -13,7 +13,7 @@ var BuyConfirm = Dialog.extend({
             $("#buyConfirmNo").hide();
             $("#buyConfirmOK")
                 .click(function() {
-                    mixpanel.track("Confirm dialog");
+                    ga("send",  "Confirm dialog");
                     $("#buyConfirmOK").unbind("click");
                     self.closeMe();
                     if(callback !== null && callback !== undefined)
@@ -25,7 +25,7 @@ var BuyConfirm = Dialog.extend({
 
             $("#buyConfirmYes")
                 .click(function() {
-                    mixpanel.track("Confirm buy");
+                    ga("send",  "Confirm buy");
                     $("#buyConfirmYes").unbind("click");
                     $("#buyConfirmNo").unbind("click");
                     self.closeMe();
@@ -35,7 +35,7 @@ var BuyConfirm = Dialog.extend({
 
             $("#buyConfirmNo")
                 .click(function() {
-                    mixpanel.track("Cancel buy");
+                    ga("send",  "Cancel buy");
                     $("#buyConfirmYes").unbind("click");
                     $("#buyConfirmNo").unbind("click");
                     self.closeMe();
