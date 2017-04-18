@@ -87,7 +87,7 @@ var MarketDialog = Dialog.extend({
 			clonedItem, options, dummyElem, imgWidth, imgHeight;
 
 		clonedItem = $('#marketDialogPageTemplate ul li').first().clone();
-		clonedItem.show().find(".marketItemTitle").first().text(itemData.title);
+		clonedItem.show().find(".marketItemTitle").first().text(itemData.title).attr("id", "marketItemButton" + itemData.id);
 
 		options = GameObjects.catalogLookup[itemData.id]
 		dummyElem = $("<div class='marketItemImage'></div>").hide().appendTo("body");
@@ -123,6 +123,7 @@ var MarketDialog = Dialog.extend({
 			clonedItem.addClass("locked");
 			// display price.  		price.cash = itemData.unlockValue;
 			itemData.unlockprice.text(itemData.unlockValue);
+			itemData.unlockButton.attr("id", "unlock" + itemData.id);
 			itemData.unlockButton.click(function (event) {
 				event.stopPropagation();
 				self.hide();
