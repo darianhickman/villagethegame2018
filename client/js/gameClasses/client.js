@@ -1746,6 +1746,8 @@ var Client = IgeClass.extend({
                         self.fsm.initialState('tutorial');
                     }
 
+                    var loadedTime = (Date.now() - gameLoadTimer) / 1000 + "";
+                    dataLayer.push({'loadTime': loadedTime});
                     dataLayer.push({'event': 'gameStart'});
                 }
 
