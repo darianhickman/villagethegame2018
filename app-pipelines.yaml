@@ -21,6 +21,11 @@ handlers:
   upload: client/index_deploy.html
   secure: always
 
+- url: /client/$
+  static_files: client/index_deploy.html
+  upload: client/index_deploy.html
+  secure: always
+
 - url: /dev$
   static_files: client/index.html
   upload: client/index.html
