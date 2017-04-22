@@ -10,6 +10,12 @@
     maybe don't need $(document).ready . some bloggers say putting scripts at bottom of page is good enough.
 */
 
+var vlg = {};
+vlg.log = log4javascript.getLogger();
+appender = new log4javascript.BrowserConsoleAppender();
+appender.setThreshold(log4javascript.Level.DEBUG);
+vlg.log.addAppender(appender);
+vlg.log.info('vlg.log is global logger ref.');
 
 function soundinit() {
     vlg.sfx = {};  // sound effects

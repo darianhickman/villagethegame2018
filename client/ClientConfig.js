@@ -26,6 +26,12 @@ var igeClientConfig = {
 
         '/js/gameClasses/misc/util.js',
         '/js/plugins/crypto-js-hmac.js',
+		'/js/plugins/jquery.fullscreen.js',
+		'/js/plugins/jquery.easing.1.3.js',
+		'/js/plugins/jquery.jqpagination.js',
+		'/js/plugins/jquery.animateNumber.min.js',
+		'/js/plugins/jQueryRotate.js',
+		'/js/plugins/menu.js',
         // try inline span container
         '/js/gameClasses/misc/SpanContainer.js',
         //enable zoom and scroll

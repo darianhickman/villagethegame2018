@@ -18,7 +18,7 @@ var getGameConfig = function(retryCount){
 
             // load material for ige controlled content.
             var loaderScript = document.createElement('script'),
-                loaderLocation = document.getElementById("gameConfig").getAttribute("data-location");
+                loaderLocation = document.getElementById("gameStartScript").getAttribute("data-location");
             if(loaderLocation === "localhost")
                 loaderScript.src = '/ige/engine/loader.js';
             else if(loaderLocation === "deploy")

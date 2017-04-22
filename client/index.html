@@ -11,16 +11,6 @@
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-W27P4W3');</script>
     <!-- End Google Tag Manager -->
-    <script src="/client/js/plugins/log4javascript.js"></script>
-    <script type="text/javascript">
-        var vlg = {};
-        vlg.log = log4javascript.getLogger();
-        appender = new log4javascript.BrowserConsoleAppender();
-        appender.setThreshold(log4javascript.Level.DEBUG);
-        vlg.log.addAppender(appender);
-        vlg.log.info('vlg.log is global logger ref.');
-
-    </script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -35,14 +25,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
     <script src="https://apis.google.com/js/client:platform.js" async defer></script>
 
-    <script src="/client/js/plugins/jquery.fullscreen.js"></script>
-    <script src="/client/js/plugins/howler.js"></script>
-    <script src="/client/js/plugins/jquery.easing.1.3.js"></script>
-    <script src="/client/js/plugins/jquery.jqpagination.js"></script>
-    <script src="/client/js/plugins/jquery.animateNumber.min.js"></script>
-    <script src="/client/js/plugins/jQueryRotate.js"></script>
-    <script src="/client/js/plugins/menu.js"></script>
-
     <link href="/client/css/jqueryui-overrides.css" rel="stylesheet" type="text/css" />
     <link href="/client/css/game.css" rel="stylesheet" type="text/css"/>
     <link href="/client/css/menustyle.css" rel="stylesheet" type="text/css"/>
@@ -53,8 +35,7 @@
         var igeRoot = '/ige/engine/';
     </script>
 
-    <script src="/client/js/plugins/usehowler.js"></script>
-    <script id="gameConfig" data-location="localhost" type="text/javascript" src="/client/js/gameClasses/loaders/GameConfig.js"></script>
+    <script id="gameStartScript" data-location="localhost" type="text/javascript" src="/client/deploy/gameStart.min.js"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -287,7 +268,6 @@
         </div>
     </div>
 </div> <!-- End hudcontainer -->
-
 <script>
     (function (i, s, o, g, r, a, m) {
         i['GoogleAnalyticsObject'] = r;
