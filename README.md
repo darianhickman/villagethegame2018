@@ -117,6 +117,7 @@ If you want a manual deployment:
 
 Running e2e Test
 -----------
+You will need to have the Java Development Kit (JDK) (http://www.oracle.com/technetwork/java/javase/downloads/index.html) installed to run the standalone Selenium Server. Check this by running `java -version` from the command line.
 
 Use npm to install Protractor globally with:
 ```
@@ -134,7 +135,7 @@ webdriver-manager start
 ```
 This will start up a Selenium Server and will output a bunch of info logs. Your Protractor test will send requests to this server to control a local browser. Leave this server running throughout the test. You can see information about the status of the server at `http://localhost:4444/wd/hub`.
 
-Open a new command line or terminal window and run the following code in the root folder (replace <url> with url to test):
+Open a new command line or terminal window and run the following code in the root folder of the project (replace <url> with url to test):
 ```
 protractor protractor-conf.js --baseUrl <url>
 ```
