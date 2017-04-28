@@ -6,7 +6,7 @@
    * Extend Object helper function.
    */
   function extend(a, b) {
-    for(var key in b) { 
+    for(var key in b) {
       if(b.hasOwnProperty(key)) {
         a[key] = b[key];
       }
@@ -49,7 +49,7 @@
   Menu.prototype._init = function() {
     this.body = document.body;
     this.wrapper = document.querySelector(this.options.wrapper);
-    this.mask = document.querySelector(this.options.maskId);
+    this.mask = this.options.maskId ? document.querySelector(this.options.maskId) : null;
     this.menu = document.querySelector('#c-menu--' + this.options.type);
     this.closeBtn = this.menu.querySelector('.c-menu__close');
     this.menuOpeners = document.querySelectorAll(this.options.menuOpenerClass);
@@ -67,10 +67,12 @@
     }.bind(this));
 
     // Event for clicks on the mask.
-    this.mask.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.close();
-    }.bind(this));
+    if (this.mask) {
+      this.mask.addEventListener('click', function(e) {
+        e.preventDefault();
+        this.close();
+      }.bind(this));
+    }
   };
 
   /**
@@ -80,7 +82,9 @@
     this.body.classList.add('has-active-menu');
     this.wrapper.classList.add('has-' + this.options.type);
     this.menu.classList.add('is-active');
-    this.mask.classList.add('is-active');
+    if (this.mask) {
+      this.mask.classList.add('is-active');
+    }
     this.disableMenuOpeners();
   };
 
@@ -91,7 +95,9 @@
     this.body.classList.remove('has-active-menu');
     this.wrapper.classList.remove('has-' + this.options.type);
     this.menu.classList.remove('is-active');
-    this.mask.classList.remove('is-active');
+    if (this.mask) {
+      this.mask.classList.remove('is-active');
+    }
     this.enableMenuOpeners();
   };
 

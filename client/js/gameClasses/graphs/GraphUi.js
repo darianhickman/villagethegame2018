@@ -164,7 +164,7 @@ var GraphUi = IgeSceneGraph.extend({
             wrapper: '#o-wrapper',
             type: 'slide-right',
             menuOpenerClass: '.c-button',
-            maskId: '#c-mask'
+            maskId: ''
         });
 
 		this.addActions();
