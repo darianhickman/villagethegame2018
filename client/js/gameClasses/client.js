@@ -1,6 +1,6 @@
 var gameScale = parseFloat(GameConfig.config['gameScale'])
 var uniqueCounter = 0
-// so by now GameConfig from /config has definitely loaded otherwise this doesn't get called. 
+// so by now GameConfig from /config has definitely loaded otherwise this doesn't get called.
 
 // For all code outside of ige THE global variable is vlg.  That's how we'll pass references across different libraries.
 
@@ -833,6 +833,38 @@ var Client = IgeClass.extend({
                 $( "#contactSending" ).hide();
                 $( "#contact-submit" ).show()
                     .unbind("click");
+
+                completeCallback();
+            }
+        });
+
+        this.fsm.defineState('aboutDialog', {
+            enter: function (data, completeCallback) {
+                vlg.log.info('entering state this.fsm.aboutDialog');
+                dataLayer.push({'event': 'aboutDialog'});
+                $( "#aboutDialog" ).dialog({width: "80%", minWidth: 925, maxWidth: 1215, height: 650, close: function( event, ui ) {}});
+
+                completeCallback();
+            },
+            exit: function (data, completeCallback) {
+                vlg.log.info('exiting state this.fsm.aboutDialog');
+                $( "#aboutDialog" ).dialog( "close" );
+
+                completeCallback();
+            }
+        });
+
+        this.fsm.defineState('contactDialog', {
+            enter: function (data, completeCallback) {
+                vlg.log.info('entering state this.fsm.contactDialog');
+                dataLayer.push({'event': 'contactDialog'});
+                $( "#contactDialog" ).dialog({width: 925, height: 650, close: function( event, ui ) {}});
+
+                completeCallback();
+            },
+            exit: function (data, completeCallback) {
+                vlg.log.info('exiting state this.fsm.contactDialog');
+                $( "#contactDialog" ).dialog( "close" );
 
                 completeCallback();
             }

@@ -1,177 +1,183 @@
 var GraphUi = IgeSceneGraph.extend({
-	classId: 'GraphUi',
+  classId: 'GraphUi',
 
-	/**
-	 * Called when loading the graph data via ige.addGraph().
-	 * @param options
-	 */
-	addGraph: function (options) {
-		var self = this,
-            clientself = ige.client,
-			uiScene = ige.$('uiScene'),
-            dialogList = [{id:"marketDialog", image:"Shop"}, {id:"goalDialog", image:"star"}, {id:"cashBuyDialog", image:"Banknotes"}, {id:"coinBuyDialog", image:"Coin1"}, {id:"waterBuyDialog", image:"Water-48"}];
+  /**
+   * Called when loading the graph data via ige.addGraph().
+   * @param options
+   */
+ addGraph: function (options) {
+    var self = this,
+        clientself = ige.client,
+        uiScene = ige.$('uiScene'),
+        dialogList = [
+            {id:"marketDialog", image:"Shop"},
+            {id:"goalDialog", image:"star"},
+            {id:"cashBuyDialog", image:"Banknotes"},
+            {id:"coinBuyDialog", image:"Coin1"},
+            {id:"waterBuyDialog", image:"Water-48"}
+        ];
 
 		var marketDialog = new MarketDialog()
-			.id('marketDialog')
-			.layer(1)
-			.hide()
-			.mount(uiScene);
+        .id('marketDialog')
+        .layer(1)
+        .hide()
+        .mount(uiScene);
 
-        GameObjects.setupMarket(marketDialog)
+    GameObjects.setupMarket(marketDialog)
 
-        var cashDialog = new CashDialog()
-			.id('cashDialog')
-			.layer(1)
-			.hide()
-			.mount(uiScene);
+    var cashDialog = new CashDialog()
+        .id('cashDialog')
+        .layer(1)
+        .hide()
+        .mount(uiScene);
 
-        var coinDialog = new CoinDialog()
-            .id('coinDialog')
-            .layer(1)
-            .hide()
-            .mount(uiScene);
+    var coinDialog = new CoinDialog()
+        .id('coinDialog')
+        .layer(1)
+        .hide()
+        .mount(uiScene);
 
-        var waterDialog = new WaterDialog()
-            .id('waterDialog')
-            .layer(1)
-            .hide()
-            .mount(uiScene);
+    var waterDialog = new WaterDialog()
+        .id('waterDialog')
+        .layer(1)
+        .hide()
+        .mount(uiScene);
 
-        var buyStatus = new BuyStatus()
-			.id('buyStatus')
-			.layer(1)
-			.hide()
-			.mount(uiScene);
+    var buyStatus = new BuyStatus()
+        .id('buyStatus')
+        .layer(1)
+        .hide()
+        .mount(uiScene);
 
-        $( "#cashbarProgress" ).progressbar({
-            max:100000,
-            value: 0
-        });
+    $( "#cashbarProgress" ).progressbar({
+        max:100000,
+        value: 0
+    });
 
-        $( "#coinbarProgress" ).progressbar({
-            max:1000000,
-            value: 0
-        });
+    $( "#coinbarProgress" ).progressbar({
+        max:1000000,
+        value: 0
+    });
 
-        $( "#waterbarProgress" ).progressbar({
-            max:1000000,
-            value: 0
-        });
+    $( "#waterbarProgress" ).progressbar({
+        max:1000000,
+        value: 0
+    });
 
 
-        if(GameConfig.config['xpFeature'] === "on"){
-            var xpBar = new IgeUiElement()
-                .id('xpBar')
-                .texture(ige.client.textures.xpBar)
-                .dimensionsFromTexture()
-                .left(325)
-                .mount(topNav);
+    if(GameConfig.config['xpFeature'] === "on"){
+        var xpBar = new IgeUiElement()
+            .id('xpBar')
+            .texture(ige.client.textures.xpBar)
+            .dimensionsFromTexture()
+            .left(325)
+            .mount(topNav);
 
-            new IgeUiProgressBar()
-                .id('xpProgress')
-                //.barBackColor('#f2b982')
-                //.barBorderColor('#3a9bc5')
-                .barColor('#69f22f')
-                .min(0)
-                .max(500)
-                .progress(80)
-                .width(87)
-                .height(18)
-                .right(17)
-                .barText('', ' XP', 'black')
-                .mount(xpBar);
+        new IgeUiProgressBar()
+            .id('xpProgress')
+            //.barBackColor('#f2b982')
+            //.barBorderColor('#3a9bc5')
+            .barColor('#69f22f')
+            .min(0)
+            .max(500)
+            .progress(80)
+            .width(87)
+            .height(18)
+            .right(17)
+            .barText('', ' XP', 'black')
+            .mount(xpBar);
+    }
+
+    if(GameConfig.config['energyFeature'] === "on"){
+        new IgeUiElement()
+            .id('energyBar')
+            .texture(ige.client.textures.energyBar)
+            .dimensionsFromTexture()
+            .left(475)
+            //.barText('', '%', 'black')
+            .mount(topNav);
+    }
+
+    //add icons for dialogs
+    if(ige.client.isFirstLoadFinished !== true){
+        for(var i = 0; i < dialogList.length; i++){
+            var item = dialogList[i];
+            $( "#" + item.id ).dialog();
+            $( "#" + item.id ).closest('div.ui-dialog').find('div.ui-dialog-titlebar')
+                .prepend("<img src='assets/textures/ui/" + item.image + ".png' class='dialogTitleImage'>");
+            $( "#" + item.id ).dialog('close');
         }
+    }
 
-        if(GameConfig.config['energyFeature'] === "on"){
-            new IgeUiElement()
-                .id('energyBar')
-                .texture(ige.client.textures.energyBar)
-                .dimensionsFromTexture()
-                .left(475)
-                //.barText('', '%', 'black')
-                .mount(topNav);
-        }
+    //implement tooltip
+    $("#topToolbar").tooltip();
+    $("#topToolbar").show();
+    $("#notifyIconContainer").show();
+    $("#newGoalNotification").hide();
+    $("#goalCompleteNotification").hide();
+    $("#endMove").hide();
 
-        //add icons for dialogs
-        if(ige.client.isFirstLoadFinished !== true){
-            for(var i = 0; i < dialogList.length; i++){
-                var item = dialogList[i];
-                $( "#" + item.id ).dialog();
-                $( "#" + item.id ).closest('div.ui-dialog').find('div.ui-dialog-titlebar')
-                    .prepend("<img src='assets/textures/ui/" + item.image + ".png' class='dialogTitleImage'>");
-                $( "#" + item.id ).dialog('close');
-            }
-        }
+    $("#dropDownContent")
+        .html(DropDownMenu.dropDownContent);
 
-        //implement tooltip
-        $("#topToolbar").tooltip();
-        $("#topToolbar").show();
-        $("#notifyIconContainer").show();
-        $("#newGoalNotification").hide();
-        $("#goalCompleteNotification").hide();
-        $("#endMove").hide();
+    $(".c-menu__items")
+        .html(DropDownMenu.dropDownLinksList);
 
-        $("#dropDownContent")
-            .html(DropDownMenu.dropDownContent);
+    for(var i = 0; i < DropDownMenu.links.length; i++){
+        $('#' + DropDownMenu.links[i].id).html(DropDownMenu.links[i].string);
+    }
 
-        $(".c-menu__items")
-            .html(DropDownMenu.dropDownLinksList);
+    if(API.user.picture_url === 'no-picture'){
+        $("#loginPicture").attr("src", DropDownMenu.offlinePictureURL);
+    }
+    else{
+        $("#loginPicture").attr("src", API.user.picture_url);
+    }
 
-        for(var i = 0; i < DropDownMenu.links.length; i++){
-            $('#' + DropDownMenu.links[i].id).html(DropDownMenu.links[i].string);
-        }
+    if(API.loginStatus === 'offline'){
+        $("#logoutLink").hide();
+        $("#shareMyVillageLink").hide();
+    }else{
+        $("#loginLink").hide();
+        $("#loginID").html(API.user.name);
+    }
 
-        if(API.user.picture_url === 'no-picture'){
-            $("#loginPicture").attr("src", DropDownMenu.offlinePictureURL);
-        }
-        else{
-            $("#loginPicture").attr("src", API.user.picture_url);
-        }
+    if(API.user.editor_enabled === "false"){
+        $("#editorLink").hide();
+    }
 
-        if(API.loginStatus === 'offline'){
-            $("#logoutLink").hide();
-            $("#shareMyVillageLink").hide();
-        }else{
-            $("#loginLink").hide();
-            $("#loginID").html(API.user.name);
-        }
-
-        if(API.user.editor_enabled === "false"){
-            $("#editorLink").hide();
-        }
-
-		new IgeParticleEmitter()
-			.id('coinEmitter')
-			.layer(10)
-			.quantityTimespan(60)
-			.quantityBase(10)
-			.velocityVector(new IgePoint3d(0, -0.030, 0), new IgePoint3d(-0.025, -0.005, 0), new IgePoint3d(0.025, -0.01, 0))
-			.linearForceVector(new IgePoint3d(0, 0.25, 0), new IgePoint3d(0, 0, 0), new IgePoint3d(0, 0, 0))
-			.scaleBaseX(2)
-			.scaleBaseY(2)
-			.deathScaleBaseX(2)
-			.deathScaleBaseY(2)
-			.deathRotateBase(0)
-			.deathRotateVariance(0, 360)
-			.deathOpacityBase(0)
-			.quantityMax(10)
-			.particle(CoinParticle)
-			.mount(uiScene)
-			.top(20)
-			.left(380);
+    new IgeParticleEmitter()
+        .id('coinEmitter')
+        .layer(10)
+        .quantityTimespan(60)
+        .quantityBase(10)
+        .velocityVector(new IgePoint3d(0, -0.030, 0), new IgePoint3d(-0.025, -0.005, 0), new IgePoint3d(0.025, -0.01, 0))
+        .linearForceVector(new IgePoint3d(0, 0.25, 0), new IgePoint3d(0, 0, 0), new IgePoint3d(0, 0, 0))
+        .scaleBaseX(2)
+        .scaleBaseY(2)
+        .deathScaleBaseX(2)
+        .deathScaleBaseY(2)
+        .deathRotateBase(0)
+        .deathRotateVariance(0, 360)
+        .deathOpacityBase(0)
+        .quantityMax(10)
+        .particle(CoinParticle)
+        .mount(uiScene)
+        .top(20)
+        .left(380);
 
         clientself.slideRight = new Menu({
             wrapper: '#o-wrapper',
             type: 'slide-right',
             menuOpenerClass: '.c-button',
-            maskId: ''
+            showMask: false
         });
 
-		this.addActions();
+      this.addActions();
 
-	},
+  },
 
-	addActions: function () {
+  addActions: function () {
         var self = this,
             clientself = ige.client;
 
@@ -233,6 +239,14 @@ var GraphUi = IgeSceneGraph.extend({
             ige.client.fsm.enterState('feedbackDialog');
         })
 
+        $('#aboutLink').on('click', function() {
+            ige.client.fsm.enterState('aboutDialog');
+        });
+
+        $('#contactLink').on('click', function() {
+            ige.client.fsm.enterState('contactDialog');
+        });
+
         $('#editorLink').on('click',function(){
             ige.client.slideRight.close();
 
@@ -285,17 +299,17 @@ var GraphUi = IgeSceneGraph.extend({
             toggleMusic();
         })
 
-		$('#marketButton')
-			.click(function () {
-				// Open the build menu
+    $('#marketButton')
+        .click(function () {
+        // Open the build menu
                 ga("send",  "Open market dialog");
                 self.toggleDialog('marketDialog');
-			});
+        });
 
         $('#goalButton')
             .click(function () {
                 self.toggleGoalDialog();
-            });
+          });
 
         $('#cashbar')
             .click(function() {
@@ -330,6 +344,8 @@ var GraphUi = IgeSceneGraph.extend({
         $("#logoutLink").unbind("click");
         $("#helpLink").unbind("click");
         $("#feedbackLink").unbind("click");
+        $("#aboutLink").unbind("click");
+        $('#contactLink').unbind("click");
         $("#editorLink").unbind("click");
         $("#shareMyVillageLink").unbind("click");
         $("#toggleSFXLink").unbind("click");
@@ -342,7 +358,7 @@ var GraphUi = IgeSceneGraph.extend({
         $("#moveButton").unbind("click");
     },
 
-	toggleDialog: function(name){
+  toggleDialog: function(name){
         if(ige.$(name).isVisible())
             ige.$(name).closeMe();
         else
@@ -368,14 +384,14 @@ var GraphUi = IgeSceneGraph.extend({
         }
     },
 
-	/**
-	 * The method called when the graph items are to be removed from the
-	 * active graph.
-	 */
-	removeGraph: function () {
-		// Since all our objects in addGraph() were mounted to the
-		// 'scene1' entity, destroying it will remove everything we
-		// added to it.
+  /**
+   * The method called when the graph items are to be removed from the
+   * active graph.
+   */
+  removeGraph: function () {
+    // Since all our objects in addGraph() were mounted to the
+    // 'scene1' entity, destroying it will remove everything we
+    // added to it.
         this.removeActions();
-	}
+  }
 });
