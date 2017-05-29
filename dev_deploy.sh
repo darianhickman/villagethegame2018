@@ -5,15 +5,15 @@
 export APP_VERSION=3
 export CLOUDSDK_CORE_DISABLE_PROMPTS=1
 export CLOUDSDK_CORE_PROJECT=villagegamedev
-export CONFIG_DOCID=1j3dSfakedocid
+export CONFIG_DOCID=1r7LKoEI-1kFhSnH75XwEP1zdkfQzdN6LObM4MJLtiaw
 
 
-if [! -e /usr/local/bin/node]
+if [ ! -f /usr/local/bin/node ]
 then
 	brew install node
 fi
 
-if [! -e ${HOME}/google-cloud-sdk/bin ]
+if [ ! -f ${HOME}/google-cloud-sdk/bin ]
 then
 	SDK_VERSION=127.0.0
 	SDK_FILENAME=google-cloud-sdk-${SDK_VERSION}-linux-x86_64.tar.gz
@@ -22,7 +22,7 @@ then
 	export PATH=${PATH}:${HOME}/google-cloud-sdk/bin
 fi
         # Install ige
-if [! -e ige/server]  
+if [ ! -f ige/server ]  
 then
 	curl -OL https://github.com/Irrelon/ige/archive/v1.5.5@2014-09-29-merge.tar.gz
 	tar -zxvf v1.5.5@2014-09-29-merge.tar.gz
@@ -33,11 +33,17 @@ fi
 cd ige/server
 npm install
 cd ../..
-        # Install Google App Engine SDK
-# GAE_PYTHONPATH=${HOME}/google_appengine
-# export PYTHONPATH=${PYTHONPATH}:${GAE_PYTHONPATH}
-# python fetch_gae_sdk.py $(dirname "${GAE_PYTHONPATH}")
-# echo "${PYTHONPATH}" && ls ${GAE_PYTHONPATH}
+
+if [ ! -f ${HOME}/google_appengine/appcfg.py ]
+then    
+	# Install Google App Engine SDK
+
+	GAE_PYTHONPATH=${HOME}/google_appengine
+	export PYTHONPATH=${PYTHONPATH}:${GAE_PYTHONPATH}
+	python fetch_gae_sdk.py $(dirname "${GAE_PYTHONPATH}")
+	echo "${PYTHONPATH}" && ls ${GAE_PYTHONPATH}
+fi
+
         # Install app & dev dependencies, deploy
 pip --quiet install -r requirements.txt -t libs/
 echo "key = '${GOOGLE_API_KEY}'" > api_key.py
