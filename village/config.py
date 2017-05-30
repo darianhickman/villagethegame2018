@@ -213,6 +213,18 @@ def get_problems():
             items.append(dict(zip(headers, row)))
     return items
 
+@memcached('cash_bundle')
+def get_cash_bundle():
+    sheet_config = get_config()
+    cash_bundle_docid = sheet_config['cash_bundle_docid']
+    data = get_sheet(cash_bundle_docid)
+    headers = data[0]
+    items = []
+    for row in data[2:]:
+        if row and row[0]:
+            items.append(dict(zip(headers, row)))
+    return items
+
 @memcached('goals_data')
 def get_goals_data():
     sheet_config = get_config()
