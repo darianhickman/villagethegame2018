@@ -214,11 +214,11 @@ def get_problems():
             items.append(dict(zip(headers, row)))
     return items
 
-@memcached('cash_bundle')
-def get_cash_bundle():
+@memcached('asset_bundle')
+def get_asset_bundle():
     sheet_config = get_config()
-    cash_bundle_docid = sheet_config['cash_bundle_docid']
-    data = get_sheet(cash_bundle_docid)
+    asset_bundle_docid = sheet_config['asset_bundle_docid']
+    data = get_sheet(asset_bundle_docid)
     headers = data[0]
     items = []
     for row in data[2:]:
@@ -267,7 +267,7 @@ def get_config():
     logging.info(['config_docid', config_docid])
     logging.info(['config_url', "https://docs.google.com/spreadsheets/d/" + config_docid])
     data = get_sheet(config_docid)
-    data = ftfy.fix_text(data)
+    #data = ftfy.fix_text(data)
     d = {}
     key_column_index = data[0].index("key")
     value_column_index = data[0].index("value")

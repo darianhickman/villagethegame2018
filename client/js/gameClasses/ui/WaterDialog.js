@@ -5,10 +5,14 @@ var WaterDialog = Dialog.extend({
         Dialog.prototype.init.call(this);
 
         var self = this,
-            water, pay, clonedItem;
+            water = [], pay = [], clonedItem;
 
-        water = GameConfig.config['waterDialogWater'].split(",").map(parseFloat);
-        pay = GameConfig.config['waterDialogPays'].split(",").map(parseFloat);
+        for(var i = 0; i < AssetBundle.waterBundle.length; i++){
+            if(AssetBundle.waterBundle[i].isActive !== "yes")
+                continue;
+            water.push(parseFloat(AssetBundle.waterBundle[i].water));
+            pay.push(parseFloat(AssetBundle.waterBundle[i].pay));
+        }
 
         for(var i=0; i < 5; i ++) {
             clonedItem = $('#waterAssetList li').first().clone();
