@@ -1,4 +1,5 @@
 # -*- mode: python; eval: (elpy-mode 0) -*-
+from __future__ import unicode_literals
 import load_libs; load_libs.do()
 import flask
 import json

@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from google.appengine.api import memcache
 
 import json
@@ -5,11 +6,11 @@ import gspread
 import yaml
 import logging
 import os
+import ftfy
 from oauth2client.client import SignedJwtAssertionCredentials
 import httplib2
 from apiclient import errors
 from apiclient.discovery import build
-from __future__ import unicode_literals
 
 
 local_config = yaml.load(open(os.path.join(os.path.dirname(__file__), '../config.yaml')))
@@ -254,6 +255,7 @@ def get_config():
     logging.info(['config_docid', config_docid])
     logging.info(['config_url', "https://docs.google.com/spreadsheets/d/" + config_docid])
     data = get_sheet(config_docid)
+    data = ftfy.fix_text(data)
     d = {}
     key_column_index = data[0].index("key")
     value_column_index = data[0].index("value")

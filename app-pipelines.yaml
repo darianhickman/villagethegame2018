@@ -90,3 +90,5 @@ skip_files:
 - (.*)/.DS_Store
 - (.*)/.meta$
 - (.*).tmpl
+- (.*).tar.gz
+- ige(.*)merge
