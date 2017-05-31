@@ -11,7 +11,7 @@ import io
 from flask import render_template
 import config as config_module
 from .app_common import config
-from .config import get_config, get_catalog, get_news_feed, get_secret_key, get_config_assets, get_config_earnings, get_problems, get_goals_data, get_goals_tasks, get_goals_settings, get_dropdown_menu, get_special_events
+from .config import get_config, get_catalog, get_news_feed, get_secret_key, get_config_assets, get_config_earnings, get_problems, get_cash_bundle, get_goals_data, get_goals_tasks, get_goals_settings, get_dropdown_menu, get_special_events
 from . import models
 from google.appengine.api import mail, app_identity
 
@@ -26,6 +26,7 @@ def warmup():
     get_config_assets()
     get_config_earnings()
     get_problems()
+    get_cash_bundle()
     get_goals_data()
     get_goals_tasks()
     get_goals_settings()
@@ -58,6 +59,10 @@ def client_id_route():
 @root.route('/problems')
 def problems_route():
     return flask.Response(json.dumps(get_problems()),content_type='application/json')
+
+@root.route('/cashbundle')
+def cash_bundle_route():
+    return flask.Response(json.dumps(get_cash_bundle()),content_type='application/json')
 
 @root.route('/goals')
 def goals_route():
@@ -138,7 +143,7 @@ def special_events_route():
 
 @root.route('/cache/flush')
 def flush_memcache_all():
-    cache_dict = {'config':'get_config','assets':'get_config_assets','earnings':'get_config_earnings','problems':'get_problems','goalsdata':'get_goals_data','goalstasks':'get_goals_tasks','goalssettings':'get_goals_settings','catalog':'get_catalog','dropdownmenu':'get_dropdown_menu','specialevents':'get_special_events'}
+    cache_dict = {'config':'get_config','assets':'get_config_assets','earnings':'get_config_earnings','problems':'get_problems','cashbundle':'get_cash_bundle','goalsdata':'get_goals_data','goalstasks':'get_goals_tasks','goalssettings':'get_goals_settings','catalog':'get_catalog','dropdownmenu':'get_dropdown_menu','specialevents':'get_special_events'}
     for item in cache_dict.values():
         method = getattr(config_module, item)
         method.remove_cache()
@@ -146,7 +151,7 @@ def flush_memcache_all():
 
 @root.route('/cache/flush/<cache_id>')
 def flush_memcache_by_key(cache_id):
-    cache_dict = {'config':'get_config','assets':'get_config_assets','earnings':'get_config_earnings','problems':'get_problems','goalsdata':'get_goals_data','goalstasks':'get_goals_tasks','goalssettings':'get_goals_settings','catalog':'get_catalog','dropdownmenu':'get_dropdown_menu','specialevents':'get_special_events'}
+    cache_dict = {'config':'get_config','assets':'get_config_assets','earnings':'get_config_earnings','problems':'get_problems','cashbundle':'get_cash_bundle','goalsdata':'get_goals_data','goalstasks':'get_goals_tasks','goalssettings':'get_goals_settings','catalog':'get_catalog','dropdownmenu':'get_dropdown_menu','specialevents':'get_special_events'}
     try:
         method = getattr(config_module, cache_dict[cache_id])
         method.remove_cache()

@@ -50,6 +50,7 @@ var igeClientConfig = {
 		'/js/gameClasses/loaders/GameAssets.js',
 		'/js/gameClasses/loaders/GameEarnings.js',
 		'/js/gameClasses/loaders/GameProblems.js',
+		'/js/gameClasses/loaders/CashBundle.js',
 		'/js/gameClasses/loaders/GameGoals.js',
 		'/js/gameClasses/loaders/DropDownMenu.js',
 		'/js/gameClasses/loaders/SpecialEvents.js',
