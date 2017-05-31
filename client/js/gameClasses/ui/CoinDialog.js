@@ -5,10 +5,14 @@ var CoinDialog = Dialog.extend({
 		Dialog.prototype.init.call(this);
 
         var self = this,
-            coins, pay, clonedItem;
+            coins = [], pay = [], clonedItem;
 
-        coins = GameConfig.config['coinDialogCoins'].split(",").map(parseFloat);
-        pay = GameConfig.config['coinDialogPays'].split(",").map(parseFloat);
+        for(var i = 0; i < AssetBundle.coinBundle.length; i++){
+            if(AssetBundle.coinBundle[i].isActive !== "yes")
+                continue;
+            coins.push(parseFloat(AssetBundle.coinBundle[i].coins));
+            pay.push(parseFloat(AssetBundle.coinBundle[i].pay));
+        }
 
         for(var i=0; i < 5; i ++) {
             clonedItem = $('#coinAssetList li').first().clone();

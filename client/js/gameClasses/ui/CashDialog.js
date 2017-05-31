@@ -7,11 +7,11 @@ var CashDialog = Dialog.extend({
         var self = this,
             bucks = [], pay = [], clonedItem;
 
-        for(var i = 0; i < CashBundle.bundle.length; i++){
-            if(CashBundle.bundle[i].isActive !== "yes")
+        for(var i = 0; i < AssetBundle.cashBundle.length; i++){
+            if(AssetBundle.cashBundle[i].isActive !== "yes")
                 continue;
-            bucks.push(parseFloat(CashBundle.bundle[i].vBucks));
-            pay.push(parseFloat(CashBundle.bundle[i].pay));
+            bucks.push(parseFloat(AssetBundle.cashBundle[i].vBucks));
+            pay.push(parseFloat(AssetBundle.cashBundle[i].pay));
         }
 
         for(var i=0; i < bucks.length; i ++) {
