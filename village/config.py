@@ -44,6 +44,16 @@ def memcached(name):
 
     return wrapper
 
+def get_config_docid():
+    conf = local_config['spreadsheet']
+    config_docid = conf['config_docid']
+    return config_docid
+
+def get_commit_head():
+    conf = local_config['commit']
+    commit_head = conf['head']
+    return commit_head
+
 def login():
     conf = local_config['spreadsheet']
     credentials = SignedJwtAssertionCredentials(conf['client_email'], conf['private_key'], scope)

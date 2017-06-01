@@ -2,6 +2,7 @@ import sys
 import json
 
 config_docid_name = sys.argv[1]
+commit_head = sys.argv[2]
 
 with open('client-secret.json') as client_secret_file:
     client_secret_data = json.load(client_secret_file)
@@ -13,4 +14,6 @@ with open('config.yaml', 'w') as outfile:
     outfile.write('  private_key: ' + json.dumps(client_secret_data["private_key"]) + '\n')
     outfile.write('  client_email: ' + json.dumps(client_secret_data["client_email"]) + '\n')
     outfile.write('  client_id: ' + json.dumps(client_secret_data["client_id"]) + '\n')
-    outfile.write('  type: "service_account"')
+    outfile.write('  type: "service_account"\n')
+    outfile.write('commit:\n')
+    outfile.write('  head: "' + commit_head + '"')
