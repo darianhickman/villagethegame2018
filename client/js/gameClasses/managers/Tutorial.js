@@ -23,7 +23,7 @@ var Tutorial = IgeEventingClass.extend({
             .appendTo("#tutorialArrowSpan")
             .rotate({angle:40});
 
-        self.skipButton = $("<span id='skipTutorial'>" + GameConfig.config['skipTutorialString'] + "</span>")
+        self.skipButton = $("<span id='skipTutorial'>" + LocalizationManager.getValueByLabel('skipTutorialString') + "</span>")
             .appendTo("#hudcontainer")
             .position({my: "right bottom", at: "right bottom", of: window})
             .click(function(){
@@ -499,7 +499,7 @@ var Tutorial = IgeEventingClass.extend({
                 $( "#tutorialDialog" ).dialog( "open" );
 
                 $( "#tutorialContent" )
-                    .html( "<ul><li id='tutorialMoneyButton'>" + GameConfig.config['tutorialBuyCashString'] + "</li></ul>" );
+                    .html( "<ul><li id='tutorialMoneyButton'>" + LocalizationManager.getValueByLabel('tutorialBuyCashString') + "</li></ul>" );
 
                 $( "#tutorialMoneyButton").click(function(){
                     self.gotoStep('fillCreditCard');
@@ -552,7 +552,7 @@ var Tutorial = IgeEventingClass.extend({
                 $( "#tutorialDialog" ).dialog( "open" );
 
                 $( "#tutorialContent" )
-                    .html( "<ul><li id='tutorialCoinButton'>" + GameConfig.config['tutorialBuyCoinsString'] + "</li></ul>" );
+                    .html( "<ul><li id='tutorialCoinButton'>" + LocalizationManager.getValueByLabel('tutorialBuyCoinsString') + "</li></ul>" );
 
                 $( "#tutorialCoinButton").click(function(){
                     $('#cashbarProgressTutorial').progressbar("value", $('#cashbarProgressTutorial').text() - 1);
@@ -589,7 +589,7 @@ var Tutorial = IgeEventingClass.extend({
                 $( "#tutorialDialog" ).dialog( "open" );
 
                 $( "#tutorialContent" )
-                    .html( "<ul><li id='tutorialWaterButton'>" + GameConfig.config['tutorialBuyWaterString'] + "</li></ul>" );
+                    .html( "<ul><li id='tutorialWaterButton'>" + LocalizationManager.getValueByLabel('tutorialBuyWaterString') + "</li></ul>" );
 
                 $( "#tutorialWaterButton").click(function(){
                     $('#cashbarProgressTutorial').progressbar("value", $('#cashbarProgressTutorial').text() - 1);

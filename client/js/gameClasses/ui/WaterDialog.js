@@ -48,7 +48,7 @@ var WaterDialog = Dialog.extend({
                     if(price.cash > API.state.cash){
                         // Not enough money?
                         ga("send",  "Not enough money");
-                        message = GameConfig.config['notEnoughCashString'];
+                        message = LocalizationManager.getValueByLabel('notEnoughCashString');
                         callBack = function() {
                             ige.$('cashDialog').show();
                         }
