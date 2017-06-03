@@ -4,9 +4,7 @@ threadsafe: true
 automatic_scaling:
   min_idle_instances: 1
   max_idle_instances: 1
-  min_pending_latency: 100ms
-inbound_services:
-- warmup
+
 
 handlers:
 
