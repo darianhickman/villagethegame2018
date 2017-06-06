@@ -15,5 +15,5 @@ gcloud service-management enable script.googleapis.com
 gcloud service-management enable storage-api.googleapis.com
 gcloud service-management enable drive.googleapis.com
 gcloud iam service-accounts create $SERVICE_ACCOUNT --display-name "Village Makeover Service Account"
-gcloud iam service-accounts keys create ./client-secret.json --iam-account={$SERVICE_ACCOUNT}@{$SERVICE_ACCOUNT}.appspot.gserviceaccount.com
+gcloud iam service-accounts keys create ./client-secret.json --iam-account=${SERVICE_ACCOUNT}@${SERVICE_ACCOUNT}.appspot.gserviceaccount.com
 python create_config_yaml.py $CONFIG_DOCID $(git rev-parse HEAD)
