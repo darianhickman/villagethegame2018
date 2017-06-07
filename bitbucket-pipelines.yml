@@ -5,6 +5,8 @@ pipelines:
     master:
       - step:
           script:
+            # flush memcache before deployment
+            - curl https://${CLOUDSDK_CORE_PROJECT}.appspot.com/cache/flush
             # Install Google Cloud SDK
             - export CLOUDSDK_CORE_DISABLE_PROMPTS=1
             # Google Cloud SDK is pinned for build reliability. Bump if the SDK complains about deprecation.
@@ -29,10 +31,46 @@ pipelines:
             - pip --quiet install -r requirements.txt -t libs/
             - echo "key = '${GOOGLE_API_KEY}'" > api_key.py
             - echo ${GOOGLE_CLIENT_SECRET} > client-secret.json
-            - python create_config_yaml.py ${CONFIG_DOCID}
+            - python create_config_yaml.py ${CONFIG_DOCID} ${BITBUCKET_COMMIT}
             - cd ige
             - node server/ige.js -deploy ../client
             - cd ..
             - ./compressjs.sh client/js/plugins/log4javascript.js client/js/plugins/howler.js client/js/plugins/usehowler.js client/js/gameClasses/loaders/GameConfig.js client/deploy/gameStart.min.js
             - gcloud auth activate-service-account --key-file client-secret.json
-            - gcloud --quiet --verbosity=error app deploy app-pipelines.yaml --version=${APP_VERSION} --promote
+            - gcloud --quiet --verbosity=error app deploy app-pipelines.yaml --version=${APP_VERSION} --promote --project=${CLOUDSDK_CORE_PROJECT}
+    development:
+      - step:
+          script:
+            # flush memcache before deployment
+            - curl https://${CLOUDSDK_CORE_PROJECT_DEVELOPMENT}.appspot.com/cache/flush
+            # Install Google Cloud SDK
+            - export CLOUDSDK_CORE_DISABLE_PROMPTS=1
+            # Google Cloud SDK is pinned for build reliability. Bump if the SDK complains about deprecation.
+            - SDK_VERSION=127.0.0
+            - SDK_FILENAME=google-cloud-sdk-${SDK_VERSION}-linux-x86_64.tar.gz
+            - curl -O -J https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/${SDK_FILENAME}
+            - tar -zxvf ${SDK_FILENAME} --directory ${HOME}
+            - export PATH=${PATH}:${HOME}/google-cloud-sdk/bin
+            # Install ige
+            - curl -OL https://github.com/Irrelon/ige/archive/v1.5.5@2014-09-29-merge.tar.gz
+            - tar -zxvf v1.5.5@2014-09-29-merge.tar.gz
+            - mv ige-1.5.5-2014-09-29-merge ige
+            - cd ige/server
+            - npm install
+            - cd ../..
+            # Install Google App Engine SDK
+            - GAE_PYTHONPATH=${HOME}/google_appengine
+            - export PYTHONPATH=${PYTHONPATH}:${GAE_PYTHONPATH}
+            - python fetch_gae_sdk.py $(dirname "${GAE_PYTHONPATH}")
+            - echo "${PYTHONPATH}" && ls ${GAE_PYTHONPATH}
+            # Install app & dev dependencies, deploy
+            - pip --quiet install -r requirements.txt -t libs/
+            - echo "key = '${GOOGLE_API_KEY_DEVELOPMENT}'" > api_key.py
+            - echo ${GOOGLE_CLIENT_SECRET_DEVELOPMENT} > client-secret.json
+            - python create_config_yaml.py ${CONFIG_DOCID_DEVELOPMENT} ${BITBUCKET_COMMIT}
+            - cd ige
+            - node server/ige.js -deploy ../client
+            - cd ..
+            - ./compressjs.sh client/js/plugins/log4javascript.js client/js/plugins/howler.js client/js/plugins/usehowler.js client/js/gameClasses/loaders/GameConfig.js client/deploy/gameStart.min.js
+            - gcloud auth activate-service-account --key-file client-secret.json
+            - gcloud --quiet --verbosity=error app deploy app-pipelines.yaml --version=${APP_VERSION_DEVELOPMENT} --promote --project=${CLOUDSDK_CORE_PROJECT_DEVELOPMENT}

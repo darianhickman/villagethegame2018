@@ -1103,7 +1103,7 @@ var Client = IgeClass.extend({
                         ige.client.cursorObject = null;
                         ige.client.cursorObjectData = null;
 
-                        var message = GameConfig.config['notEnoughCoinsString'];
+                        var message = LocalizationManager.getValueByLabel('notEnoughCoinsString');
 
                         var cashDialog = new BuyConfirm(message,
                             function () {
@@ -1513,13 +1513,23 @@ var Client = IgeClass.extend({
             callback(false);
         });
 
-        var combinedPromise = $.when(getGameCatalog(), getGameEarnings(), getGameProblems(), getGameGoals(), getGameAssets(), getDropDownMenu(), getSpecialEvents())
+        var combinedPromise = $.when(getGameCatalog(), getGameEarnings(), getGameProblems(), getAssetBundle(), getGameMessages(), getGameGoals(), getGameAssets(), getDropDownMenu(), getSpecialEvents())
         // function will be called when getGameCatalog, getGameEarnings, getGameGoals and getGameAssets resolve
-        combinedPromise.done(function (gameCatalogData, gameEarningsData, gameProblemsData, gameGoalsData, gameAssetsData, gameDropDownMenuData, gameSpecialEvents) {
+        combinedPromise.done(function (gameCatalogData, gameEarningsData, gameProblemsData, assetBundleData, gameMessagesData, gameGoalsData, gameAssetsData, gameDropDownMenuData, gameSpecialEvents) {
             // Load game audio and textures
-            var checkAssetImages, checkGameObjectImages, createTextures,
+            var availableLanguages, checkAssetImages, checkGameObjectImages, createTextures,
                 assetIndex = 0, gameObjectIndex = 0,
                 gameObjectTexturesKeys = [];
+
+            availableLanguages = GameConfig.config['availableLanguages'].split(",");
+
+            for(var i = 0; i < availableLanguages.length; i++){
+                GameMessages.messagesForLang[availableLanguages[i]] = {};
+                for (var y = 0; y < GameMessages.messageData.length; y++) {
+                    var item = GameMessages.messageData[y];
+                    GameMessages.messagesForLang[availableLanguages[i]][item.label] = item[availableLanguages[i]];
+                }
+            }
 
             for (var key in GameObjects.gameObjectTextures) {
                 gameObjectTexturesKeys.push(key);

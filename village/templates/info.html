@@ -1,0 +1,18 @@
+<!doctype html>
+<title>App Info</title>
+
+<p>APP ID: {{ id }}</p>
+<p>Current Version: {{ version }}</p>
+<p>Current Version Management URL: <a href="https://console.cloud.google.com/appengine/versions?project={{ id }}&serviceId=default&versionId={{ version }}" target="_blank">https://console.cloud.google.com/appengine/versions?project={{ id }}&serviceId=default&versionId={{ version }}</a></p>
+<p>Deployed using this commit: {{ commit }}</p>
+<p>Bitbucket commit URL: <a href="https://bitbucket.org/darian_hickman/village-makeover/commits/{{ commit }}" target="_blank">https://bitbucket.org/darian_hickman/village-makeover/commits/{{ commit }}</a></p>
+<p>Main Settings Sheet Docid: {{ docid }}</p>
+<p>Main Settings Sheet URL: <a href="https://docs.google.com/spreadsheets/d/{{ docid }}" target="_blank">https://docs.google.com/spreadsheets/d/{{ docid }}</a></p>
+<p>Flush All Caches: <a href="https://{{ id }}.appspot.com/cache/flush" target="_blank">https://{{ id }}.appspot.com/cache/flush</a></p>
+<p>Flush Specific Item in Memcache:</p>
+<table>
+    <tr><th>Key</th><th>Remove URL</th></tr>
+    {% for item in cache_keys|sort %}
+    <tr><td>{{ item }}</td><td><a href="https://{{ id }}.appspot.com/cache/flush/{{ item }}" target="_blank">https://{{ id }}.appspot.com/cache/flush/{{ item }}</a></td></tr>
+    {% endfor %}
+</table>

@@ -52,7 +52,7 @@ var GameLogic = IgeObject.extend({
         self.goals = new Goals()
 
         //show noActiveGoalString by default
-        $('#goalDialogContent').html("<p style='text-align:center;'>" + GameConfig.config['noActiveGoalString'] + "</p>");
+        $('#goalDialogContent').html("<p style='text-align:center;'>" + LocalizationManager.getValueByLabel('noActiveGoalString') + "</p>");
         //jquery prepare dialog
         $( "#goalDialog" ).dialog({ resizable: false, draggable: true, closeOnEscape: true, title: "Goals", close: function( event, ui ) {ige.client.fsm.enterState('select')}, width: 'auto', height: 'auto', modal: true, autoOpen: false });
 
@@ -315,12 +315,12 @@ var GameLogic = IgeObject.extend({
         var message, messageHTML, options;
 
         options = GameObjects.catalogLookup[itemID];
-        message = GameConfig.config['itemUnlockMessageString'];
+        message = LocalizationManager.getValueByLabel('itemUnlockMessageString');
         message = message.replace("{itemName}", options.name);
         messageHTML = "<img class='messageDialogUnlockImage' src='" + options.iconUrl + "'>";
         messageHTML += "<span class='messageDialogUnlockSpan'>" + message + "</span>";
         ige.client.eventEmitter.emit('showMessage', {
-            "title" : GameConfig.config['itemUnlockTitleString'],
+            "title" : LocalizationManager.getValueByLabel('itemUnlockTitleString'),
             "message" : messageHTML
         });
     }
