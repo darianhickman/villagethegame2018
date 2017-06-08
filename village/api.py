@@ -262,12 +262,13 @@ def login_post_route():
             flask.session.pop('credentials', None)
             flask.abort(401)
 
-    request = {"function": "checkGroupMembership", "parameters": [sheet_config['editorGroupEmail'],email]}
-    response = drive_service.scripts().run(body=request, scriptId=sheet_config['appsScriptID']).execute()
-    if response.get('error') is not None:
-        editor_enabled = 'false'
-    else:
-        editor_enabled = response['response'].get('result')
+    editor_enabled = 'true'
+    #request = {"function": "checkGroupMembership", "parameters": [sheet_config['editorGroupEmail'],email]}
+    #response = drive_service.scripts().run(body=request, scriptId=sheet_config['appsScriptID']).execute()
+    #if response.get('error') is not None:
+    #    editor_enabled = 'false'
+    #else:
+    #    editor_enabled = response['response'].get('result')
 
     state = models.get_state_model(user['id'])
     state.name = user['displayName']
