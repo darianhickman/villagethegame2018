@@ -69,6 +69,10 @@ handlers:
   script: village.api.root
   secure: always
 
+- url: /sheets/.*
+  script: village.sheets.root
+  secure: always
+  
 - url: /.*
   script: village.main.root
   secure: always

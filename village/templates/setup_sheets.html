@@ -1,0 +1,72 @@
+<!doctype html>
+<title>App Info</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://apis.google.com/js/client:platform.js" async defer></script>
+
+<div id="clientIDSection" style="display:none;">
+    <p>Please enter your client id and click Authorize</p>
+    <span>Client ID:</span>
+    <span><input id="clientID" type=text size=30 name=id></span>
+    <button id="signin">Authorize</button>
+</div>
+<div id="clientSecretSection" style="display:none;">
+    <p>Please enter your client secret and click Login and Create</p>
+    <span>Client Secret:</span>
+    <span><input id="clientSecret" type=text size=30 name=secret></span>
+    <button id="create">Login and Create</button>
+</div>
+<span id="results">Please Wait...</span>
+
+<script>
+    $(window).load(function () {
+        $('#signin').click(function () {
+            gapi.load('auth2', function () {
+                auth2 = gapi.auth2.init({
+                    client_id: $('#clientID').val(),
+                    // Scopes to request in addition to 'profile' and 'email'
+                    scope: 'https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file'
+                });
+            });
+            $('#clientIDSection').hide();
+            $('#clientSecretSection').show();
+        });
+        $('#clientIDSection').show();
+        $('#results').html('');
+    });
+
+    $('#create').click(function () {
+        // signInCallback defined in step 6.
+        auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(signInCallback);
+    });
+
+    function signInCallback(authResult) {
+        $('#clientSecretSection').hide();
+        if (authResult['code']) {
+            $('#results').html("Creating new sheets and sharing with your service account. Also updating client ID and secret paramaters.<br> This could take a while. Please wait...");
+
+            // Send the code to the server
+            $.ajax({
+                url: '/sheets/copyandshare',
+                contentType: "application/json; charset=utf-8",
+                type: 'POST',
+                data: JSON.stringify({code: authResult['code'],clientID:$('#clientID').val(),clientSecret:$('#clientSecret').val()}),
+                error: function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status === 401) {
+                        $('#results').html("Not authorized to log in!")
+                    }
+                    else {
+                        $('#results').html("an error has occured while sharing...");
+                    }
+                },
+                success: function (result) {
+                    $('#results').html("Your new config docid: " + result.configDocid + 
+                                       "<br>Don't forget to put this in config.yaml file." + 
+                                       "<br><br>New configsheets are in this folder: <a href='https://drive.google.com/drive/folders/" + result.folderID + "' target='_blank'>" + result.folderID + "</a>");
+                },
+                processData: false,
+            });
+        } else {
+            $('#results').html("an error has occured while signing in...");
+        }
+    }
+</script>
