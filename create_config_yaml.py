@@ -1,10 +1,16 @@
 import sys
 import json
+import os
 
 config_docid_name = sys.argv[1]
 commit_head = sys.argv[2]
 
-with open('client-secret.json') as client_secret_file:
+if config_docid_name == 'copy-default':
+    client_secret_file_name = 'client-secret2.json'
+else:
+    client_secret_file_name = 'client-secret.json'
+    
+with open(client_secret_file_name) as client_secret_file:
     client_secret_data = json.load(client_secret_file)
 
 with open('config.yaml', 'w') as outfile:
@@ -17,3 +23,6 @@ with open('config.yaml', 'w') as outfile:
     outfile.write('  type: "service_account"\n')
     outfile.write('commit:\n')
     outfile.write('  head: "' + commit_head + '"')
+    
+if config_docid_name == 'copy-default':
+    os.remove('client-secret2.json')
