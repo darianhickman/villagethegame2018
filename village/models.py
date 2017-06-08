@@ -59,7 +59,7 @@ class Villages(ndb.Model):
 
 #TODO: @ndb.transctional
 def get_village_model(village_id):
-    village = Villages.query().filter(Villages.village_id==village_id).get()
+    village = Villages.query().filter(Villages.village_id == village_id).get()
     if not village:
         village = Villages(village_id=village_id)
     return village
