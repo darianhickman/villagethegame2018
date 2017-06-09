@@ -366,7 +366,7 @@ var GraphUi = IgeSceneGraph.extend({
         $("#toggleMusicLink").unbind("click");
         $("#marketButton").unbind("click");
         $("#goalButton").unbind("click");
-        $("$signinButton").unbind("click");
+        $("$saveButton").unbind("click");
         $("#cashbar").unbind("click");
         $("#coinbar").unbind("click");
         $("#waterbar").unbind("click");
