@@ -1,6 +1,4 @@
 # -*- mode: python; eval: (elpy-mode 0) -*-
-from __future__ import unicode_literals
-
 from google.appengine.ext import ndb
 
 from .config import get_config

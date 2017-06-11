@@ -115,6 +115,7 @@ var GraphUi = IgeSceneGraph.extend({
     $("#notifyIconContainer").show();
     $("#newGoalNotification").hide();
     $("#goalCompleteNotification").hide();
+    $("#Loggedin").hide();
     $("#endMove").hide();
 
     $("#dropDownContent")
@@ -135,9 +136,11 @@ var GraphUi = IgeSceneGraph.extend({
     }
 
     if(API.loginStatus === 'offline'){
+        $("#Loggedin").hide();
         $("#logoutLink").hide();
         $("#shareMyVillageLink").hide();
     }else{
+        $("#Loggedin").show();
         $("#loginLink").hide();
         $("#loginID").html(API.user.name);
     }
@@ -219,6 +222,13 @@ var GraphUi = IgeSceneGraph.extend({
         $('#fullscreenIcon').on('mouseover',function(){
             // No sound for now mouseover.
            // ige.client.audio.select.play();
+        })
+
+        $('#saveButton').on('click',function(){
+            if(API.loginStatus === 'offline'){
+                ga("send",  "Click login");
+                ige.client.fsm.enterState('login');
+            }
         })
 
         $('#loginLink').on('click',function(){
@@ -310,6 +320,12 @@ var GraphUi = IgeSceneGraph.extend({
             .click(function () {
                 self.toggleGoalDialog();
           });
+        
+        $('#signinButton')
+            .click(function () {
+                ga("send",  "Click login");
+                ige.client.fsm.enterState('login');
+        });
 
         $('#cashbar')
             .click(function() {
@@ -352,6 +368,7 @@ var GraphUi = IgeSceneGraph.extend({
         $("#toggleMusicLink").unbind("click");
         $("#marketButton").unbind("click");
         $("#goalButton").unbind("click");
+        $("#Loggedin").unbind("click");
         $("#cashbar").unbind("click");
         $("#coinbar").unbind("click");
         $("#waterbar").unbind("click");
