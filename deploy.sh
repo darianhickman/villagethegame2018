@@ -1,0 +1,1 @@
+gcloud app deploy app-pipelines.yaml --version=1-1 --promote

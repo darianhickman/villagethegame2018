@@ -1,3 +1,33 @@
+Automatic Setup of Development Environment
+-----------
+
+You have two options: Use default spreadsheets or copy default spreadsheets into your drive. Setup changes according to your choice.
+For quick setup enter Y when asked. Be aware that login won't work in this instance.
+
+1. Create a project in Google Cloud Console: https://console.cloud.google.com/home/dashboard
+2. Install following packages if missing:
+  - git
+  - python
+  - pip
+  - virtualenv
+  - curl
+  - node
+  - npm
+3. run `setup.sh` and provide the following info:
+  - Google Cloud Console project created in step 1
+  - Whether to use default spreadsheets:
+    - Y -> use default spreadsheets (login won't work on your deployed app)
+    - N -> setup will copy spreadsheets into your google drive (my-drive) in step 4.1
+  3.1 If you choose N visit https://console.cloud.google.com/apis/credentials?project=your-project-name and create a new Oauth Client ID
+4. run `dev_appserver.py app-pipelines.yaml` to start local development server at https://localhost:8080
+  4.1 If you chose N in step 3 visit https://localhost:8080/sheets/setup enter clientID and clientSecret (created in step 3.1) to copy sheets.
+    4.1.1 Put config docid you got in step 4.1 into config.yaml to finish setup.
+5. run `deploy.sh` to deploy to your project
+6. visit https://your-project-name.appspot.com to test deployment
+
+Manual Setup
+-----------
+
 Spreadsheets and App Script
 -----------
   - Duplicate all of the spreadsheets and app script
