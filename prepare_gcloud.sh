@@ -1,4 +1,4 @@
-SERVICE_ACCOUNT=village-service-account
+SERVICE_ACCOUNT=villagegameserivceaccount
 echo "Type the project name you will be working on, followed by [ENTER]:"
 read CORE_PROJECT
 echo "Type the main settings sheet docid, followed by [ENTER]:"

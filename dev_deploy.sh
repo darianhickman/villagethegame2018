@@ -4,7 +4,7 @@
 # Yes. 
 export APP_VERSION=3
 export CLOUDSDK_CORE_DISABLE_PROMPTS=1
-export CLOUDSDK_CORE_PROJECT=villagegamedev
+export CLOUDSDK_CORE_PROJECT=mygoolgeappproject
 export CONFIG_DOCID=1r7LKoEI-1kFhSnH75XwEP1zdkfQzdN6LObM4MJLtiaw
 
 if [ ! -f /usr/local/bin/node ]
@@ -56,5 +56,5 @@ cd ige
 node server/ige.js -deploy ../client
 cd ..
 ./compressjs.sh client/js/plugins/log4javascript.js client/js/plugins/howler.js client/js/plugins/usehowler.js client/js/gameClasses/loaders/GameConfig.js client/deploy/gameStart.min.js
-gcloud auth activate-service-account --key-file villagegamedev-7ef4100fcad6.json
+gcloud auth activate-service-account --key-file client-secret.json
 gcloud --quiet --verbosity=error app deploy app-pipelines.yaml --version=${APP_VERSION} --promote
