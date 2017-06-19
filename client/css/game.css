@@ -153,6 +153,9 @@ button, input, textarea {
 #topToolbar > li:last-child {
 	float: right;
 }
+#topToolbar > li:nth-last-child(2) {
+    float: right;
+}
 #topToolbar img {
 	display: block;
 	background-image: url('/client/assets/textures/ui/beigefade.png');
@@ -202,6 +205,13 @@ button, input, textarea {
 	background-color: #2187e7;
 	color: white;
 }
+#saveButton {
+    display: table;
+}
+#saveButton * {
+    float: right;
+}
+
 #goalButton {
 	display: table;
 }
