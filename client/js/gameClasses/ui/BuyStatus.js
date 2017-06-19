@@ -9,7 +9,7 @@ var BuyStatus = Dialog.extend({
 
     startTransaction: function() {
         var self = this;
-        self.infoDialog = new BuyConfirm(GameConfig.config['buyingString'],null,true)
+        self.infoDialog = new BuyConfirm(LocalizationManager.getValueByLabel('buyingString'),null,true)
             .layer(1)
             .show()
             .mount(ige.$('uiScene'));
@@ -20,7 +20,7 @@ var BuyStatus = Dialog.extend({
             message;
         dataLayer.push({'event': 'transactionSuccess'});
         self.infoDialog.closeMe();
-        message = GameConfig.config['transactionSuccessString'];
+        message = LocalizationManager.getValueByLabel('transactionSuccessString');
         message = message.replace(/\{amount\}/g, amount);
         message = message.replace(/\{vbucks\}/g, vbucks);
         new BuyConfirm(message, null, true)
@@ -33,7 +33,7 @@ var BuyStatus = Dialog.extend({
         var self = this;
         dataLayer.push({'event': 'transactionFail'});
         self.infoDialog.closeMe();
-        new BuyConfirm(GameConfig.config['transactionFailString'],callback,true)
+        new BuyConfirm(LocalizationManager.getValueByLabel('transactionFailString'),callback,true)
             .layer(1)
             .show()
             .mount(ige.$('uiScene'));

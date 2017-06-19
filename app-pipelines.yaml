@@ -2,9 +2,8 @@ runtime: python27
 api_version: 1
 threadsafe: true
 automatic_scaling:
-  min_idle_instances: 1
-inbound_services:
-- warmup
+  max_idle_instances: 1
+
 
 handlers:
 
@@ -70,6 +69,10 @@ handlers:
   script: village.api.root
   secure: always
 
+- url: /sheets/.*
+  script: village.sheets.root
+  secure: always
+  
 - url: /.*
   script: village.main.root
   secure: always
@@ -90,3 +93,5 @@ skip_files:
 - (.*)/.DS_Store
 - (.*)/.meta$
 - (.*).tmpl
+- (.*).tar.gz
+- ige(.*)merge

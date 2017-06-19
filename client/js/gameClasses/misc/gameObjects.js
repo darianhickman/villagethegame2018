@@ -94,7 +94,7 @@ var GameObjects = {
                 this.mouseOverPanel.find("h3").contents()[0].textContent = options.name;
                 this.mouseOverPanel.find("p").first().html(this.mouseOverText);
                 this.mouseOverPanel.find("img").first().attr("src", options.iconUrl);
-                this.mouseOverPanel.find(".currentStateInactiveInfo").first().html(GameConfig.config['objectInactiveString']);
+                this.mouseOverPanel.find(".currentStateInactiveInfo").first().html(LocalizationManager.getValueByLabel('objectInactiveString'));
                 this.mouseOverPanel.find("h3 button").first().click(function() {
                     self.hideMouseOverPanel();
                 });
@@ -412,7 +412,7 @@ var GameObjects = {
                                     cash: parseInt(price.cash, 10)}).status) {
                             // Not enough money?
                             ga("send",  "Not enough money");
-                            new BuyConfirm(GameConfig.config['notEnoughCashString'],
+                            new BuyConfirm(LocalizationManager.getValueByLabel('notEnoughCashString'),
                                 function () {
                                     ige.$('cashDialog').show();
                                 })
@@ -536,7 +536,7 @@ var GameObjects = {
                         self.mouseOverPanel.find(".currentStateName img").first().attr("src","assets/textures/ui/Under-Construction-48.png");
                         countDownTooltipContent += "on construction";
                         speedProgressTooltipContent += "on construction";
-                        iconTooltipContent = GameConfig.config['underConstructionString'];
+                        iconTooltipContent = LocalizationManager.getValueByLabel('underConstructionString');
                     } else if(this.currentState === "waitingSpecialEvent"){
                         self.mouseOverPanel.find(".currentStateName img").first().attr("src",ige.client.textures[SpecialEvents.events[self.getCurrentSpecialEvent()].notifyIcon].url());
                         this.currentSpecialEvent = this.getCurrentSpecialEvent();
@@ -549,7 +549,7 @@ var GameObjects = {
                         "<span class='currentStateSpeedValue'>" + self.getCurrentStateSpeedValue() + "</span>" +
                         "<img src='assets/textures/ui/Banknotes.png' width='15' height='15'>").attr("title",speedProgressTooltipContent).tooltip().css("display","table-cell");
                 }else{
-                    iconTooltipContent = GameConfig.config['comingSoonString'];
+                    iconTooltipContent = LocalizationManager.getValueByLabel('comingSoonString');
                     self.mouseOverPanel.find(".currentStateName img").first().attr("src","assets/textures/ui/Error-48.png");
                     self.mouseOverPanel.find(".currentStateCountdown").first().css("display","none");
                     self.mouseOverPanel.find(".currentStateAction").first().css("display","none");

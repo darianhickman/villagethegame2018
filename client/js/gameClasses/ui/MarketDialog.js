@@ -164,7 +164,7 @@ var MarketDialog = Dialog.extend({
 						cash: parseInt(price.cash, 10)}).status) {
 				// Not enough money?
 				ga("send",  "Not enough money");
-				new BuyConfirm(GameConfig.config['notEnoughCashString'],
+				new BuyConfirm(LocalizationManager.getValueByLabel('notEnoughCashString'),
 					function () {
 						ige.$('cashDialog').show();
 					})

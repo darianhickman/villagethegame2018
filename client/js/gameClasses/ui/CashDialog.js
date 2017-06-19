@@ -5,12 +5,16 @@ var CashDialog = Dialog.extend({
         Dialog.prototype.init.call(this);
 
         var self = this,
-            bucks, pay, clonedItem;
+            bucks = [], pay = [], clonedItem;
 
-        bucks = GameConfig.config['cashDialogBucks'].split(",").map(parseFloat);
-        pay = GameConfig.config['cashDialogPays'].split(",").map(parseFloat);
+        for(var i = 0; i < AssetBundle.cashBundle.length; i++){
+            if(AssetBundle.cashBundle[i].isActive !== "yes")
+                continue;
+            bucks.push(parseFloat(AssetBundle.cashBundle[i].vBucks));
+            pay.push(parseFloat(AssetBundle.cashBundle[i].pay));
+        }
 
-        for(var i=0; i < 5; i ++) {
+        for(var i=0; i < bucks.length; i ++) {
             clonedItem = $('#cashAssetList li').first().clone();
             clonedItem.find(".assetAmount").first().text(bucks[i] + " VBucks for ");
             clonedItem.find(".assetPay").first().text( pay[i] + "  USD");

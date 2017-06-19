@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from google.appengine.api import memcache
 
 import json
@@ -5,10 +6,12 @@ import gspread
 import yaml
 import logging
 import os
+import ftfy
 from oauth2client.client import SignedJwtAssertionCredentials
 import httplib2
 from apiclient import errors
 from apiclient.discovery import build
+
 
 local_config = yaml.load(open(os.path.join(os.path.dirname(__file__), '../config.yaml')))
 logging.info(['configyaml', local_config])
@@ -40,6 +43,16 @@ def memcached(name):
         return cacher
 
     return wrapper
+
+def get_config_docid():
+    conf = local_config['spreadsheet']
+    config_docid = conf['config_docid']
+    return config_docid
+
+def get_commit_head():
+    conf = local_config['commit']
+    commit_head = conf['head']
+    return commit_head
 
 def login():
     conf = local_config['spreadsheet']
@@ -211,6 +224,30 @@ def get_problems():
             items.append(dict(zip(headers, row)))
     return items
 
+@memcached('asset_bundle')
+def get_asset_bundle():
+    sheet_config = get_config()
+    asset_bundle_docid = sheet_config['asset_bundle_docid']
+    data = get_sheet(asset_bundle_docid)
+    headers = data[0]
+    items = []
+    for row in data[2:]:
+        if row and row[0]:
+            items.append(dict(zip(headers, row)))
+    return items
+
+@memcached('messages')
+def get_messages():
+    sheet_config = get_config()
+    messages_docid = sheet_config['messages_docid']
+    data = get_sheet(messages_docid)
+    headers = data[0]
+    items = []
+    for row in data[2:]:
+        if row and row[0]:
+            items.append(dict(zip(headers, row)))
+    return items
+
 @memcached('goals_data')
 def get_goals_data():
     sheet_config = get_config()
@@ -252,6 +289,7 @@ def get_config():
     logging.info(['config_docid', config_docid])
     logging.info(['config_url', "https://docs.google.com/spreadsheets/d/" + config_docid])
     data = get_sheet(config_docid)
+    #data = ftfy.fix_text(data)
     d = {}
     key_column_index = data[0].index("key")
     value_column_index = data[0].index("value")
