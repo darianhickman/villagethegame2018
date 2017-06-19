@@ -1,4 +1,8 @@
-SERVICE_ACCOUNT=village-service-account
+<<<<<<< HEAD
+SERVICE_ACCOUNT=villagegameserivceaccount
+=======
+SERVICE_ACCOUNT=visiting-mode
+>>>>>>> c95ccdc67bb8cf15f6b7c1df4d40c0a683666c6e
 echo "Type the project name you will be working on, followed by [ENTER]:"
 read CORE_PROJECT
 echo "Type the main settings sheet docid, followed by [ENTER]:"
