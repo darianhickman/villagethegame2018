@@ -217,9 +217,8 @@ def send_feedback():
     message = json_data['message']
     sheet_config = get_config()
     receiver = sheet_config['feedBackEmailReceiver']
-    sent_message = sheet_config['feedBackSentMessage']
     mail.send_mail(sender = "feedback@" + app_identity.get_application_id() + ".appspotmail.com",
                        to = receiver,
                        subject = app_identity.get_application_id() + " Feedback Form",
                        body = "Email: " + email + " Name: " + name + " Message: " + message)
-    return flask.Response(json.dumps({'message' : sent_message}), content_type='application/json')
+    return flask.Response(json.dumps({'status' : 'ok'}), content_type='application/json')
