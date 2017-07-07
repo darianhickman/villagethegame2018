@@ -11,7 +11,8 @@ from oauth2client.client import SignedJwtAssertionCredentials
 import httplib2
 from apiclient import errors
 from apiclient.discovery import build
-
+import httplib, urllib
+import time
 
 local_config = yaml.load(open(os.path.join(os.path.dirname(__file__), '../config.yaml')))
 logging.info(['configyaml', local_config])
@@ -27,12 +28,19 @@ scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/au
 def memcached(name):
     def wrapper(func):
         def cacher():
+            start_time = int(round(time.time() * 1000))
             ret = memcache.get(name)
             if ret:
+                end_time = int(round(time.time() * 1000)) - start_time
+                params = get_ga_params('memcache', 'get', name, end_time)
+                send_ga_timing(params)
                 return json.loads(ret)
             else:
                 ret = func()
                 memcache.set(name, json.dumps(ret))
+                end_time = int(round(time.time() * 1000)) - start_time
+                params = get_ga_params('memcache', 'set', name, end_time)
+                send_ga_timing(params)
                 return ret
 
         def remove():
@@ -43,6 +51,28 @@ def memcached(name):
         return cacher
 
     return wrapper
+
+def get_ga_params(category, variable, label, end_time):
+    params = urllib.urlencode({
+        'v': 1,
+        'tid': 'UA-5656121-3',
+        'cid': '123',
+        't': 'timing',
+        'utc': category,
+        'utv': variable,
+        'utt': end_time,
+        'utl': label,
+        'ua': 'Village Makeover'
+    })
+    return params
+
+def send_ga_timing(params):
+    connection = httplib.HTTPSConnection('www.google-analytics.com')
+    connection.request('POST', '/collect', params)
+    response = connection.getresponse()
+    print response.status, response.reason
+    connection.close()
+    return response
 
 def get_config_docid():
     conf = local_config['spreadsheet']

@@ -814,7 +814,7 @@ var Client = IgeClass.extend({
                             email: $( "#contactEmail").val(),
                             message: $( "#contactMessage").val()}),
                         success: function(result){
-                            new BuyConfirm(result.message,null,true)
+                            new BuyConfirm(LocalizationManager.getValueByLabel('feedBackSentMessage'),null,true)
                                 .layer(1)
                                 .show()
                                 .mount(ige.$('uiScene'));

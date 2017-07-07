@@ -12,7 +12,7 @@ from oauth2client import client
 
 from . import models
 from .app_common import config
-from .config import get_login_condition, get_secret_key, get_config, get_village_sheet, copy_village_sheet, save_village_sheet, delete_village_sheet, rename_village_sheet
+from .config import get_login_condition, get_secret_key, get_config, get_village_sheet, copy_village_sheet, save_village_sheet, delete_village_sheet, rename_village_sheet, get_asset_bundle
 
 sheet_config = get_config()
 
@@ -296,11 +296,15 @@ def logout():
 
 def calculate_amount(amount):
     assets = json.loads(amount)
+    asset_bundle = get_asset_bundle()
+    cash_price = 0
 
-    cash_prices = dict(zip(
-        map(int, sheet_config['cashDialogBucks'].split(',')), map(float, sheet_config['cashDialogPays'].split(','))))
+    for i in range(0, len(asset_bundle)):
+        if asset_bundle[i]['assetType'] == 'vBuck' and float(asset_bundle[i]['assetValue']) == assets['cash']:
+            cash_price = float(asset_bundle[i]['assetPrice'])
+            break
 
-    return cash_prices[assets['cash']]
+    return cash_price
 
 def JSONResponse(x):
     return flask.Response(
