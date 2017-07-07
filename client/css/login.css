@@ -7,7 +7,7 @@ body {
 }
 
 .front {
-    background: url(/client/assets/loginbg.png) no-repeat;
+    background: url(/client/assets/images/backgrounds/loginbg.png) no-repeat;
     background-attachment: fixed;
     background-position: center;
     width: 100%;

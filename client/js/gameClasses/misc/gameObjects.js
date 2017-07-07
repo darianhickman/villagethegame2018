@@ -520,11 +520,11 @@ var GameObjects = {
                     if(price.coins > 0 || price.cash > 0 || price.water > 0)
                         message += " for ";
                     if(price.coins > 0)
-                        message += price.coins + "<img class='tooltipImage' src='assets/textures/ui/Coin1.png'> ";
+                        message += price.coins + "<img class='tooltipImage' src='assets/images/ui/Coin1.png'> ";
                     if(price.cash > 0)
-                        message += price.cash + "<img class='tooltipImage' src='assets/textures/ui/Banknotes.png'> ";
+                        message += price.cash + "<img class='tooltipImage' src='assets/images/ui/Banknotes.png'> ";
                     if(price.water > 0)
-                        message += price.water + "<img class='tooltipImage' src='assets/textures/ui/Water-48.png'>";
+                        message += price.water + "<img class='tooltipImage' src='assets/images/ui/Water-48.png'>";
 
                     self.mouseOverPanel.find(".currentStateName img").first().attr("src",ige.client.textures[SpecialEvents.events[self.getCurrentSpecialEvent()].notifyIcon].url());
                     self.mouseOverPanel.find(".currentStateCountdown").first().html("Ready!").attr("title","").tooltip().tooltip('destroy').css("display","table-cell");
@@ -533,7 +533,7 @@ var GameObjects = {
                     countDownTooltipContent = "Waiting ";
                     speedProgressTooltipContent = "Click to speed progress ";
                     if(this.currentState === "building"){
-                        self.mouseOverPanel.find(".currentStateName img").first().attr("src","assets/textures/ui/Under-Construction-48.png");
+                        self.mouseOverPanel.find(".currentStateName img").first().attr("src","assets/images/ui/Under-Construction-48.png");
                         countDownTooltipContent += "on construction";
                         speedProgressTooltipContent += "on construction";
                         iconTooltipContent = LocalizationManager.getValueByLabel('underConstructionString');
@@ -545,12 +545,12 @@ var GameObjects = {
                         iconTooltipContent = SpecialEvents.events[this.currentSpecialEvent].description;
                     }
                     self.mouseOverPanel.find(".currentStateCountdown").first().attr("title",countDownTooltipContent).tooltip().css("display","table-cell");
-                    self.mouseOverPanel.find(".currentStateAction").first().html("<img src='assets/textures/ui/Fast-Forward-48.png' width='25' height='25'><br>" +
+                    self.mouseOverPanel.find(".currentStateAction").first().html("<img src='assets/images/ui/Fast-Forward-48.png' width='25' height='25'><br>" +
                         "<span class='currentStateSpeedValue'>" + self.getCurrentStateSpeedValue() + "</span>" +
-                        "<img src='assets/textures/ui/Banknotes.png' width='15' height='15'>").attr("title",speedProgressTooltipContent).tooltip().css("display","table-cell");
+                        "<img src='assets/images/ui/Banknotes.png' width='15' height='15'>").attr("title",speedProgressTooltipContent).tooltip().css("display","table-cell");
                 }else{
                     iconTooltipContent = LocalizationManager.getValueByLabel('comingSoonString');
-                    self.mouseOverPanel.find(".currentStateName img").first().attr("src","assets/textures/ui/Error-48.png");
+                    self.mouseOverPanel.find(".currentStateName img").first().attr("src","assets/images/ui/Error-48.png");
                     self.mouseOverPanel.find(".currentStateCountdown").first().css("display","none");
                     self.mouseOverPanel.find(".currentStateAction").first().css("display","none");
                     self.mouseOverPanel.find(".currentStateInactiveInfo").first().css("display","table-cell");

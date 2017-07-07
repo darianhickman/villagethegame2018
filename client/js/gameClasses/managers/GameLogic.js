@@ -82,7 +82,7 @@ var GameLogic = IgeObject.extend({
                 items.push('<li>' + itemImg + " <span class='goalTaskTitle'>"+ value.title  +  "</span><div class='goalTaskPercent' id='task" + value.taskID + "' ><div class='progressLabel' id='taskLabel" + value.taskID + "'></div></div></li>");
             });
             //add problem info
-            $('#goalDialogContent').html("<div class='goalDialogInfo'>Solves:" + GameProblems.problemsLookup[API.state.currentProblemID].title + "<span class='problemDetails'><img class='problemDetailsIcon' src='/assets/textures/ui/Info-50.png'></span></div>");
+            $('#goalDialogContent').html("<div class='goalDialogInfo'>Solves:" + GameProblems.problemsLookup[API.state.currentProblemID].title + "<span class='problemDetails'><img class='problemDetailsIcon' src='/assets/images/ui/Info-50.png'></span></div>");
             var problemDetails = $('#goalDialogContent').find(".problemDetails").first();
             problemDetails.attr("title",GameProblems.problemsLookup[API.state.currentProblemID].details);
             problemDetails.tooltip({

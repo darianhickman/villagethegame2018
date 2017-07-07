@@ -486,7 +486,7 @@ var Client = IgeClass.extend({
                 $("#processingDialog").dialog("open");
 
                 $("#processingContent")
-                    .html("<div><p>Loading village, please wait!</p><p><img src='assets/textures/ui/loading_spinner.gif'></p></div>");
+                    .html("<div><p>Loading village, please wait!</p><p><img src='assets/images/ui/loading_spinner.gif'></p></div>");
 
                 $.ajax({
                     dataType: 'json',
@@ -879,7 +879,7 @@ var Client = IgeClass.extend({
                 $( "#processingDialog" ).dialog( "open" );
 
                 $( "#processingContent" )
-                    .html( "<div><p>Signing in, please wait!</p><p><img src='assets/textures/ui/loading_spinner.gif'></p></div>" );
+                    .html( "<div><p>Signing in, please wait!</p><p><img src='assets/images/ui/loading_spinner.gif'></p></div>" );
 
                 ige.client.gameLogic.loginManager.login();
                 completeCallback();
@@ -900,7 +900,7 @@ var Client = IgeClass.extend({
                 $( "#processingDialog" ).dialog( "open" );
 
                 $( "#processingContent" )
-                    .html( "<div><p>Signing out, please wait!</p><p><img src='assets/textures/ui/loading_spinner.gif'></p></div>" );
+                    .html( "<div><p>Signing out, please wait!</p><p><img src='assets/images/ui/loading_spinner.gif'></p></div>" );
 
                 ige.client.gameLogic.loginManager.logout();
                 completeCallback();
@@ -921,7 +921,7 @@ var Client = IgeClass.extend({
                 $( "#processingDialog" ).dialog( "open" );
 
                 $( "#processingContent" )
-                    .html( "<div><p>Loading village, please wait!</p><p><img src='assets/textures/ui/loading_spinner.gif'></p></div>" );
+                    .html( "<div><p>Loading village, please wait!</p><p><img src='assets/images/ui/loading_spinner.gif'></p></div>" );
 
                 for(var i = 1; i <= ige.$('marketDialog')._pageCount; i++){
                     $('#marketDialogPage' + i).remove();
@@ -1600,8 +1600,8 @@ var Client = IgeClass.extend({
             }
 
             createTextures = function(){
-                self.textures['uiAtlas'] = new TexturePackerAtlas('uiAtlas','./assets/textures/sprites/atlas/uiAtlas.png','./assets/textures/sprites/atlas/uiAtlas.json');
-                self.textures['catalogAtlas'] = new TexturePackerAtlas('catalogAtlas','./assets/textures/sprites/atlas/catalogAtlas.png','./assets/textures/sprites/atlas/catalogAtlas.json');
+                self.textures['uiAtlas'] = new TexturePackerAtlas('uiAtlas','./assets/images/atlas/uiAtlas.png','./assets/misc/uiAtlas.json');
+                self.textures['catalogAtlas'] = new TexturePackerAtlas('catalogAtlas','./assets/images/atlas/catalogAtlas.png','./assets/misc/catalogAtlas.json');
 
                 for (var i = 0; i < GameAssets.assets.length; i++) {
                     if (GameAssets.assets[i].enabled === "FALSE")

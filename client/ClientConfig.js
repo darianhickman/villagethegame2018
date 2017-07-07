@@ -41,8 +41,8 @@ var igeClientConfig = {
 		'/js/gameClasses/components/ScaleToPointComponent.js',
 		'/js/gameClasses/components/PinchZoomComponent.js',
 		'/js/gameClasses/components/TexturePackerAtlas.js',
-		'/assets/textures/sprites/atlas/uiAtlas.json',
-		'/assets/textures/sprites/atlas/catalogAtlas.json',
+		'/assets/misc/uiAtlas.json',
+		'/assets/misc/catalogAtlas.json',
 		// Game objects
 		'/js/gameClasses/base/GameObject.js',
 		'/js/gameClasses/base/Villager.js',

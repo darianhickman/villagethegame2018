@@ -16,7 +16,7 @@ var EditorManager = IgeEventingClass.extend({
             $( "#processingDialog" ).dialog( "open" );
 
             $( "#processingContent" )
-                .html( "<div><p>Processing, please wait!</p><p><img src='assets/textures/ui/loading_spinner.gif'></p></div>" );
+                .html( "<div><p>Processing, please wait!</p><p><img src='assets/images/ui/loading_spinner.gif'></p></div>" );
         });
 
         $( document ).ajaxError(function(event, xhr, settings) {

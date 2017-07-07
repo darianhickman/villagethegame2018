@@ -104,7 +104,7 @@ var GraphUi = IgeSceneGraph.extend({
             var item = dialogList[i];
             $( "#" + item.id ).dialog();
             $( "#" + item.id ).closest('div.ui-dialog').find('div.ui-dialog-titlebar')
-                .prepend("<img src='assets/textures/ui/" + item.image + ".png' class='dialogTitleImage'>");
+                .prepend("<img src='assets/images/ui/" + item.image + ".png' class='dialogTitleImage'>");
             $( "#" + item.id ).dialog('close');
         }
     }

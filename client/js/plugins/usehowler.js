@@ -53,14 +53,14 @@ function soundinit() {
         vlg.sfx['cancel'] = new Howl({urls: [GameConfig.config['defaultCancelSound']], volume: 0.8});
         //cheating a little.
         vlg.music['welcome'] = new Howl({
-            urls: ['/client/assets/audio/music/Welcome.mp3'],
+            urls: ['/client/assets/sounds/music/Welcome.mp3'],
             autoplay: true,
             loop: false,
             volume: 1.0
         });
 
         vlg.music['levelfull1'] = new Howl({
-            urls: ['/client/assets/audio/music/Level1Full.mp3'],
+            urls: ['/client/assets/sounds/music/Level1Full.mp3'],
             autoplay: false,
             loop: true,
             volume: 1.0
@@ -76,17 +76,17 @@ function soundinit() {
         // use hardcoded sound if config sheet sound not ready.
 
         console.log("using sounds urls hardcoded in usehowler.js");
-        vlg.sfx['select'] = new Howl({urls: ['/client/assets/audio/click.mp3'], volume: 1.0});
-        vlg.sfx['cancel'] = new Howl({urls: ['/client/assets/audio/cancel.mp3'], volume: 0.9});
+        vlg.sfx['select'] = new Howl({urls: ['/client/assets/sounds/sfx/click.mp3'], volume: 1.0});
+        vlg.sfx['cancel'] = new Howl({urls: ['/client/assets/sounds/sfx/cancel.mp3'], volume: 0.9});
         vlg.music['welcome'] = new Howl({
-            urls: ['/client/assets/audio/music/Welcome.mp3'],
+            urls: ['/client/assets/sounds/music/Welcome.mp3'],
             autoplay: false,
             loop: false,
             volume: 1.0
         });
 
         vlg.music['levelfull1'] = new Howl({
-            urls: ['/client/assets/audio/music/Level1Full.mp3'],
+            urls: ['/client/assets/sounds/music/Level1Full.mp3'],
             autoplay: false,
             loop: true,
             volume: 1.0

@@ -12,7 +12,7 @@
 </div>
 <div class="dialogback">
     <div class="dialog">
-        <a href="#" id="signinButton" ><img src="assets/sign-in-button.png"
+        <a href="#" id="signinButton" ><img src="assets/images/login/sign-in-button.png"
                                                                  alt="Login with Google"></a>
         <span id="loadingGif" ></span>
     </div>
@@ -44,7 +44,7 @@
 
     function signInCallback(authResult) {
         if (authResult['code']) {
-            $('#loadingGif').html('<p style="font-size: 16px;font-family: verdana;">Signing in, please wait!</p><img src="assets/textures/ui/loading_spinner.gif">')
+            $('#loadingGif').html('<p style="font-size: 16px;font-family: verdana;">Signing in, please wait!</p><img src="assets/images/ui/loading_spinner.gif">')
             $('#loadingGif').attr('style', 'display: block');
             // Hide the sign-in button now that the user is authorized, for example:
             $('#signinButton').attr('style', 'display: none');
