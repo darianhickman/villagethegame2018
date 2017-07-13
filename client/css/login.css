@@ -2,12 +2,12 @@ body {
     background-color: #407c03;
     margin: 0;
     padding: 0;
-    font-family: 'Press Start 2P', arial;
+    font-family: arial;
 
 }
 
 .front {
-    background: url(/client/assets/images/backgrounds/loginbg.png) no-repeat;
+    background: url(/client/assets/loginbg.png) no-repeat;
     background-attachment: fixed;
     background-position: center;
     width: 100%;
