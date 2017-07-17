@@ -36,8 +36,8 @@ handlers:
   secure: always
 
 - url: /favicon.ico
-  static_files: assets/textures/ui/faviconlogo.svg
-  upload: assets/textures/ui/faviconlogo.svg
+  static_files: assets/images/ui/faviconlogo.svg
+  upload: assets/images/ui/faviconlogo.svg
   secure: always
   
 - url: /ClientConfig.js
