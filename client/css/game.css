@@ -3,7 +3,11 @@
 html {
 	margin: 0;
 	padding: 0;
+<<<<<<< HEAD
 	font-family: arial;
+=======
+	font-family: 'Press Start 2P', cursive;
+>>>>>>> parent of b05002d... change font to arial
 }
 body {
 	background: #000;
@@ -17,7 +21,11 @@ body {
 	background-repeat: no-repeat;
 }
 button, input, textarea {
+<<<<<<< HEAD
 	font-family: arial;
+=======
+	font-family: "Press Start 2P" !important;
+>>>>>>> parent of b05002d... change font to arial
 }
 .loadingFloat {
 	padding: 20px;
@@ -33,7 +41,11 @@ button, input, textarea {
 	padding: 5px;
 }
 .loadingTitle {
+<<<<<<< HEAD
 	font-family: arial;
+=======
+	font-family: 'Press Start 2P', cursive;
+>>>>>>> parent of b05002d... change font to arial
 	color: #fff;
 	font-size: 28px;
 }
@@ -79,7 +91,11 @@ button, input, textarea {
 }
 .loadingText {
 	color: white;
+<<<<<<< HEAD
 	font-family: arial;
+=======
+	font-family: 'Press Start 2P', cursive;
+>>>>>>> parent of b05002d... change font to arial
 	font-size: 16px;
 	text-align: center;
 	font-variant: small-caps;
@@ -104,7 +120,11 @@ button, input, textarea {
 	right: 10px;
 	bottom: 10px;
 	color: white;
+<<<<<<< HEAD
 	font-family: arial;
+=======
+	font-family: 'Press Start 2P', cursive;
+>>>>>>> parent of b05002d... change font to arial
 	font-size: 16px;
 	font-variant: small-caps;
 	width: 250px;
@@ -185,7 +205,11 @@ button, input, textarea {
 	color: white;
 }
 .editorTopNavBar ul {
+<<<<<<< HEAD
 	font-family: arial;
+=======
+	font-family: 'Press Start 2P', cursive;
+>>>>>>> parent of b05002d... change font to arial
 	font-size: 16px;
 	color: white;
 }
@@ -635,7 +659,11 @@ button, input, textarea {
 }
 #notificationMessage {
 	position: fixed;
+<<<<<<< HEAD
 	font-family: arial;
+=======
+	font-family: 'Press Start 2P', cursive;
+>>>>>>> parent of b05002d... change font to arial
 	font-size: 16px;
 	color: white;
 	top: 0px;
@@ -651,7 +679,11 @@ button, input, textarea {
 #villageTitle {
 	display: none;
 	text-align: center;
+<<<<<<< HEAD
 	font-family: arial;
+=======
+	font-family: 'Press Start 2P', cursive;
+>>>>>>> parent of b05002d... change font to arial
 	font-size: 20px;
 	color: white;
 	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
