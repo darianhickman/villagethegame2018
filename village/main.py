@@ -14,7 +14,10 @@ from .app_common import config
 from .config import get_config_docid, get_commit_head, get_config, get_catalog, get_news_feed, get_secret_key, get_config_assets, get_config_earnings, get_problems, get_asset_bundle, get_messages, get_goals_data, get_goals_tasks, get_goals_settings, get_dropdown_menu, get_special_events
 from . import models
 from google.appengine.api import mail, app_identity, modules
+import cloudstorage
+import webapp2
 
+#import cloudstorage as storage
 root = flask.Flask(__name__)
 
 root.secret_key  = get_secret_key()
@@ -153,6 +156,24 @@ def flush_memcache_all():
         method = getattr(config_module, item)
         method.remove_cache()
     return flask.Response('Removed all caches')
+
+@root.route('/css2/<fileName>')
+def cssHandler(fileName):
+    bucket_name = app_identity.get_application_id() + ".appspot.com"
+    fullFilePath  = "/"+bucket_name + "/css/" +fileName
+    file_found = list_blobs(bucket_name,fullFilePath)
+    if file_found == False:
+        return flask.redirect('/client/css/'+fileName)
+    else:
+        return flask.redirect('https://storage.googleapis.com'+fullFilePath)
+
+def list_blobs(bucket_name,fileName):
+    """Search through all files with in css folder."""
+    buck = cloudstorage.listbucket("/"+bucket_name+"/css", marker='/my_bucket/css/')
+    for blob in buck:
+        if blob.filename == fileName:
+            return True
+    return False
 
 @root.route('/cache/flush/<cache_id>')
 def flush_memcache_by_key(cache_id):

@@ -77,6 +77,10 @@ handlers:
   script: village.main.root
   secure: always
 
+- url: /css2/.*
+  script: village.main.root
+  secure: always
+
 libraries:
 - name: pycrypto
   version: latest
