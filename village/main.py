@@ -157,24 +157,6 @@ def flush_memcache_all():
         method.remove_cache()
     return flask.Response('Removed all caches')
 
-@root.route('/css2/<fileName>')
-def cssHandler(fileName):
-    bucket_name = app_identity.get_application_id() + ".appspot.com"
-    fullFilePath  = "/"+bucket_name + "/css/" +fileName
-    file_found = list_blobs(bucket_name,fullFilePath)
-    if file_found == False:
-        return flask.redirect('/client/css/'+fileName)
-    else:
-        return flask.redirect('https://storage.googleapis.com'+fullFilePath)
-
-def list_blobs(bucket_name,fileName):
-    """Search through all files with in css folder."""
-    buck = cloudstorage.listbucket("/"+bucket_name+"/css", marker='/my_bucket/css/')
-    for blob in buck:
-        if blob.filename == fileName:
-            return True
-    return False
-
 @root.route('/cache/flush/<cache_id>')
 def flush_memcache_by_key(cache_id):
     try:
@@ -229,6 +211,34 @@ def scan_config_all():
 def scan_config_by_key(config_key):
     found_dict = scan_config(config_key)
     return render_template('single_key_scan_results.html', results=found_dict)
+
+@root.route('/css2/<file_name>')
+def css_handler(file_name):
+    bucket_name = app_identity.get_application_id() + ".appspot.com"
+    full_file_path  = "/"+bucket_name + "/css/" +file_name
+    file_found = search_file_in_bucket(bucket_name, 'css', full_file_path)
+    if file_found == False:
+        return flask.redirect('/client/css/'+file_name)
+    else:
+        return flask.redirect('https://storage.googleapis.com'+full_file_path)
+
+@root.route('/js2/<file_name>')
+def js_handler(file_name):
+    bucket_name = app_identity.get_application_id() + ".appspot.com"
+    full_file_path  = "/"+bucket_name + "/js/" +file_name
+    file_found = search_file_in_bucket(bucket_name, 'js', full_file_path)
+    if file_found == False:
+        return flask.redirect('/client/deploy/'+file_name)
+    else:
+        return flask.redirect('https://storage.googleapis.com'+full_file_path)
+
+def search_file_in_bucket(bucket_name, folder_name, file_name):
+    """Search through all files with in folder_name."""
+    buck = cloudstorage.listbucket("/"+bucket_name+"/"+folder_name, marker='/my_bucket/'+folder_name+'/')
+    for blob in buck:
+        if blob.filename == file_name:
+            return True
+    return False
 
 @root.route('/sendfeedback', methods=['POST'])
 def send_feedback():

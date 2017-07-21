@@ -22,7 +22,7 @@ var getGameConfig = function(retryCount){
             if(loaderLocation === "localhost")
                 loaderScript.src = '/ige/engine/loader.js';
             else if(loaderLocation === "deploy")
-                loaderScript.src = '/client/deploy/game.js';
+                loaderScript.src = '/js2/game.js';
 
             loaderScript.addEventListener('error', function () {
                 throw('ERROR LOADING loader/game.js - does it exist?');
