@@ -61,8 +61,8 @@ var EditorMarketDialog = Dialog.extend({
 
 		ige.client.fsm.enterState('editorMarketDialog', null, function (err) {
 			if (!err) {
-				$( "#editorMarketDialog" ).dialog({ resizable: false, draggable: true, closeOnEscape: false, width: 'auto', height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {self.closeMe();} });
-				$( "#editorMarketDialog" ).dialog( "open" );
+				$( "#" + GameFSM.settings["editorMarketDialog"].dialogID ).dialog({ resizable: false, draggable: true, closeOnEscape: false, width: 'auto', height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {self.closeMe();} });
+				$( "#" + GameFSM.settings["editorMarketDialog"].dialogID ).dialog( "open" );
 				Dialog.prototype.show.call(self);
 				// ige.client.audio.normClick.play();
 				vlg.sfx['select'].play();
@@ -79,14 +79,14 @@ var EditorMarketDialog = Dialog.extend({
 		if (ige.client.fsm.currentStateName === 'editorMarketDialog') {
 			ige.client.fsm.exitState(function (err) {
 				if (!err) {
-					$("#editorMarketDialog").dialog();
-					$("#editorMarketDialog").dialog( "close" );
+					$("#" + GameFSM.settings["editorMarketDialog"].dialogID).dialog();
+					$("#" + GameFSM.settings["editorMarketDialog"].dialogID).dialog( "close" );
 					Dialog.prototype.hide.call(self);
 				}
 			});
 		} else {
-			$("#editorMarketDialog").dialog();
-			$("#editorMarketDialog").dialog( "close" );
+			$("#" + GameFSM.settings["editorMarketDialog"].dialogID).dialog();
+			$("#" + GameFSM.settings["editorMarketDialog"].dialogID).dialog( "close" );
 			Dialog.prototype.hide.call(self);
 		}
 

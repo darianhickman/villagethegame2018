@@ -52,8 +52,8 @@ var BuyConfirm = Dialog.extend({
 
         ige.client.fsm.enterState('buyConfirmDialog', null, function (err) {
             if (!err) {
-                $( "#buyConfirmDialog" ).dialog({ resizable: false, draggable: true, closeOnEscape: false, width: 'auto', height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {$("#buyConfirmYes").unbind("click");$("#buyConfirmNo").unbind("click");$("#buyConfirmOK").unbind("click");self.closeMe();} });
-                $( "#buyConfirmDialog" ).dialog( "open" );
+                $( "#" + GameFSM.settings["buyConfirmDialog"].dialogID ).dialog({ resizable: false, draggable: true, closeOnEscape: false, width: 'auto', height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {$("#buyConfirmYes").unbind("click");$("#buyConfirmNo").unbind("click");$("#buyConfirmOK").unbind("click");self.closeMe();} });
+                $( "#" + GameFSM.settings["buyConfirmDialog"].dialogID ).dialog( "open" );
                 Dialog.prototype.show.call(self);
             }
         });
@@ -64,8 +64,8 @@ var BuyConfirm = Dialog.extend({
     hide: function () {
         var self = this;
 
-        $( "#buyConfirmDialog" ).dialog({close: function( event, ui ) {}});
-        $( "#buyConfirmDialog" ).dialog( "close" );
+        $( "#" + GameFSM.settings["buyConfirmDialog"].dialogID ).dialog({close: function( event, ui ) {}});
+        $( "#" + GameFSM.settings["buyConfirmDialog"].dialogID ).dialog( "close" );
         Dialog.prototype.hide.call(self);
 
         return this;

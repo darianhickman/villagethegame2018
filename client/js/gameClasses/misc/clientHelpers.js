@@ -7,7 +7,7 @@ var ClientHelpers = {
     
     hideDialogs: function(){
         // not sure how to iterate over all dialogs hard code for now. Change to class select at some point.
-        var dialogList = ["goalDialog","marketDialog","editorMarketDialog","cashBuyDialog","coinBuyDialog","newsFeedDialog","shareMyVillageDialog","processingDialog","buyConfirmDialog","feedBackDialog","waterBuyDialog"];
+        var dialogList = [GameFSM.settings["goalDialog"].dialogID,GameFSM.settings["marketDialog"].dialogID,GameFSM.settings["editorMarketDialog"].dialogID,GameFSM.settings["cashDialog"].dialogID,GameFSM.settings["coinDialog"].dialogID,"newsFeedDialog",GameFSM.settings["shareMyVillage"].dialogID,"processingDialog",GameFSM.settings["buyConfirmDialog"].dialogID,GameFSM.settings["feedbackDialog"].dialogID,GameFSM.settings["waterDialog"].dialogID];
         ige.client.slideRight.close();
         for(var i = 0; i < dialogList.length; i++){
             $("#" + dialogList[i]).dialog();
@@ -128,7 +128,7 @@ var ClientHelpers = {
     },
 
     closeAllDialogsButThis: function(dialogID){
-        var dialogList = ["marketDialog","goalDialog","cashBuyDialog","coinBuyDialog","shareMyVillageDialog","feedBackDialog","waterBuyDialog"];
+        var dialogList = [GameFSM.settings["marketDialog"].dialogID,GameFSM.settings["goalDialog"].dialogID,GameFSM.settings["cashDialog"].dialogID,GameFSM.settings["coinDialog"].dialogID,GameFSM.settings["shareMyVillage"].dialogID,GameFSM.settings["feedbackDialog"].dialogID,GameFSM.settings["waterDialog"].dialogID];
         ige.client.slideRight.close();
         for(var i = 0; i < dialogList.length; i++){
             if(dialogList[i] === dialogID)

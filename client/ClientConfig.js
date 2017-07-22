@@ -56,6 +56,7 @@ var igeClientConfig = {
 		'/js/gameClasses/loaders/DropDownMenu.js',
 		'/js/gameClasses/loaders/SpecialEvents.js',
 		'/js/gameClasses/loaders/GameMessages.js',
+		'/js/gameClasses/loaders/GameFSM.js',
         '/js/gameClasses/misc/clientApiSupport.js',
         '/js/gameClasses/misc/clientBuy.js',
         '/js/gameClasses/misc/clientHelpers.js',

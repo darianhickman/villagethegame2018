@@ -61,8 +61,8 @@ var MarketDialog = Dialog.extend({
 
 		ige.client.fsm.enterState('marketDialog', null, function (err) {
 			if (!err) {
-				$( "#marketDialog" ).dialog({ resizable: true, draggable: true, closeOnEscape: false, width: 'auto', height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {self.closeMe();} });
-				$( "#marketDialog" ).dialog( "open" );
+				$( "#" + GameFSM.settings["marketDialog"].dialogID ).dialog({ resizable: true, draggable: true, closeOnEscape: false, width: 'auto', height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {self.closeMe();} });
+				$( "#" + GameFSM.settings["marketDialog"].dialogID ).dialog( "open" );
 				Dialog.prototype.show.call(self);
 			}
 		});
@@ -73,8 +73,8 @@ var MarketDialog = Dialog.extend({
 	hide: function () {
 		var self = this;
 
-		$( "#marketDialog" ).dialog({close: function( event, ui ) {}});
-		$( "#marketDialog" ).dialog( "close" );
+		$( "#" + GameFSM.settings["marketDialog"].dialogID ).dialog({close: function( event, ui ) {}});
+		$( "#" + GameFSM.settings["marketDialog"].dialogID ).dialog( "close" );
 		Dialog.prototype.hide.call(self);
 
 		return this;
