@@ -74,8 +74,8 @@ var CoinDialog = Dialog.extend({
 
         ige.client.fsm.enterState('coinDialog', null, function (err) {
             if (!err) {
-                $( "#coinBuyDialog" ).dialog({ resizable: false, draggable: true, closeOnEscape: false, width: 'auto', height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {self.closeMe();} });
-                $( "#coinBuyDialog" ).dialog( "open" );
+                $( "#" + GameFSM.settings["coinDialog"].dialogID ).dialog({ resizable: false, draggable: true, closeOnEscape: false, width: 'auto', height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {self.closeMe();} });
+                $( "#" + GameFSM.settings["coinDialog"].dialogID ).dialog( "open" );
                 Dialog.prototype.show.call(self);
             }
         });
@@ -86,8 +86,8 @@ var CoinDialog = Dialog.extend({
     hide: function () {
         var self = this;
 
-        $( "#coinBuyDialog" ).dialog({close: function( event, ui ) {}});
-        $( "#coinBuyDialog" ).dialog( "close" );
+        $( "#" + GameFSM.settings["coinDialog"].dialogID ).dialog({close: function( event, ui ) {}});
+        $( "#" + GameFSM.settings["coinDialog"].dialogID ).dialog( "close" );
         Dialog.prototype.hide.call(self);
 
         return this;

@@ -596,8 +596,8 @@ var Client = IgeClass.extend({
             enter: function (data, completeCallback) {
                 vlg.log.info('entering state this.fsm.marketDialog');
                 dataLayer.push({'event': 'marketDialog'});
-                $( "#marketDialog" ).closest('div.ui-dialog').find('div.ui-dialog-titlebar')
-                    .addClass("marketDialogHeader");
+                $( "#" + GameFSM.settings["marketDialog"].dialogID ).closest('div.ui-dialog').find('div.ui-dialog-titlebar')
+                    .addClass(GameFSM.settings["marketDialog"].dialogID + "Header");
                 completeCallback();
             },
             exit: function (data, completeCallback) {
@@ -624,8 +624,8 @@ var Client = IgeClass.extend({
             enter: function (data, completeCallback) {
                 vlg.log.info('entering state this.fsm.cashDialog');
                 dataLayer.push({'event': 'cashDialog'});
-                $( "#cashBuyDialog" ).closest('div.ui-dialog').find('div.ui-dialog-titlebar')
-                    .addClass("cashBuyDialogHeader");
+                $( "#" + GameFSM.settings["cashDialog"].dialogID ).closest('div.ui-dialog').find('div.ui-dialog-titlebar')
+                    .addClass(GameFSM.settings["cashDialog"].dialogID + "Header");
                 completeCallback();
             },
             exit: function (data, completeCallback) {
@@ -639,8 +639,8 @@ var Client = IgeClass.extend({
             enter: function (data, completeCallback) {
                 vlg.log.info('entering state this.fsm.coinDialog');
                 dataLayer.push({'event': 'coinDialog'});
-                $( "#coinBuyDialog" ).closest('div.ui-dialog').find('div.ui-dialog-titlebar')
-                    .addClass("coinBuyDialogHeader");
+                $( "#" + GameFSM.settings["coinDialog"].dialogID ).closest('div.ui-dialog').find('div.ui-dialog-titlebar')
+                    .addClass(GameFSM.settings["coinDialog"].dialogID + "Header");
                 completeCallback();
             },
             exit: function (data, completeCallback) {
@@ -654,8 +654,8 @@ var Client = IgeClass.extend({
             enter: function (data, completeCallback) {
                 vlg.log.info('entering state this.fsm.waterDialog');
                 dataLayer.push({'event': 'waterDialog'});
-                $( "#waterBuyDialog" ).closest('div.ui-dialog').find('div.ui-dialog-titlebar')
-                    .addClass("waterBuyDialogHeader");
+                $( "#" + GameFSM.settings["waterDialog"].dialogID ).closest('div.ui-dialog').find('div.ui-dialog-titlebar')
+                    .addClass(GameFSM.settings["waterDialog"].dialogID + "Header");
                 completeCallback();
             },
             exit: function (data, completeCallback) {
@@ -673,8 +673,8 @@ var Client = IgeClass.extend({
             },
             exit: function (data, completeCallback) {
                 vlg.log.info('exiting state this.fsm.goalDialog');
-                $( "#goalDialog" ).dialog({close: function( event, ui ) {}});
-                $( "#goalDialog" ).dialog( "close" );
+                $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog({close: function( event, ui ) {}});
+                $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog( "close" );
 
                 completeCallback();
             }
@@ -691,8 +691,8 @@ var Client = IgeClass.extend({
                 $("#buyConfirmYes").unbind("click");
                 $("#buyConfirmNo").unbind("click");
                 $("#buyConfirmOK").unbind("click");
-                $( "#buyConfirmDialog" ).dialog({close: function( event, ui ) {}});
-                $( "#buyConfirmDialog" ).dialog( "close" );
+                $( "#" + GameFSM.settings["buyConfirmDialog"].dialogID ).dialog({close: function( event, ui ) {}});
+                $( "#" + GameFSM.settings["buyConfirmDialog"].dialogID ).dialog( "close" );
                 if(ige.client.newBuyConfirm){
                     ige.client.newBuyConfirm.destroy();
                     ige.client.newBuyConfirm = null;
@@ -753,8 +753,8 @@ var Client = IgeClass.extend({
             enter: function (data, completeCallback) {
                 vlg.log.info('entering state this.fsm.shareMyVillage');
                 dataLayer.push({'event': 'shareMyVillage'});
-                $( "#shareMyVillageDialog" ).dialog({ resizable: false, draggable: true, closeOnEscape: false, close: function( event, ui ) {ige.client.fsm.enterState('select')}, width: 500, height: 300, modal: true, autoOpen: false });
-                $( "#shareMyVillageDialog" ).dialog( "open" );
+                $( "#" + GameFSM.settings["shareMyVillage"].dialogID ).dialog({ resizable: false, draggable: true, closeOnEscape: false, close: function( event, ui ) {ige.client.fsm.enterState('select')}, width: 500, height: 300, modal: true, autoOpen: false });
+                $( "#" + GameFSM.settings["shareMyVillage"].dialogID ).dialog( "open" );
 
                 $( "#shareMyVillageContent" )
                     .html( '<div style="padding-top:45px"><p>Share My Village:</p><div><textarea id="shareMyVillageTextArea" style="width:428px;"></textarea>' +
@@ -786,8 +786,8 @@ var Client = IgeClass.extend({
             },
             exit: function (data, completeCallback) {
                 vlg.log.info('exiting state this.fsm.shareMyVillage');
-                $( "#shareMyVillageDialog" ).dialog({close: function( event, ui ) {}});
-                $( "#shareMyVillageDialog" ).dialog( "close" );
+                $( "#" + GameFSM.settings["shareMyVillage"].dialogID ).dialog({close: function( event, ui ) {}});
+                $( "#" + GameFSM.settings["shareMyVillage"].dialogID ).dialog( "close" );
                 completeCallback();
             }
         });
@@ -797,8 +797,8 @@ var Client = IgeClass.extend({
                 vlg.log.info('entering state this.fsm.feedbackDialog');
                 dataLayer.push({'event': 'feedbackDialog'});
 
-                $( "#feedBackDialog" ).dialog({ resizable: false, draggable: true, closeOnEscape: false, width: 600, height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {ige.client.fsm.enterState('select');} });
-                $( "#feedBackDialog" ).dialog( "open" );
+                $( "#" + GameFSM.settings["feedbackDialog"].dialogID ).dialog({ resizable: false, draggable: true, closeOnEscape: false, width: 600, height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {ige.client.fsm.enterState('select');} });
+                $( "#" + GameFSM.settings["feedbackDialog"].dialogID ).dialog( "open" );
 
                 $( "#contact-submit" ).click(function(){
                     if(!$('#contactName')[0].checkValidity() || !$('#contactEmail')[0].checkValidity() || !$('#contactMessage')[0].checkValidity())
@@ -825,8 +825,8 @@ var Client = IgeClass.extend({
             },
             exit: function (data, completeCallback) {
                 vlg.log.info('exiting state this.fsm.feedbackDialog');
-                $( "#feedBackDialog" ).dialog({close: function( event, ui ) {}});
-                $( "#feedBackDialog" ).dialog( "close" );
+                $( "#" + GameFSM.settings["feedbackDialog"].dialogID ).dialog({close: function( event, ui ) {}});
+                $( "#" + GameFSM.settings["feedbackDialog"].dialogID ).dialog( "close" );
                 $( "#contactName" ).val("");
                 $( "#contactEmail" ).val("");
                 $( "#contactMessage" ).val("");
@@ -842,13 +842,13 @@ var Client = IgeClass.extend({
             enter: function (data, completeCallback) {
                 vlg.log.info('entering state this.fsm.aboutDialog');
                 dataLayer.push({'event': 'aboutDialog'});
-                $( "#aboutDialog" ).dialog({width: "80%", minWidth: 925, maxWidth: 1215, height: 650, close: function( event, ui ) {}});
+                $( "#" + GameFSM.settings["aboutDialog"].dialogID ).dialog({width: "80%", minWidth: 925, maxWidth: 1215, height: 650, close: function( event, ui ) {}});
 
                 completeCallback();
             },
             exit: function (data, completeCallback) {
                 vlg.log.info('exiting state this.fsm.aboutDialog');
-                $( "#aboutDialog" ).dialog( "close" );
+                $( "#" + GameFSM.settings["aboutDialog"].dialogID ).dialog( "close" );
 
                 completeCallback();
             }
@@ -858,13 +858,13 @@ var Client = IgeClass.extend({
             enter: function (data, completeCallback) {
                 vlg.log.info('entering state this.fsm.contactDialog');
                 dataLayer.push({'event': 'contactDialog'});
-                $( "#contactDialog" ).dialog({width: 925, height: 650, close: function( event, ui ) {}});
+                $( "#" + GameFSM.settings["contactDialog"].dialogID ).dialog({width: 925, height: 650, close: function( event, ui ) {}});
 
                 completeCallback();
             },
             exit: function (data, completeCallback) {
                 vlg.log.info('exiting state this.fsm.contactDialog');
-                $( "#contactDialog" ).dialog( "close" );
+                $( "#" + GameFSM.settings["contactDialog"].dialogID ).dialog( "close" );
 
                 completeCallback();
             }
@@ -874,9 +874,9 @@ var Client = IgeClass.extend({
             enter: function (data, completeCallback) {
                 vlg.log.info('entering state this.fsm.login');
                 dataLayer.push({'event': 'login'});
-                $( "#processingDialog" ).dialog({ resizable: false, draggable: true, dialogClass: 'ui-dialog-no-titlebar', closeOnEscape: false, width: 500, height: 300, modal: true, autoOpen: false });
-                $( "#processingDialog" ).closest('div.ui-dialog').find('button.ui-dialog-titlebar-close').hide();
-                $( "#processingDialog" ).dialog( "open" );
+                $( "#" + GameFSM.settings["login"].dialogID ).dialog({ resizable: false, draggable: true, dialogClass: 'ui-dialog-no-titlebar', closeOnEscape: false, width: 500, height: 300, modal: true, autoOpen: false });
+                $( "#" + GameFSM.settings["login"].dialogID ).closest('div.ui-dialog').find('button.ui-dialog-titlebar-close').hide();
+                $( "#" + GameFSM.settings["login"].dialogID ).dialog( "open" );
 
                 $( "#processingContent" )
                     .html( "<div><p>Signing in, please wait!</p><p><img src='assets/images/ui/loading_spinner.gif'></p></div>" );
@@ -886,7 +886,7 @@ var Client = IgeClass.extend({
             },
             exit: function (data, completeCallback) {
                 vlg.log.info('exiting state this.fsm.login');
-                $( "#processingDialog" ).dialog( "close" );
+                $( "#" + GameFSM.settings["login"].dialogID ).dialog( "close" );
                 completeCallback();
             }
         });
@@ -895,9 +895,9 @@ var Client = IgeClass.extend({
             enter: function (data, completeCallback) {
                 vlg.log.info('entering state this.fsm.logout');
                 dataLayer.push({'event': 'logout'});
-                $( "#processingDialog" ).dialog({ resizable: false, draggable: true, dialogClass: 'ui-dialog-no-titlebar', closeOnEscape: false, width: 500, height: 300, modal: true, autoOpen: false });
-                $( "#processingDialog" ).closest('div.ui-dialog').find('button.ui-dialog-titlebar-close').hide();
-                $( "#processingDialog" ).dialog( "open" );
+                $( "#" + GameFSM.settings["logout"].dialogID ).dialog({ resizable: false, draggable: true, dialogClass: 'ui-dialog-no-titlebar', closeOnEscape: false, width: 500, height: 300, modal: true, autoOpen: false });
+                $( "#" + GameFSM.settings["logout"].dialogID ).closest('div.ui-dialog').find('button.ui-dialog-titlebar-close').hide();
+                $( "#" + GameFSM.settings["logout"].dialogID ).dialog( "open" );
 
                 $( "#processingContent" )
                     .html( "<div><p>Signing out, please wait!</p><p><img src='assets/images/ui/loading_spinner.gif'></p></div>" );
@@ -907,7 +907,7 @@ var Client = IgeClass.extend({
             },
             exit: function (data, completeCallback) {
                 vlg.log.info('exiting state this.fsm.logout');
-                $( "#processingDialog" ).dialog( "close" );
+                $( "#" + GameFSM.settings["logout"].dialogID ).dialog( "close" );
                 completeCallback();
             }
         });
@@ -916,9 +916,9 @@ var Client = IgeClass.extend({
             enter: function (data, completeCallback) {
                 vlg.log.info('entering state this.fsm.reloadGame');
                 dataLayer.push({'event': 'reloadGame'});
-                $( "#processingDialog" ).dialog({ resizable: false, draggable: true, dialogClass: 'ui-dialog-no-titlebar', closeOnEscape: false, width: 500, height: 300, modal: true, autoOpen: false });
-                $( "#processingDialog" ).closest('div.ui-dialog').find('button.ui-dialog-titlebar-close').hide();
-                $( "#processingDialog" ).dialog( "open" );
+                $( "#" + GameFSM.settings["reloadGame"].dialogID ).dialog({ resizable: false, draggable: true, dialogClass: 'ui-dialog-no-titlebar', closeOnEscape: false, width: 500, height: 300, modal: true, autoOpen: false });
+                $( "#" + GameFSM.settings["reloadGame"].dialogID ).closest('div.ui-dialog').find('button.ui-dialog-titlebar-close').hide();
+                $( "#" + GameFSM.settings["reloadGame"].dialogID ).dialog( "open" );
 
                 $( "#processingContent" )
                     .html( "<div><p>Loading village, please wait!</p><p><img src='assets/images/ui/loading_spinner.gif'></p></div>" );
@@ -968,7 +968,7 @@ var Client = IgeClass.extend({
             },
             exit: function (data, completeCallback) {
                 vlg.log.info('exiting state this.fsm.reloadGame');
-                $( "#processingDialog" ).dialog( "close" );
+                $( "#" + GameFSM.settings["reloadGame"].dialogID ).dialog( "close" );
                 completeCallback();
             }
         });

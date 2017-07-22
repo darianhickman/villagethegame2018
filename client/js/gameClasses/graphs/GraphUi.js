@@ -10,11 +10,11 @@ var GraphUi = IgeSceneGraph.extend({
         clientself = ige.client,
         uiScene = ige.$('uiScene'),
         dialogList = [
-            {id:"marketDialog", image:"Shop"},
-            {id:"goalDialog", image:"star"},
-            {id:"cashBuyDialog", image:"Banknotes"},
-            {id:"coinBuyDialog", image:"Coin1"},
-            {id:"waterBuyDialog", image:"Water-48"}
+            {id:GameFSM.settings["marketDialog"].dialogID, image:"Shop"},
+            {id:GameFSM.settings["goalDialog"].dialogID, image:"star"},
+            {id:GameFSM.settings["cashDialog"].dialogID, image:"Banknotes"},
+            {id:GameFSM.settings["coinDialog"].dialogID, image:"Coin1"},
+            {id:GameFSM.settings["waterDialog"].dialogID, image:"Water-48"}
         ];
 
 		var marketDialog = new MarketDialog()
@@ -394,8 +394,8 @@ var GraphUi = IgeSceneGraph.extend({
             $('#goalCompleteNotification').hide();
             ige.client.fsm.enterState('goalDialog', null, function (err) {
                 if (!err) {
-                    $( "#goalDialog" ).dialog({ resizable: false, draggable: true, closeOnEscape: true, close: function( event, ui ) {ige.client.fsm.enterState('select')}, width: 'auto', height: 'auto', modal: true, autoOpen: false });
-                    $( "#goalDialog" ).dialog( "open" );
+                    $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog({ resizable: false, draggable: true, closeOnEscape: true, close: function( event, ui ) {ige.client.fsm.enterState('select')}, width: 'auto', height: 'auto', modal: true, autoOpen: false });
+                    $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog( "open" );
                 }
             });
         }
