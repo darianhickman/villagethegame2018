@@ -278,6 +278,18 @@ def get_messages():
             items.append(dict(zip(headers, row)))
     return items
 
+@memcached('fsm')
+def get_fsm():
+    sheet_config = get_config()
+    fsm_docid = sheet_config['game_fsm_docid']
+    data = get_sheet(fsm_docid)
+    headers = data[0]
+    items = []
+    for row in data[2:]:
+        if row and row[0]:
+            items.append(dict(zip(headers, row)))
+    return items
+
 @memcached('goals_data')
 def get_goals_data():
     sheet_config = get_config()
