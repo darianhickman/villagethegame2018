@@ -181,8 +181,8 @@ var GameLogic = IgeObject.extend({
             ige.client.fsm.enterState('goalDialog', null, function (err) {
                 if (!err) {
                     $('#goalDialogContent').html("<p style='text-align:center;'>" + data.message + "</p>");
-                    $( "#goalDialog" ).dialog({ resizable: false, draggable: true, closeOnEscape: true, title: data.title, close: function( event, ui ) {ige.client.fsm.enterState('select')}, width: 'auto', height: 'auto', modal: true, autoOpen: false });
-                    $( "#goalDialog" ).dialog( "open" );
+                    $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog({ resizable: false, draggable: true, closeOnEscape: true, title: data.title, close: function( event, ui ) {ige.client.fsm.enterState('select')}, width: 'auto', height: 'auto', modal: true, autoOpen: false });
+                    $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog( "open" );
                 }
             });
         })

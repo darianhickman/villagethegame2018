@@ -56,8 +56,8 @@ var CashDialog = Dialog.extend({
 
         ige.client.fsm.enterState('cashDialog', null, function (err) {
             if (!err) {
-                $( "#cashBuyDialog" ).dialog({ resizable: false, draggable: true, closeOnEscape: false, width: 'auto', height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {self.closeMe();} });
-                $( "#cashBuyDialog" ).dialog( "open" );
+                $( "#" + GameFSM.settings["cashDialog"].dialogID ).dialog({ resizable: false, draggable: true, closeOnEscape: false, width: 'auto', height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {self.closeMe();} });
+                $( "#" + GameFSM.settings["cashDialog"].dialogID ).dialog( "open" );
                 Dialog.prototype.show.call(self);
             }
         });
@@ -68,8 +68,8 @@ var CashDialog = Dialog.extend({
     hide: function () {
         var self = this;
 
-        $( "#cashBuyDialog" ).dialog({close: function( event, ui ) {}});
-        $( "#cashBuyDialog" ).dialog( "close" );
+        $( "#" + GameFSM.settings["cashDialog"].dialogID ).dialog({close: function( event, ui ) {}});
+        $( "#" + GameFSM.settings["cashDialog"].dialogID ).dialog( "close" );
         Dialog.prototype.hide.call(self);
 
         return this;

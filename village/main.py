@@ -11,7 +11,7 @@ import io
 from flask import render_template
 import config as config_module
 from .app_common import config
-from .config import get_config_docid, get_commit_head, get_config, get_catalog, get_news_feed, get_secret_key, get_config_assets, get_config_earnings, get_problems, get_asset_bundle, get_messages, get_goals_data, get_goals_tasks, get_goals_settings, get_dropdown_menu, get_special_events
+from .config import get_config_docid, get_commit_head, get_config, get_catalog, get_news_feed, get_secret_key, get_config_assets, get_config_earnings, get_problems, get_asset_bundle, get_messages, get_fsm, get_goals_data, get_goals_tasks, get_goals_settings, get_dropdown_menu, get_special_events
 from . import models
 from google.appengine.api import mail, app_identity, modules
 import cloudstorage
@@ -21,7 +21,7 @@ import webapp2
 root = flask.Flask(__name__)
 
 root.secret_key  = get_secret_key()
-cache_dict = {'config':'get_config','assets':'get_config_assets','earnings':'get_config_earnings','problems':'get_problems','assetbundle':'get_asset_bundle','messages':'get_messages','goalsdata':'get_goals_data','goalstasks':'get_goals_tasks','goalssettings':'get_goals_settings','catalog':'get_catalog','dropdownmenu':'get_dropdown_menu','specialevents':'get_special_events'}
+cache_dict = {'config':'get_config','assets':'get_config_assets','earnings':'get_config_earnings','problems':'get_problems','assetbundle':'get_asset_bundle','messages':'get_messages','fsm':'get_fsm','goalsdata':'get_goals_data','goalstasks':'get_goals_tasks','goalssettings':'get_goals_settings','catalog':'get_catalog','dropdownmenu':'get_dropdown_menu','specialevents':'get_special_events'}
 
 @root.route('/_ah/warmup')
 def warmup():
@@ -32,6 +32,7 @@ def warmup():
     get_problems()
     get_asset_bundle()
     get_messages()
+    get_fsm()
     get_goals_data()
     get_goals_tasks()
     get_goals_settings()
@@ -72,6 +73,10 @@ def asset_bundle_route():
 @root.route('/messages')
 def messages_route():
     return flask.Response(json.dumps(get_messages()),content_type='application/json')
+
+@root.route('/fsm')
+def fsm_route():
+    return flask.Response(json.dumps(get_fsm()),content_type='application/json')
 
 @root.route('/goals')
 def goals_route():
