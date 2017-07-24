@@ -215,12 +215,12 @@ def scan_config_by_key(config_key):
 @root.route('/css2/<file_name>')
 def css_handler(file_name):
     bucket_name = app_identity.get_application_id() + ".appspot.com"
-    full_file_path  = "/"+bucket_name + "/css/" +file_name
+    full_file_path  = "/css/" +file_name
     file_found = search_file_in_bucket(bucket_name, 'css', full_file_path)
     if file_found == False:
         return flask.redirect('/client/css/'+file_name)
     else:
-        return flask.redirect('https://storage.googleapis.com'+full_file_path)
+        return flask.redirect('https://'+bucket_name+'.storage.googleapis.com'+full_file_path)
 
 @root.route('/js2/<file_name>')
 def js_handler(file_name):
