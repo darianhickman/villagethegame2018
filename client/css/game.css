@@ -308,23 +308,22 @@ button, input, textarea {
 }
 .goalTaskImage {
 	display: inline-block;
-	width: 100px;
-	min-width: 100px;
-	min-height: 40px;
+    width: 30px;
+	min-width: 30px;
+	min-height: 30px;
 	background-repeat: no-repeat;
-	background-size: 100%;
+	background-size: 30%;
 }
 .goalTaskTitle {
-	display: inline-block;
-	min-width: 100px;
+    display: inline-block;
+    width: 200px;
 }
 .goalTaskPercent {
-	position: relative;
-	width: 80%;
-	height: 1.7em;
-	text-align: center;
-	left: 10%;
-	margin: 5px 0px 5px 0px;
+	position: inline-block;
+    float: right;
+    width: 90%;
+	height: 1.5em;
+	margin: 5px 5px 5px 5px;
 }
 #taskList {
 	display: block;
@@ -340,7 +339,7 @@ button, input, textarea {
 }
 #taskList li span {
 	display: inline-block;
-	min-width: 60px;
+	min-width: 100px;
 	min-height: 40px;
 	margin-top: 5px;
 	vertical-align: middle;
@@ -357,7 +356,7 @@ button, input, textarea {
 }
 .goalDialogInfo{
 	margin: 15px;
-	text-align: center;
+	text-align: left;
 }
 .progressLabel {
 	position: absolute;
