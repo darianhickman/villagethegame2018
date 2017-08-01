@@ -347,8 +347,8 @@ button, input, textarea {
 #goalDialog {
 	padding: 0px;
 	margin: 0px;
-	min-width: 400px;
-	max-width: 900px;
+	min-width: 300px;
+	max-width: 600px;
 }
 #goalDialogContent {
 	margin: 0px;
