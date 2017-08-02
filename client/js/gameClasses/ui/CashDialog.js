@@ -16,9 +16,8 @@ var CashDialog = Dialog.extend({
 
         for(var i=0; i < bucks.length; i ++) {
             clonedItem = $('#cashAssetList li').first().clone();
-            clonedItem.find(".assetAmount").first().text(bucks[i] + " VBucks for ");
-            clonedItem.find(".assetPay").first().text( pay[i] + "  USD");
-
+            clonedItem.find(".assetAmount").first().text( bucks[i] );
+            clonedItem.find(".assetPay").first().text( "$" + pay[i] );
             (function(i) {
                 clonedItem.click(function() {
                     ige.input.stopPropagation();
@@ -75,3 +74,6 @@ var CashDialog = Dialog.extend({
         return this;
     }
 })
+
+
+
