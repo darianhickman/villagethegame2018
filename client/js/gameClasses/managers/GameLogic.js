@@ -74,15 +74,15 @@ var GameLogic = IgeObject.extend({
                     // imgWidth = ige.client.textures[itemID]._sizeX / (ige.client.textures[itemID]._sizeY / imgHeight)
                     imgWidth = 30
                     dummyElem.remove();
-                    itemImg = "<span class='goalTaskImage'><img class='goalTaskImage' src='"+options.iconUrl+"' /></span>";
+                    itemImg = "<img class='goalTaskImage' src='"+options.iconUrl+"' />";
 
                     // itemImg = "<span class='goalTaskImage' style='background-image: url(" + options.textureUrl + ");" +
                     //     imgHeight + "px;background-position-x: "+ imgWidth / ige.client.textures[itemID]._cellColumns +"px;'></span>";
                 }
-                items.push('<li>' + itemImg + " <span class='goalTaskTitle'>"+ value.title  +  "</span><div class='goalTaskPercent' id='task" + value.taskID + "' ><div class='progressLabel' id='taskLabel" + value.taskID + "'></div></div></li>");
+                items.push("<li><table ><tr><td rowspan=2>" + itemImg + " </td><td width= 320 ><span class='goalTaskTitle'>"+ value.title  +  "</td></tr><tr><td></span><div class='goalTaskPercent' id='task" + value.taskID + "' ><div class='progressLabel' id='taskLabel" + value.taskID + "'></div></div></td></tr></table></li>");
             });
             //add problem info
-            $('#goalDialogContent').html("<div class='goalDialogInfo'>Solves:" + GameProblems.problemsLookup[API.state.currentProblemID].title + "<span class='problemDetails'><img class='problemDetailsIcon' src='/assets/images/ui/Info-50.png'></span></div>");
+            $('#goalDialogContent').html("<div class='goalDialogInfo'>Solves:" + GameProblems.problemsLookup[API.state.currentProblemID].title + "</div>");
             var problemDetails = $('#goalDialogContent').find(".problemDetails").first();
             problemDetails.attr("title",GameProblems.problemsLookup[API.state.currentProblemID].details);
             problemDetails.tooltip({

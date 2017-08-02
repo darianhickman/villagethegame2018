@@ -16,8 +16,8 @@ var WaterDialog = Dialog.extend({
 
         for(var i=0; i < 5; i ++) {
             clonedItem = $('#waterAssetList li').first().clone();
-            clonedItem.find(".assetAmount").first().text(water[i] + " Water for ");
-            clonedItem.find(".assetPay").first().text(pay[i] + " VBuck" + ((pay[i] > 1) ? "s" : ""));
+            clonedItem.find(".assetAmount").first().text(water[i]);
+            clonedItem.find(".assetPay").first().text(pay[i]);
 
             (function(i) {
                 clonedItem.click(function() {
