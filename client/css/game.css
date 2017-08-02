@@ -348,7 +348,7 @@ button, input, textarea {
 	padding: 0px;
 	margin: 0px;
 	min-width: 300px;
-	max-width: 600px;
+	max-width: 500px;
 }
 #goalDialogContent {
 	margin: 0px;
@@ -424,7 +424,7 @@ button, input, textarea {
 	overflow-y: hidden;
 }
 .iconcell {
-	width: 100px;
+	width: 50px;
 	overflow-x: hidden;
 }
 .unlock img {
@@ -436,7 +436,7 @@ button, input, textarea {
 	opacity: 1.0;
 }
 #marketDialog {
-	min-width: 400px;
+	min-width: 300px;
 	min-height: 300px;
 	height: 100%;
 	padding: 0;
@@ -481,14 +481,14 @@ button, input, textarea {
 .marketItemImage {
 	background-repeat: no-repeat;
 	background-position: 0px -200px;
-	min-width: 30px;
-	height: 30px;
+	max-height: 30px;
+    max-width: 50px
 	display: inline-block;
 	overflow-x: hidden;
 }
 .marketItemImage img {
 	position: absolute;
-	height: 30px;
+	width: 40px;
 }
 .marketItemTitle {
 	width: 200px;
@@ -498,9 +498,12 @@ button, input, textarea {
 	padding: 0;
 }
 .marketItemCoins {
-	text-align: center;
+    width: 80px;
+    text-align: left;
+    left: 20;
 }
 .marketItemCash {
+    width: 200px;
 }
 .marketCoinIcon {
 	width: 20px;

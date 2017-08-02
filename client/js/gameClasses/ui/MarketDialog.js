@@ -106,7 +106,7 @@ var MarketDialog = Dialog.extend({
 		else
 			clonedItem.find(".marketItemCoins").first().remove();
 		if(itemData.cash != 0)
-			clonedItem.find(".marketItemCash").contents().last()[0].textContent=itemData.cash;
+                                 clonedItem.find(".marketItemCash").contents().last()[0].textContent=(itemData.cash > 999 ?"":"-") + (itemData.cash > 99?"":"-") + itemData.cash;
 		else
 			clonedItem.find(".marketItemCash").first().remove();
 
