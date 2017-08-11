@@ -10,7 +10,7 @@ var MarketDialog = Dialog.extend({
 		this._pageCount = 0;
 		this._activePageNo = 1;
 
-		$('#marketDialogPageTemplate ul li').first().hide();
+		$('#marketDialogPageTemplate ul table tr').first().hide();
 
         this.closeButton.hide();
 		this._underlay.hide();
@@ -86,7 +86,7 @@ var MarketDialog = Dialog.extend({
 			pageIndex = 1,
 			clonedItem, options, dummyElem, imgWidth, imgHeight;
 
-		clonedItem = $('#marketDialogPageTemplate ul li').first().clone();
+		clonedItem = $('#marketDialogPageTemplate ul table tr').first().clone();
 		clonedItem.show().find(".marketItemTitle").first().text(itemData.title).attr("id", "marketItemButton" + itemData.id);
 
 		options = GameObjects.catalogLookup[itemData.id]

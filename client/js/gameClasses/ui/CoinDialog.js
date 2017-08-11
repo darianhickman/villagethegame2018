@@ -15,7 +15,7 @@ var CoinDialog = Dialog.extend({
         }
 
         for(var i=0; i < 5; i ++) {
-            clonedItem = $('#coinAssetList li').first().clone();
+            clonedItem = $('#coinAssetList table tr').first().clone();
             clonedItem.find(".assetAmount").first().text(coins[i]);
             clonedItem.find(".assetPay").first().text(pay[i]);
 
@@ -63,7 +63,7 @@ var CoinDialog = Dialog.extend({
 
             $('#coinAssetList').append(clonedItem);
         }
-        $('#coinAssetList li').first().hide();
+        $('#coinAssetList table tr').first().hide();
 
         this.closeButton.hide();
         this._underlay.hide();
