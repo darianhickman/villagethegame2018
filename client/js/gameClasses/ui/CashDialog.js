@@ -15,7 +15,7 @@ var CashDialog = Dialog.extend({
         }
 
         for(var i=0; i < bucks.length; i ++) {
-            clonedItem = $('#cashAssetList li').first().clone();
+            clonedItem = $('#cashAssetList table tr').first().clone();
             clonedItem.find(".assetAmount").first().text( bucks[i] );
             clonedItem.find(".assetPay").first().text( "$" + pay[i] );
             (function(i) {
@@ -44,7 +44,7 @@ var CashDialog = Dialog.extend({
 
             $('#cashAssetList').append(clonedItem);
         }
-        $('#cashAssetList li').first().hide();
+        $('#cashAssetList table tr').first().hide();
 
         this.closeButton.hide();
         this._underlay.hide();
