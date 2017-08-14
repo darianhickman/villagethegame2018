@@ -9,7 +9,7 @@ var BuyStatus = Dialog.extend({
 
     startTransaction: function() {
         var self = this;
-        self.infoDialog = new BuyConfirm(LocalizationManager.getValueByLabel('buyingString'),null,true)
+        self.infoDialog = new BuyConfirm(LocalizationManager.getValueByLabel('buyingString'),null,null,true)
             .layer(1)
             .show()
             .mount(ige.$('uiScene'));

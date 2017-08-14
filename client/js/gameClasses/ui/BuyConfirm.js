@@ -1,6 +1,6 @@
 var BuyConfirm = Dialog.extend({
 	classId: 'BuyConfirm',
-    init: function (message, callback, confirmOnly) {
+    init: function (message, prize, callback, confirmOnly) {
         Dialog.prototype.init.call(this);
 
         var self = this;
@@ -8,9 +8,9 @@ var BuyConfirm = Dialog.extend({
         ige.client.newBuyConfirm = self;
 
         $("#buyConfirmMessage").html(message);
+        $("#buyConfirmPrize").html(prize);
         if(confirmOnly !== null && confirmOnly !== undefined && confirmOnly === true){
             $("#buyConfirmYes").hide();
-            $("#buyConfirmNo").hide();
             $("#buyConfirmOK")
                 .click(function() {
                     ga("send",  "Confirm dialog");
@@ -27,18 +27,8 @@ var BuyConfirm = Dialog.extend({
                 .click(function() {
                     ga("send",  "Confirm buy");
                     $("#buyConfirmYes").unbind("click");
-                    $("#buyConfirmNo").unbind("click");
                     self.closeMe();
                     callback();
-                })
-                .show();
-
-            $("#buyConfirmNo")
-                .click(function() {
-                    ga("send",  "Cancel buy");
-                    $("#buyConfirmYes").unbind("click");
-                    $("#buyConfirmNo").unbind("click");
-                    self.closeMe();
                 })
                 .show();
         }
@@ -52,7 +42,7 @@ var BuyConfirm = Dialog.extend({
 
         ige.client.fsm.enterState('buyConfirmDialog', null, function (err) {
             if (!err) {
-                $( "#" + GameFSM.settings["buyConfirmDialog"].dialogID ).dialog({ resizable: false, draggable: true, closeOnEscape: false, width: 'auto', height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {$("#buyConfirmYes").unbind("click");$("#buyConfirmNo").unbind("click");$("#buyConfirmOK").unbind("click");self.closeMe();} });
+                $( "#" + GameFSM.settings["buyConfirmDialog"].dialogID ).dialog({ resizable: false, draggable: true, closeOnEscape: false, width: 'auto', height: 'auto', modal: true, autoOpen: false, close: function( event, ui ) {$("#buyConfirmYes").unbind("click");$("#buyConfirmOK").unbind("click");self.closeMe();} });
                 $( "#" + GameFSM.settings["buyConfirmDialog"].dialogID ).dialog( "open" );
                 Dialog.prototype.show.call(self);
             }
