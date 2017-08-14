@@ -12,6 +12,7 @@
     })(window,document,'script','dataLayer','GTM-W27P4W3');</script>
     <!-- End Google Tag Manager -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -20,9 +21,9 @@
     <title>Village Makeover</title>
     <!-- STYLES -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
-    <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
     <link href="client/css/jqueryui-overrides.css" rel="stylesheet" type="text/css" />
     <link href="client/css/game.css" rel="stylesheet" type="text/css"/>
@@ -109,17 +110,12 @@
                             <img class="marketCashIcon" src="assets/images/ui/Banknotes.png">
                             0
                         </td>
-                        <td width="120">
-                            <span class="unlock" role="button">
-                                Unlock
-                                <img src="assets/images/ui/Banknotes.png"/>
-                                <span class="unlockprice"> </span>
-                            </span>
+                        <td class="unlock" role="button">Unlock
+                            <img src="assets/images/ui/Banknotes.png"/>
+                            <span class="unlockprice"> </span>
                         </td>
-                        <td width="20">
-                            <span class="marketItemInfo">
-                                <img class="marketItemInfoIcon" src="/assets/images/ui/Info-50.png">
-                            </span>
+                        <td class="marketItemInfo">
+                            <img class="marketItemInfoIcon" src="/assets/images/ui/Info-50.png">
                         </td>
                     </tr>
                 </table>
@@ -215,7 +211,8 @@
     <div id="buyConfirmDialog" title="Confirm" style="display:none">
         <p id="buyConfirmMessage"></p>
         <button id="buyConfirmOK">OK</button>
-        <button id="buyConfirmYes"><span id="buyConfirmPrize"></span></button>
+        <button id="buyConfirmYes">Yes</button>
+        <button id="buyConfirmNo">No</button>
     </div>
     <div id="messageDialog" title="Message from Game" style="display:none">
         <p id="messageDialogMessage"></p>
