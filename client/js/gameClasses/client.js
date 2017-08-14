@@ -689,7 +689,6 @@ var Client = IgeClass.extend({
             exit: function (data, completeCallback) {
                 vlg.log.info('exiting state this.fsm.buyConfirmDialog');
                 $("#buyConfirmYes").unbind("click");
-                $("#buyConfirmNo").unbind("click");
                 $("#buyConfirmOK").unbind("click");
                 $( "#" + GameFSM.settings["buyConfirmDialog"].dialogID ).dialog({close: function( event, ui ) {}});
                 $( "#" + GameFSM.settings["buyConfirmDialog"].dialogID ).dialog( "close" );
@@ -814,7 +813,7 @@ var Client = IgeClass.extend({
                             email: $( "#contactEmail").val(),
                             message: $( "#contactMessage").val()}),
                         success: function(result){
-                            new BuyConfirm(LocalizationManager.getValueByLabel('feedBackSentMessage'),null,true)
+                            new BuyConfirm(LocalizationManager.getValueByLabel('feedBackSentMessage'), null, null,true)
                                 .layer(1)
                                 .show()
                                 .mount(ige.$('uiScene'));
@@ -1104,8 +1103,8 @@ var Client = IgeClass.extend({
                         ige.client.cursorObjectData = null;
 
                         var message = LocalizationManager.getValueByLabel('notEnoughCoinsString');
-
-                        var cashDialog = new BuyConfirm(message,
+                        var prize = 'Buy the missing' + '<img class="marketCashIcon" src="assets/images/ui/Coin1.png">';
+                        var cashDialog = new BuyConfirm(message, prize,
                             function () {
                                 ige.$('coinDialog').show();
                             })

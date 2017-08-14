@@ -388,7 +388,7 @@ var GameObjects = {
             },
 
             speedProgress: function(){
-                var message, callBack, price = {coins:0}, self = this, confirmOnly = null;
+                var message, callBack, price = {coins:0}, self = this, confirmOnly = null, prize;
 
                 price.cash = this.getCurrentStateSpeedValue();
 
@@ -398,10 +398,10 @@ var GameObjects = {
                 }else{
                     //show are you sure and reduce assets
                     message  = 'Speed progress for ' + price.cash + ' VBuck' + ((price.cash > 1) ? "s" : "") + '?';
-
+                    prize = price.cash +'<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
                     callBack = function() {
                         if(self.getCurrentStateSpeedValue() === -1){
-                            new BuyConfirm('Progress already finished!',null,true)
+                            new BuyConfirm('Progress already finished!', null, null,true)
                                 .layer(1)
                                 .show()
                                 .mount(ige.$('uiScene'));
@@ -412,7 +412,8 @@ var GameObjects = {
                                     cash: parseInt(price.cash, 10)}).status) {
                             // Not enough money?
                             ga("send",  "Not enough money");
-                            new BuyConfirm(LocalizationManager.getValueByLabel('notEnoughCashString'),
+                            prize = 'Come back after having' + price.cash + '<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
+                            new BuyConfirm(LocalizationManager.getValueByLabel('notEnoughCashString'), prize,
                                 function () {
                                     ige.$('cashDialog').show();
                                 })
@@ -425,7 +426,7 @@ var GameObjects = {
                         self.finishProgress();
                     }
                 }
-                new BuyConfirm(message,callBack,confirmOnly)
+                new BuyConfirm(message,prize,callBack,confirmOnly)
                     .layer(1)
                     .show()
                     .mount(ige.$('uiScene'));
@@ -478,7 +479,7 @@ var GameObjects = {
                             message += "VBucks "
                         if(!result.water)
                             message += "Water"
-                        new BuyConfirm(message, null, true)
+                        new BuyConfirm(message, null, null, true)
                             .layer(1)
                             .show()
                             .mount(ige.$('uiScene'));
