@@ -6,7 +6,6 @@ export APP_VERSION=3
 export CLOUDSDK_CORE_DISABLE_PROMPTS=1
 export CLOUDSDK_CORE_PROJECT=villagedarian1
 export CONFIG_DOCID=1r7LKoEI-1kFhSnH75XwEP1zdkfQzdN6LObM4MJLtiaw
-
 if [ ! -f /usr/local/bin/node ]
 then
 	brew install node
