@@ -32,7 +32,7 @@ var CashDialog = Dialog.extend({
 
                     var message = 'Buy ' + bucks[i] + ' VBucks for $' + pay[i] + '?';
 
-                    var prize = pay[i] + ' USD';
+                    var prize = '<img class="cashIcon" src="/assets/images/ui/Bank_2.png"> ' + pay[i] + ' USD';
                     var cashDialog = new BuyConfirm(message, prize,
                         function() {
                             Buy.buy(price);
