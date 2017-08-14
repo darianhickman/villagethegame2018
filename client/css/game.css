@@ -349,6 +349,7 @@ button, input, textarea {
 	margin: 0px;
 	min-width: 300px;
 	max-width: 500px;
+    overflow: hidden;
 }
 #goalDialogContent {
 	margin: 0px;
