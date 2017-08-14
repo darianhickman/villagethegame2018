@@ -14,20 +14,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="game-engine-origin" content="http://www.isogenicengine.com">
     <meta http-equiv="X-UA-Compatible" content="IE=9">
     <title>Village Makeover</title>
     <!-- STYLES -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
-    <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-    <link href="/css2/jqueryui-overrides.css" rel="stylesheet" type="text/css" />
-    <link href="/css2/game.css" rel="stylesheet" type="text/css"/>
-    <link href="/css2/menustyle.css" rel="stylesheet" type="text/css"/>
+    <link href="client/css/jqueryui-overrides.css" rel="stylesheet" type="text/css" />
+    <link href="client/css/game.css" rel="stylesheet" type="text/css"/>
+    <link href="client/css/menustyle.css" rel="stylesheet" type="text/css"/>
 
     <link rel="shortcut icon" href="/favicon.ico?v=2">
     <!-- Isogenic Loader -->
@@ -35,7 +35,7 @@
         var igeRoot = '/ige/engine/';
     </script>
 
-    <script id="gameStartScript" data-location="localhost" type="text/javascript" src="/js2/gameStart.min.js"></script>
+    <script id="gameStartScript" data-location="deploy" type="text/javascript" src="client/deploy/gameStart.min.js"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -97,31 +97,28 @@
         <div class="marketDialogPage" id="marketDialogPageTemplate">
             <!--This ul is populated by catalog items. Number of items per page is set in config sheet-->
             <ul class="marketDialogList">
-                <li class="marketDialogItem">
-                    <table>
-                        <tr>
-                            <td class="iconcell" >
-                                <img  class="marketItemImage" src="/favicon.ico?v=2"></td>
-                            <td class="marketItemTitle">Title</td>
-                            <td class="marketItemCoins">
-                                <img class="marketCoinIcon" src="assets/images/ui/Coin1.png">
-                                0
-                            </td>
-                            <td class="marketItemCash">
-                                <img class="marketCashIcon" src="assets/images/ui/Banknotes.png">
-                                0
-                            </td>
-                            <td class="unlock" role="button">
-                                Unlock
-                                <img src="assets/images/ui/Banknotes.png"/>
-                                <span class="unlockprice"> </span>
-                            </td>
-                            <td class="marketItemInfo">
-                                <img class="marketItemInfoIcon" src="/assets/images/ui/Info-50.png">
-                            </td>
-                        </tr>
-                    </table>
-                </li>
+                <table>
+                    <tr class="marketDialogItem">
+                        <td class="iconcell" >
+                            <img  class="marketItemImage" src="/favicon.ico?v=2"></td>
+                        <td class="marketItemTitle">Title</td>
+                        <td class="marketItemCoins">
+                            <img class="marketCoinIcon" src="assets/images/ui/Coin1.png">
+                            0
+                        </td>
+                        <td class="marketItemCash">
+                            <img class="marketCashIcon" src="assets/images/ui/Banknotes.png">
+                            0
+                        </td>
+                        <td class="unlock" role="button">Unlock
+                            <img src="assets/images/ui/Banknotes.png"/>
+                            <span class="unlockprice"> </span>
+                        </td>
+                        <td class="marketItemInfo">
+                            <img class="marketItemInfoIcon" src="/assets/images/ui/Info-50.png">
+                        </td>
+                    </tr>
+                </table>
             </ul>
         </div>
         <div class="pagination" id="marketDialogPagination">
@@ -152,52 +149,43 @@
         </div>
     </div>
     <div id="cashBuyDialog" title="Buy VBucks" style="display:none">
-        <ul class="assetList" id="cashAssetList">
-            <li class="assetItem">
-                <table>
-                    <tr>
-                        <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
-                        <td width="60" align="left" class="assetAmount"></td>
-                        <td width="120"></td>
-                        <td width="65" align="right" class="assetPay"></td>
-                        <td align="left"><img class="cashIcon" src="/assets/images/ui/Bank_2.png"></td>
-                        <td>Buy</td>
-                    </tr>
-                </table>
-            </li>
-        </ul>
+        <ui class="assetList" id="cashAssetList">
+            <table width="250">
+                <tr class="assetItem">
+                    <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
+                    <td width="30%" align="left"><span class="assetAmount"></span></td>
+                    <td width="50%" align="right"><span class="assetPay"></span></td>
+                    <td align="left"><img class="cashIcon" src="/assets/images/ui/Bank_2.png"></td>
+                    <td><button>Buy</button></td>
+                </tr>
+            </table>
+        </ui>
     </div>
     <div id="coinBuyDialog" title="Buy Coins" style="display:none">
-        <ul class="assetList" id="coinAssetList">
-            <li class="assetItem">
-                <table>
-                    <tr>
-                        <td align="left"><img class ="coinIcon" src="/assets/images/ui/Coin1.png"></td>
-                        <td width="60" align="left" class="assetAmount"></td>
-                        <td width="120"></td>
-                        <td width="65" align="right" class="assetPay"></td>
-                        <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
-                        <td>Buy</td>
-                    </tr>
-                </table>
-            </li>
-        </ul>
+        <ui class="assetList" id="coinAssetList">
+            <table width="250">
+                <tr class="assetItem">
+                    <td align="left"><img class="coinIcon" src="/assets/images/ui/Coin1.png"></td>
+                    <td width="30%" align="left" class="assetAmount"></td>
+                    <td width="50%" align="right" class="assetPay"></td>
+                    <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
+                    <td><button>Buy</button></td>
+                </tr>
+            </table>
+        </ui>
     </div>
     <div id="waterBuyDialog" title="Buy Water" style="display:none">
-        <ul class="assetList" id="waterAssetList">
-            <li class="assetItem">
-                <table>
-                    <tr>
-                        <td align="left"><img class="waterIcon" src="/assets/images/ui/Water-48.png"></td>
-                        <td width="60" align="left" class="assetAmount"></td>
-                        <td width="120"></td>
-                        <td width="65" align="right" class="assetPay"></td>
-                        <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
-                        <td>Buy</td>
-                    </tr>
-                </table>
-            </li>
-        </ul>
+        <ui class="assetList" id="waterAssetList">
+            <table width="250">
+                <tr class="assetItem">
+                    <td align="left"><img class="waterIcon" src="/assets/images/ui/Water-48.png"></td>
+                    <td width="30%" align="left" class="assetAmount"></td>
+                    <td width="50%" align="right" class="assetPay"></td>
+                    <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
+                    <td><button>Buy</button></td>
+                </tr>
+            </table>
+        </ui>
     </div>
     <div class="editorTopNavBar" id="editorTopNavBar">
         <ul class="editorTopNavList" id="editorTopNavList"></ul>
@@ -409,29 +397,31 @@
         </div>
       </div>
     </div>
-    <div id="contactDialog" style="display: none;">
+    <div id="contactDialog" title="Contact" style="display: none;">
       <div>
-        <tbody>
-          <tr>
-            <td>
-              <div>
-                <div>Connect with <a target="_blank" href="https://www.facebook.com/VillagetheGamecom-188596954538058/timeline/" rel="nofollow">Village the Game on Facebook</a></div>
-                <div>Join the <a target="_blank" href="https://groups.google.com/forum/#!forum/villagethegame">Google Group for Village the Game</a>.&nbsp;</div>
-                <div><br></div>
-              </div>
-            </td>
-            <td>
-              <div>
+        <table cellspacing="0">
+          <tbody>
+            <tr>
+              <td>
                 <div>
+                  <div>Connect with <a target="_blank" href="https://www.facebook.com/VillagetheGamecom-188596954538058/timeline/" rel="nofollow">Village the Game on Facebook</a></div>
+                  <div>Join the <a target="_blank" href="https://groups.google.com/forum/#!forum/villagethegame">Google Group for Village the Game</a>.&nbsp;</div>
+                  <div><br></div>
                 </div>
+              </td>
+              <td>
                 <div>
-                  <img border="0" src="https://sites.google.com/a/villagethegame.com/www/_/rsrc/1468871987561/connect/Village_Vladimir.jpg">
+                  <div>
+                  </div>
+                  <div>
+                    <img border="0" src="https://sites.google.com/a/villagethegame.com/www/_/rsrc/1468871987561/connect/Village_Vladimir.jpg">
+                  </div>
+                  <br>
                 </div>
-                <br>
-              </div>
-            </td>
-          </tr>
-        </tbody>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="notifyIconContainer nonePointerEvents" id="notifyIconContainer"></div>

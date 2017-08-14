@@ -10,7 +10,7 @@ var MarketDialog = Dialog.extend({
 		this._pageCount = 0;
 		this._activePageNo = 1;
 
-		$('#marketDialogPageTemplate ul li').first().hide();
+		$('#marketDialogPageTemplate ul table tr').first().hide();
 
         this.closeButton.hide();
 		this._underlay.hide();
@@ -86,7 +86,7 @@ var MarketDialog = Dialog.extend({
 			pageIndex = 1,
 			clonedItem, options, dummyElem, imgWidth, imgHeight;
 
-		clonedItem = $('#marketDialogPageTemplate ul li').first().clone();
+		clonedItem = $('#marketDialogPageTemplate ul table tr').first().clone();
 		clonedItem.show().find(".marketItemTitle").first().text(itemData.title).attr("id", "marketItemButton" + itemData.id);
 
 		options = GameObjects.catalogLookup[itemData.id]
@@ -106,7 +106,7 @@ var MarketDialog = Dialog.extend({
 		else
 			clonedItem.find(".marketItemCoins").first().remove();
 		if(itemData.cash != 0)
-			clonedItem.find(".marketItemCash").contents().last()[0].textContent=itemData.cash;
+            clonedItem.find(".marketItemCash").contents().last()[0].textContent=itemData.cash;
 		else
 			clonedItem.find(".marketItemCash").first().remove();
 
@@ -151,20 +151,21 @@ var MarketDialog = Dialog.extend({
 	},
 
 	unlockItemByCash: function(itemData){
-		var message, callback, price = {coins:0}, self = this;
+		var message, callback, price = {coins:0}, self = this, prize;
 
 		price.cash = itemData.unlockValue;
 
 		//show are you sure and reduce assets
 		message  = 'Unlock ' + itemData.title + ' for ' + price.cash + ' VBuck' + ((price.cash > 1) ? "s" : "") + '?';
-
+        prize = price.cash + '<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
 		callBack = function() {
 			if(!API.reduceAssets(
 					{coins: parseInt(price.coins, 10),
 						cash: parseInt(price.cash, 10)}).status) {
 				// Not enough money?
 				ga("send",  "Not enough money");
-				new BuyConfirm(LocalizationManager.getValueByLabel('notEnoughCashString'),
+				prize = 'Buy the missing' + '<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
+                new BuyConfirm(LocalizationManager.getValueByLabel('notEnoughCashString'), prize,
 					function () {
 						ige.$('cashDialog').show();
 					})
@@ -180,7 +181,7 @@ var MarketDialog = Dialog.extend({
 			API.addUnlockedItem(itemData.id);
 		}
 
-		var cashDialog = new BuyConfirm(message,callBack)
+		var cashDialog = new BuyConfirm(message, prize, callBack)
 			.layer(100)
 			.show()
 			.mount(ige.$('uiScene'));

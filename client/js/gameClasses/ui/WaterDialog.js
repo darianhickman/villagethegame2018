@@ -15,9 +15,9 @@ var WaterDialog = Dialog.extend({
         }
 
         for(var i=0; i < 5; i ++) {
-            clonedItem = $('#waterAssetList li').first().clone();
-            clonedItem.find(".assetAmount").first().text(water[i] + " Water for ");
-            clonedItem.find(".assetPay").first().text(pay[i] + " VBuck" + ((pay[i] > 1) ? "s" : ""));
+            clonedItem = $('#waterAssetList table tr').first().clone();
+            clonedItem.find(".assetAmount").first().text(water[i]);
+            clonedItem.find(".assetPay").first().text(pay[i]);
 
             (function(i) {
                 clonedItem.click(function() {
@@ -30,7 +30,7 @@ var WaterDialog = Dialog.extend({
                     };
 
                     var message = 'Buy ' + water[i] + ' water for ' + pay[i] + ' VBuck' + ((pay[i] > 1) ? "s" : "") + '?';
-
+                    var prize = pay[i] +'<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
                     var callBack = function() {
                         if(!API.reduceAssets(
                                 {coins: parseInt(price.coins, 10),
@@ -54,7 +54,7 @@ var WaterDialog = Dialog.extend({
                         }
                     }
 
-                    var cashDialog = new BuyConfirm(message,callBack)
+                    var cashDialog = new BuyConfirm(message, prize, callBack)
                         .layer(1)
                         .show()
                         .mount(ige.$('uiScene'));
@@ -63,7 +63,7 @@ var WaterDialog = Dialog.extend({
 
             $('#waterAssetList').append(clonedItem);
         }
-        $('#waterAssetList li').first().hide();
+        $('#waterAssetList table tr').first().hide();
 
         this.closeButton.hide();
         this._underlay.hide();

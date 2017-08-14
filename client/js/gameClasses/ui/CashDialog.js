@@ -15,10 +15,9 @@ var CashDialog = Dialog.extend({
         }
 
         for(var i=0; i < bucks.length; i ++) {
-            clonedItem = $('#cashAssetList li').first().clone();
-            clonedItem.find(".assetAmount").first().text(bucks[i] + " VBucks for ");
-            clonedItem.find(".assetPay").first().text( pay[i] + "  USD");
-
+            clonedItem = $('#cashAssetList table tr').first().clone();
+            clonedItem.find(".assetAmount").first().text( bucks[i] );
+            clonedItem.find(".assetPay").first().text( "$" + pay[i] );
             (function(i) {
                 clonedItem.click(function() {
                     ige.input.stopPropagation();
@@ -33,7 +32,8 @@ var CashDialog = Dialog.extend({
 
                     var message = 'Buy ' + bucks[i] + ' VBucks for $' + pay[i] + '?';
 
-                    var cashDialog = new BuyConfirm(message,
+                    var prize = '<img class="cashIcon" src="/assets/images/ui/Bank_2.png"> ' + pay[i] + ' USD';
+                    var cashDialog = new BuyConfirm(message, prize,
                         function() {
                             Buy.buy(price);
                         })
@@ -45,7 +45,7 @@ var CashDialog = Dialog.extend({
 
             $('#cashAssetList').append(clonedItem);
         }
-        $('#cashAssetList li').first().hide();
+        $('#cashAssetList table tr').first().hide();
 
         this.closeButton.hide();
         this._underlay.hide();
@@ -75,3 +75,6 @@ var CashDialog = Dialog.extend({
         return this;
     }
 })
+
+
+

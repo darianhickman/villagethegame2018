@@ -15,9 +15,9 @@ var CoinDialog = Dialog.extend({
         }
 
         for(var i=0; i < 5; i ++) {
-            clonedItem = $('#coinAssetList li').first().clone();
-            clonedItem.find(".assetAmount").first().text(coins[i] + " Coins for ");
-            clonedItem.find(".assetPay").first().text(pay[i] + " VBuck" + ((pay[i] > 1) ? "s" : ""));
+            clonedItem = $('#coinAssetList table tr').first().clone();
+            clonedItem.find(".assetAmount").first().text(coins[i]);
+            clonedItem.find(".assetPay").first().text(pay[i]);
 
             (function(i) {
                 clonedItem.click(function() {
@@ -30,7 +30,7 @@ var CoinDialog = Dialog.extend({
                     };
 
                     var message = 'Buy ' + coins[i] + ' coins for ' + pay[i] + ' VBuck' + ((pay[i] > 1) ? "s" : "") + '?';
-
+                    var prize = pay[i] +'<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
                     var callBack = function() {
                         if(!API.reduceAssets(
                             {coins: parseInt(price.coins, 10),
@@ -54,7 +54,7 @@ var CoinDialog = Dialog.extend({
                         }
                     }
 
-                    var cashDialog = new BuyConfirm(message,callBack)
+                    var cashDialog = new BuyConfirm(message,prize, callBack)
                         .layer(1)
                         .show()
                         .mount(ige.$('uiScene'));
@@ -63,7 +63,7 @@ var CoinDialog = Dialog.extend({
 
             $('#coinAssetList').append(clonedItem);
         }
-        $('#coinAssetList li').first().hide();
+        $('#coinAssetList table tr').first().hide();
 
         this.closeButton.hide();
         this._underlay.hide();
