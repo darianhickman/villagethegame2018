@@ -267,7 +267,8 @@ var GraphUi = IgeSceneGraph.extend({
                 .mousePan.enabled(false)
                 .scrollZoom.enabled(false)
                 .camera.translateTo(0, 0, 0)
-                .camera.scaleTo(1.0,1.0,0);
+                .camera.scaleTo(parseFloat(GameConfig.config['scaleMax']), parseFloat(GameConfig.config['scaleMax']), 0);
+            ige.$('vp1').scrollZoom.currentZoomLevel = ige.$('vp1').scrollZoom._options.zoomLevels
 
             ige.$('level1').hide();
             ige.addGraph('GraphEditor');
@@ -320,7 +321,7 @@ var GraphUi = IgeSceneGraph.extend({
             .click(function () {
                 self.toggleGoalDialog();
           });
-        
+
         $('#signinButton')
             .click(function () {
                 ga("send",  "Click login");
