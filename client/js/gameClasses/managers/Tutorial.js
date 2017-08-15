@@ -334,8 +334,11 @@ var Tutorial = IgeEventingClass.extend({
                     .translateTo(0,-60,0)
                     .text(catalogItem.buildTime)
 
-                $("#tutorialArrowSpan").css("top", self.mapItemButton.screenPosition().y + ige.$('tileMapTutorial')._renderPos.y);
-                $("#tutorialArrowSpan").css("left", self.mapItemButton.screenPosition().x - 100);
+                new IgeTimeout(function () {
+                    $("#tutorialArrowSpan").css("top", self.mapItemButton.screenPosition().y);
+                    $("#tutorialArrowSpan").css("left", self.mapItemButton.screenPosition().x - 100);
+                    $("#tutorialArrowSpan").show();
+                }, 100);
 
             },
             exit: function(){
