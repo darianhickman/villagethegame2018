@@ -350,6 +350,16 @@ var GraphUi = IgeSceneGraph.extend({
             .click(function () {
                 ige.client.fsm.enterState('move');
             });
+
+      $('#zoomInButton')
+          .click(function () {
+              ige.$('vp1').scrollZoom._handleManualZoom("in")
+          });
+
+      $('#zoomOutButton')
+          .click(function () {
+              ige.$('vp1').scrollZoom._handleManualZoom("out")
+          });
     },
 
     removeActions: function () {
@@ -374,6 +384,8 @@ var GraphUi = IgeSceneGraph.extend({
         $("#coinbar").unbind("click");
         $("#waterbar").unbind("click");
         $("#moveButton").unbind("click");
+        $("#zoomInButton").unbind("click");
+        $("#zoomOutButton").unbind("click");
     },
 
   toggleDialog: function(name){
