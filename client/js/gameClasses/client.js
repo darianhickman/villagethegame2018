@@ -78,7 +78,6 @@ var Client = IgeClass.extend({
                 tileMap.off('mouseUp', self.mouseUpHandle);
 
                 if(ige.client.currentMouseOverPanelOwner){
-                    ige.client.currentMouseOverPanelOwner.cancelTimeouts();
                     ige.client.currentMouseOverPanelOwner.hideMouseOverPanel();
                 }
 
@@ -466,6 +465,7 @@ var Client = IgeClass.extend({
                     .drawBoundsData(false) // Switch this to true to draw all bounding boxes
                     .scene(ige.$('baseScene'))
                     .mount(ige);
+                ige.$('vp1').camera.scaleTo(parseFloat(GameConfig.config['scaleMax']), parseFloat(GameConfig.config['scaleMax']), 0);
 
                 ige.addGraph('GraphView');
                 ige.client.currentTileMap = ige.$("tileMapView");
@@ -542,7 +542,8 @@ var Client = IgeClass.extend({
                     .mousePan.enabled(false)
                     .scrollZoom.enabled(false)
                     .camera.translateTo(0, 0, 0)
-                    .camera.scaleTo(1.0, 1.0, 0);
+                    .camera.scaleTo(parseFloat(GameConfig.config['scaleMax']), parseFloat(GameConfig.config['scaleMax']), 0);
+                ige.$('vp1').scrollZoom.currentZoomLevel = ige.$('vp1').scrollZoom._options.zoomLevels
 
                 ige.$('level1').hide();
                 ige.addGraph('GraphTutorial');
@@ -1764,6 +1765,7 @@ var Client = IgeClass.extend({
                         .drawBoundsData(false) // Switch this to true to draw all bounding boxes
                         .scene(ige.$('baseScene'))
                         .mount(ige);
+                    ige.$('vp1').camera.scaleTo(parseFloat(GameConfig.config['scaleMax']), parseFloat(GameConfig.config['scaleMax']), 0);
 
                     clientSelf.mousePanStartHandler = ige.$('vp1').mousePan.on('panStart', function () {
                         clientSelf.fsm.enterState('pan');

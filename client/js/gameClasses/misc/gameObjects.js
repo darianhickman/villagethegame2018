@@ -98,16 +98,6 @@ var GameObjects = {
                 this.mouseOverPanel.find("h3 button").first().click(function() {
                     self.hideMouseOverPanel();
                 });
-                this.mouseOverPanel.mouseover(function(){
-                    self.cancelTimeouts("Off");
-                });
-                this.mouseOverPanel.mouseout(function(){
-                    self.cancelTimeouts("Off");
-                    //add a timeout before hiding panel
-                    self.mouseOverPanelOffTimeout = new IgeTimeout(function () {
-                        self.hideMouseOverPanel();
-                    }, parseInt(GameConfig.config['mouseOverPanelOffTimeout']));
-                });
                 this.mouseOverPanel.find(".currentStateAction").first().click(function(){
                     if(ige.client.fsm.currentStateName() === "select"){
                         self.handleMouseClick();
@@ -117,23 +107,14 @@ var GameObjects = {
                 $("#objectInfoContainer").append(this.mouseOverPanel);
 
                 this.mouseDown(function(){
-                    if(ige.client.fsm.currentStateName() === "select"){
+                    if(ige.client.fsm.currentStateName() === "select" || ige.client.fsm.currentStateName() === "view"){
                         ige.input.stopPropagation();
                     }
                 });
 
                 this.mouseUp(function(){
-                    if(ige.client.fsm.currentStateName() === "select"){
-                        ige.input.stopPropagation();
-                        self.handleMouseClick();
-                    }
-                });
-
-                this.mouseOver(function(){
-                    var self = this;
                     if(ige.client.fsm.currentStateName() === "select" || ige.client.fsm.currentStateName() === "view"){
-                        this.layer(1)
-                            .highlight(true);
+                        ige.input.stopPropagation();
 
                         if(ige.client.fsm.currentStateName() === "select"){
                             self.updateMouseOverPanelContents();
@@ -142,33 +123,29 @@ var GameObjects = {
                         self.updateMouseOverPanelPosition(true);
 
                         if(ige.client.currentMouseOverPanelOwner && ige.client.currentMouseOverPanelOwner !== self){
-                            ige.client.currentMouseOverPanelOwner.cancelTimeouts();
                             ige.client.currentMouseOverPanelOwner.hideMouseOverPanel();
                         }
 
                         ige.client.currentMouseOverPanelOwner = self;
 
-                        self.cancelTimeouts("Off");
-                        //add a timeout before showing panel
-                        self.mouseOverPanelOnTimeout = new IgeTimeout(function () {
-                            self.showMouseOverPanel();
-                        }, parseInt(GameConfig.config['mouseOverPanelOnTimeout']));
+                        self.showMouseOverPanel();
+                    }
+                });
+
+                this.mouseOver(function(){
+                    var self = this;
+                    if(ige.client.fsm.currentStateName() === "select" || ige.client.fsm.currentStateName() === "view"){
+                        this.layer(1)
+                            .highlight(true);
                     }
                 })
 
                 this.mouseOut(function(){
                     this.layer(0)
                         .highlight(false);
-
-                    self.cancelTimeouts();
-                    //add a timeout before hiding panel
-                    self.mouseOverPanelOffTimeout = new IgeTimeout(function () {
-                        self.hideMouseOverPanel();
-                    }, parseInt(GameConfig.config['mouseOverPanelOffTimeout']));
                 })
 
                 this.mouseMove(function(){
-                    self.cancelTimeouts("Off");
                     if(ige.client.fsm.currentStateName() === "select" || ige.client.fsm.currentStateName() === "view")
                         ige.input.stopPropagation();
                 })
@@ -443,19 +420,6 @@ var GameObjects = {
                 self.mouseOverPanel.hide(GameConfig.config['mouseOverPanelHideEffect'], parseInt(GameConfig.config['mouseOverPanelHideDuration']), function(){
                     self.isMouseOverPanelOn = false;
                 });
-            },
-
-            cancelTimeouts: function(whichOne){
-                var self = this;
-
-                if(self.mouseOverPanelOnTimeout && whichOne !== "Off"){
-                    self.mouseOverPanelOnTimeout.cancel();
-                    self.mouseOverPanelOnTimeout = null;
-                }
-                if(self.mouseOverPanelOffTimeout && whichOne !== "On"){
-                    self.mouseOverPanelOffTimeout.cancel();
-                    self.mouseOverPanelOffTimeout = null;
-                }
             },
 
             handleMouseClick: function(){
