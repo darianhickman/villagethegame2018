@@ -78,7 +78,6 @@ var Client = IgeClass.extend({
                 tileMap.off('mouseUp', self.mouseUpHandle);
 
                 if(ige.client.currentMouseOverPanelOwner){
-                    ige.client.currentMouseOverPanelOwner.cancelTimeouts();
                     ige.client.currentMouseOverPanelOwner.hideMouseOverPanel();
                 }
 
