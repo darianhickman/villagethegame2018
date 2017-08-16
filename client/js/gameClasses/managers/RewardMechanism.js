@@ -21,6 +21,21 @@ var RewardMechanism = IgeEventingClass.extend({
         _translateObj.y += self.uiScene._renderPos.y;
 
 
+        switch(assetName){
+            case "xp":
+                //add xp
+                break;
+            case "coins":
+                API.addCoins(parseInt(amount))
+                break;
+            case "cash":
+                API.addCash(parseInt(amount))
+                break;
+            case "water":
+                API.addWater(parseInt(amount))
+                break;
+        }
+
         var animation = new AssetAnimation(assetName, self.textureListLookup[assetName].texture, self.textureListLookup[assetName].mount)
             .drawBounds(true)
             .width(50)
