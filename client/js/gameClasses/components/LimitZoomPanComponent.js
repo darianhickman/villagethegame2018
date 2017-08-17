@@ -28,7 +28,7 @@ var LimitZoomPanComponent = IgeEventingClass.extend({
 			self._limitZoomToWindow.call(self, self._entity);
 			self._resizeEvent.call(self);
 		};
-			
+
 		this._oldResizeEvent = entity._resizeEvent;
 		entity._resizeEvent = function(event) {
 			self._oldResizeEvent.call(self._entity, event);
@@ -36,13 +36,13 @@ var LimitZoomPanComponent = IgeEventingClass.extend({
 		}
 		this._resizeEvent();
 	},
-	
+
 	_limitZoomToWindow: function(viewport) {
 		var finalX = this._currentViewportScaleX;
 		var finalY = this._currentViewportScaleY;
 		var viewportWidth = viewport._bounds2d.x / finalX;
 		var viewportHeight = viewport._bounds2d.y / finalY;
-		
+
 		if (this._entity._bounds2d.x >= this._entity._bounds2d.y && viewportWidth >= this._options.boundsWidth) {
 			finalX = this._entity._bounds2d.x / this._options.boundsWidth;
 			finalY = finalX;
@@ -51,10 +51,26 @@ var LimitZoomPanComponent = IgeEventingClass.extend({
 			finalY = this._entity._bounds2d.y / this._options.boundsHeight;
 			finalX = finalY;
 		}
-		
+
 		this._oldScaleTo.call(this._entity.camera, finalX, finalY, 0);
 		this._currentViewportScaleX = finalX;
 		this._currentViewportScaleY = finalY;
+	},
+
+	_getLimitX: function(viewport, minScale){
+		var finalX = minScale;
+		var finalY = minScale;
+		var viewportWidth = viewport._bounds2d.x / finalX;
+		var viewportHeight = viewport._bounds2d.y / finalY;
+
+		if (this._entity._bounds2d.x >= this._entity._bounds2d.y && viewportWidth >= this._options.boundsWidth) {
+			finalX = this._entity._bounds2d.x / this._options.boundsWidth;
+		}
+		if (this._entity._bounds2d.y > this._entity._bounds2d.x && viewportHeight >= this._options.boundsHeight) {
+			finalX = this._entity._bounds2d.y / this._options.boundsHeight;
+		}
+
+		return finalX;
 	},
 	
 	_limitPanToWindow: function(viewport) {
