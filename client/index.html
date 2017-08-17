@@ -12,7 +12,6 @@
     })(window,document,'script','dataLayer','GTM-W27P4W3');</script>
     <!-- End Google Tag Manager -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -99,31 +98,33 @@
         <div class="marketDialogPage" id="marketDialogPageTemplate">
             <!--This ul is populated by catalog items. Number of items per page is set in config sheet-->
             <ul class="marketDialogList">
-                <li class="marketDialogItem">
-                    <table>
-                        <tr>
-                            <td class="iconcell" >
-                                <img  class="marketItemImage" src="/favicon.ico?v=2"></td>
-                            <td class="marketItemTitle">Title</td>
-                            <td class="marketItemCoins">
-                                <img class="marketCoinIcon" src="assets/images/ui/Coin1.png">
-                                0
-                            </td>
-                            <td class="marketItemCash">
-                                <img class="marketCashIcon" src="assets/images/ui/Banknotes.png">
-                                0
-                            </td>
-                            <td class="unlock" role="button">
+                <table>
+                    <tr class="marketDialogItem">
+                        <td class="iconcell" >
+                            <img  class="marketItemImage" src="/favicon.ico?v=2"></td>
+                        <td class="marketItemTitle">Title</td>
+                        <td class="marketItemCoins">
+                            <img class="marketCoinIcon" src="assets/images/ui/Coin1.png">
+                            0
+                        </td>
+                        <td class="marketItemCash">
+                            <img class="marketCashIcon" src="assets/images/ui/Banknotes.png">
+                            0
+                        </td>
+                        <td width="120">
+                            <span class="unlock" role="button">
                                 Unlock
                                 <img src="assets/images/ui/Banknotes.png"/>
                                 <span class="unlockprice"> </span>
-                            </td>
-                            <td class="marketItemInfo">
+                            </span>
+                        </td>
+                        <td width="20">
+                            <span class="marketItemInfo">
                                 <img class="marketItemInfoIcon" src="/assets/images/ui/Info-50.png">
-                            </td>
-                        </tr>
-                    </table>
-                </li>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
             </ul>
         </div>
         <div class="pagination" id="marketDialogPagination">
@@ -155,50 +156,41 @@
     </div>
     <div id="cashBuyDialog" title="Buy VBucks" style="display:none">
         <ul class="assetList" id="cashAssetList">
-            <li class="assetItem">
-                <table>
-                    <tr>
-                        <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
-                        <td width="60" align="left" class="assetAmount"></td>
-                        <td width="120"></td>
-                        <td width="65" align="right" class="assetPay"></td>
-                        <td align="left"><img class="cashIcon" src="/assets/images/ui/Bank_2.png"></td>
-                        <td>Buy</td>
-                    </tr>
-                </table>
-            </li>
+            <table width="250">
+                <tr class="assetItem">
+                    <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
+                    <td width="30%" align="left" class="assetAmount"></td>
+                    <td width="50%" align="right" class="assetPay"></td>
+                    <td align="left"><img class="cashIcon" src="/assets/images/ui/Bank_2.png"></td>
+                    <td><button>Buy</button></td>
+                </tr>
+            </table>
         </ul>
     </div>
     <div id="coinBuyDialog" title="Buy Coins" style="display:none">
         <ul class="assetList" id="coinAssetList">
-            <li class="assetItem">
-                <table>
-                    <tr>
-                        <td align="left"><img class ="coinIcon" src="/assets/images/ui/Coin1.png"></td>
-                        <td width="60" align="left" class="assetAmount"></td>
-                        <td width="120"></td>
-                        <td width="65" align="right" class="assetPay"></td>
-                        <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
-                        <td>Buy</td>
-                    </tr>
-                </table>
-            </li>
+            <table width="250">
+                <tr class="assetItem">
+                    <td align="left"><img class ="coinIcon" src="/assets/images/ui/Coin1.png"></td>
+                    <td width="30%" align="left" class="assetAmount"></td>
+                    <td width="50%" align="right" class="assetPay"></td>
+                    <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
+                    <td><button>Buy</button></td>
+                </tr>
+            </table>
         </ul>
     </div>
     <div id="waterBuyDialog" title="Buy Water" style="display:none">
         <ul class="assetList" id="waterAssetList">
-            <li class="assetItem">
-                <table>
-                    <tr>
-                        <td align="left"><img class="waterIcon" src="/assets/images/ui/Water-48.png"></td>
-                        <td width="60" align="left" class="assetAmount"></td>
-                        <td width="120"></td>
-                        <td width="65" align="right" class="assetPay"></td>
-                        <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
-                        <td>Buy</td>
-                    </tr>
-                </table>
-            </li>
+            <table width="250">
+                <tr class="assetItem">
+                    <td align="left"><img class="waterIcon" src="/assets/images/ui/Water-48.png"></td>
+                    <td width="30%" align="left" class="assetAmount"></td>
+                    <td width="50%" align="right" class="assetPay"></td>
+                    <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
+                    <td><button>Buy</button></td>
+                </tr>
+            </table>
         </ul>
     </div>
     <div class="editorTopNavBar" id="editorTopNavBar">
@@ -225,8 +217,7 @@
     <div id="buyConfirmDialog" title="Confirm" style="display:none">
         <p id="buyConfirmMessage"></p>
         <button id="buyConfirmOK">OK</button>
-        <button id="buyConfirmYes">Yes</button>
-        <button id="buyConfirmNo">No</button>
+        <button id="buyConfirmYes"><span id="buyConfirmPrize"></span></button>
     </div>
     <div id="messageDialog" title="Message from Game" style="display:none">
         <p id="messageDialogMessage"></p>
