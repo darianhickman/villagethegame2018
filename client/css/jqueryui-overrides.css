@@ -53,6 +53,10 @@
 .ui-dialog-titlebar {
     height: 23px;
     position: relative;
+    padding-top: 14px;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+    margin: -10px 0 0 0 !important;
 }
 
 .ui-dialog-title {
