@@ -731,13 +731,14 @@ button, input, textarea {
 
 .currentStateCountdown{
 	width: 70%;
-	padding-left: 5%;
+	padding-left: 0%;
 }
 .currentStateAction{
 	width: 40%;
 	border-radius: 5px;
 	padding: 0px 5px 0px 5px;
-	font-size: 15px;
+	font-size: 14px !important;
+	font-weight: 300 !important;
 	cursor: pointer;
 	white-space: nowrap;
 	color: #000;
