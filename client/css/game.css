@@ -732,7 +732,6 @@ button, input, textarea {
 .currentStateCountdown{
 	width: 70%;
 	padding-left: 5%;
-	font-size: 16px;
 }
 .currentStateAction{
 	width: 40%;
@@ -759,8 +758,9 @@ button, input, textarea {
 }
 .objectInfoColumn{
 	vertical-align: middle;
-	font-size: 19px;
+	font-size: 16px;
 	display: table-cell;
+	font-weight: 700
 }
 .arrow-up {
 	position: fixed;
