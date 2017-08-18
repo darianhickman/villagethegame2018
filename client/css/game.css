@@ -742,14 +742,14 @@ button, input, textarea {
 	cursor: pointer;
 	white-space: nowrap;
 	color: #000;
-    background-color: #E3E3E3;
-    border: none;
-    box-shadow: 0 3px #AAAAAA;
+	background-color: #E3E3E3;
+	border: none;
+	box-shadow: 0 3px #AAAAAA;
 }
 .currentStateAction:active {
 	background-color: #F1F1F1;
-    box-shadow: 0 1px #999;
-    transform: translateY(2px);
+	box-shadow: 0 1px #999;
+	transform: translateY(2px);
 }
 .currentStateInactiveInfo{
 	display: none;
