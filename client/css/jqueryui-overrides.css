@@ -104,6 +104,10 @@
     font-family: arial;
     font-size: 1em !important;
 }
+.ui-widget.ui-widget-content {
+    border: 2px solid #222222;
+    border-radius: 6px;
+}
 
 .ui-progressbar-value {
     background: forestgreen;
