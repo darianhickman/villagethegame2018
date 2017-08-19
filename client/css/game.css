@@ -702,13 +702,16 @@ button, input, textarea {
 	text-align: center;
 	font-size: 14px;
 	width: 500px;
-	padding: 0.4em;
-	border: 2px solid;
+	padding: 0px;
+	border: 5px solid #56514D;
 	border-radius: 10px;
 }
 .objectInfoPanel h3 {
 	margin: 0;
-	padding: 0.4em;
+	padding: 0.5em;
+	color: #FFFFFF;
+	border: 0px;
+	border-radius: 0px;
 }
 .objectInfoPanelCloseButton{
 	float: right;
@@ -722,16 +725,18 @@ button, input, textarea {
 	float: left;
 	margin-top: -5px;
 	margin-right: 5px;
+	margin-left: 5px;
 }
 .objectInfoFooter{
-	background-color: cadetblue;
+	background-color: #7b7b7b;
 	height: 50px;
-	border: 2px solid forestgreen;
+	border: 2px solid #646464;
 	border-radius: 6px;
 	padding: 5px;
 	margin: 5px;
-	width: calc(100% - 22px);
+	width: calc(100% - 24px);
 	display: table;
+	color: #FFFFFF
 }
 .currentStateName{
 	width: 12%;
@@ -784,7 +789,7 @@ button, input, textarea {
 	height: 0;
 	border-left: 20px solid transparent;
 	border-right: 20px solid transparent;
-	border-bottom: 20px solid black;
+	border-bottom: 20px solid #56514D;
 }
 
 .arrow-down {
