@@ -390,6 +390,19 @@ button, input, textarea {
 	max-width: 800px;
 	text-align: center;
 }
+#buyConfirmYes {
+	padding: 5px 17px;
+	background-color: #E3E3E3;
+	border: 1px solid #AAAAAA;
+	border-radius: 5px;
+	box-shadow: 0 3px #AAAAAA;
+	outline: none;
+}
+#buyConfirmYes:active {
+	background-color: #F1F1F1;
+	box-shadow: 0 1px #999;
+	transform: translateY(2px);
+}
 .notifyIconWrapper {
 	position: fixed;
 	background-color: rgba(255, 255, 255, .7);
