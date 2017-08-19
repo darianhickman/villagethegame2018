@@ -16,3 +16,10 @@
     <tr><td>{{ item }}</td><td><a href="https://{{ id }}.appspot.com/cache/flush/{{ item }}" target="_blank">https://{{ id }}.appspot.com/cache/flush/{{ item }}</a></td></tr>
     {% endfor %}
 </table>
+<p>Config Scan Results</p>
+<table>
+<tr><th>Key</th><th>Result</th></tr>
+{% for item in results|sort %}
+<tr><td><a href="./scan/{{ item }}">{{ item }}</a></td><td>{{ results[item] }}</td></tr>
+{% endfor %}
+</table>
