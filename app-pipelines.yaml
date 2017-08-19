@@ -51,6 +51,7 @@ handlers:
 
 - url: /client
   static_dir: client
+  application_readable: true
   secure: always
 
 - url: /$

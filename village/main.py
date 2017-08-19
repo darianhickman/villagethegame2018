@@ -16,9 +16,11 @@ from . import models
 from google.appengine.api import mail, app_identity, modules
 import cloudstorage
 import webapp2
+import pdb;
 
 #import cloudstorage as storage
 root = flask.Flask(__name__)
+pdb.set_trace()
 
 root.secret_key  = get_secret_key()
 cache_dict = {'config':'get_config','assets':'get_config_assets','earnings':'get_config_earnings','problems':'get_problems','assetbundle':'get_asset_bundle','messages':'get_messages','fsm':'get_fsm','goalsdata':'get_goals_data','goalstasks':'get_goals_tasks','goalssettings':'get_goals_settings','catalog':'get_catalog','dropdownmenu':'get_dropdown_menu','specialevents':'get_special_events'}
@@ -181,6 +183,8 @@ def scan_config(config_key):
     sheet_config = dict(get_config())
     found_dict = {}
     for fn in files:
+        if not os.path.isfile(fn):
+            continue
         with io.open(os.path.join(os.path.dirname(__file__), fn), 'r', encoding='utf-8') as file:
             if config_key == 'all':
                 for line in file:
