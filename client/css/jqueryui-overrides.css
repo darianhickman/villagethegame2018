@@ -109,7 +109,7 @@
     font-size: 1em !important;
 }
 .ui-widget-header {
-    background-color: #56514d;
+    background: #56514d;
 }
 .ui-widget.ui-widget-content {
     border: 5px solid #56514d;
