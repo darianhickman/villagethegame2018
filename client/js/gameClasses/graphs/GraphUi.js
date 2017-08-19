@@ -149,6 +149,11 @@ var GraphUi = IgeSceneGraph.extend({
         $("#editorLink").hide();
     }
 
+    if(parseInt(GameConfig.config["zoomLevels"]) === 1){
+        $("#zoomInButton").hide();
+        $("#zoomOutButton").hide();
+    }
+
     new IgeParticleEmitter()
         .id('coinEmitter')
         .layer(10)

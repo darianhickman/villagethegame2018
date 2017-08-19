@@ -1104,7 +1104,7 @@ var Client = IgeClass.extend({
                         ige.client.cursorObjectData = null;
 
                         var message = LocalizationManager.getValueByLabel('notEnoughCoinsString');
-                        var prize = 'Buy the missing' + '<img class="marketCashIcon" src="assets/images/ui/Coin1.png">';
+                        var prize = LocalizationManager.getValueByLabel('unsufficientCoins');
                         var cashDialog = new BuyConfirm(message, prize,
                             function () {
                                 ige.$('coinDialog').show();

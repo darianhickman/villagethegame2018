@@ -370,15 +370,15 @@ var GameObjects = {
                 price.cash = this.getCurrentStateSpeedValue();
 
                 if(price.cash === -1){
-                    message  = 'Progress already finished!';
+                    message  = LocalizationManager.getValueByLabel('progressFinished');
                     confirmOnly = true;
                 }else{
                     //show are you sure and reduce assets
-                    message  = 'Speed progress for ' + price.cash + ' VBuck' + ((price.cash > 1) ? "s" : "") + '?';
+                    message  = LocalizationManager.getValueByLabel('speedProgressFor') + " " + price.cash + ' VBuck' + ((price.cash > 1) ? "s" : "") + '?';
                     prize = price.cash +'<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
                     callBack = function() {
                         if(self.getCurrentStateSpeedValue() === -1){
-                            new BuyConfirm('Progress already finished!', null, null,true)
+                            new BuyConfirm(LocalizationManager.getValueByLabel('progressFinished'), null, null,true)
                                 .layer(1)
                                 .show()
                                 .mount(ige.$('uiScene'));
@@ -389,7 +389,7 @@ var GameObjects = {
                                     cash: parseInt(price.cash, 10)}).status) {
                             // Not enough money?
                             ga("send",  "Not enough money");
-                            prize = 'Come back after having' + price.cash + '<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
+                            prize = LocalizationManager.getValueByLabel('comeBackLater') + " " + price.cash + '<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
                             new BuyConfirm(LocalizationManager.getValueByLabel('notEnoughCashString'), prize,
                                 function () {
                                     ige.$('cashDialog').show();
@@ -436,7 +436,7 @@ var GameObjects = {
                     if(!result.status) {
                         // Not enough assets?
                         ga("send",  "Not enough assets");
-                        var message = "You don't have enough ";
+                        var message = LocalizationManager.getValueByLabel('dontHave') + " ";
                         if(!result.coins)
                             message += "Coins "
                         if(!result.cash)
@@ -495,12 +495,12 @@ var GameObjects = {
                     self.mouseOverPanel.find(".currentStateCountdown").first().html("Ready!").attr("title","").tooltip().tooltip('destroy').css("display","table-cell");
                     self.mouseOverPanel.find(".currentStateAction").first().html(message).attr("title","").tooltip().tooltip('destroy').css("display","table-cell");
                 }else if (!API.stateObjectsLookup[this.id()].buildCompleted) {
-                    countDownTooltipContent = "Waiting ";
-                    speedProgressTooltipContent = "Click to speed progress ";
+                    countDownTooltipContent = LocalizationManager.getValueByLabel('waiting') + " ";
+                    speedProgressTooltipContent = LocalizationManager.getValueByLabel('clickToSpeed') + " ";
                     if(this.currentState === "building"){
                         self.mouseOverPanel.find(".currentStateName img").first().attr("src","assets/images/ui/Under-Construction-48.png");
-                        countDownTooltipContent += "on construction";
-                        speedProgressTooltipContent += "on construction";
+                        countDownTooltipContent += LocalizationManager.getValueByLabel('onConstruction');
+                        speedProgressTooltipContent += LocalizationManager.getValueByLabel('onConstruction');
                         iconTooltipContent = LocalizationManager.getValueByLabel('underConstructionString');
                     } else if(this.currentState === "waitingSpecialEvent"){
                         self.mouseOverPanel.find(".currentStateName img").first().attr("src",ige.client.textures[SpecialEvents.events[self.getCurrentSpecialEvent()].notifyIcon].url());
