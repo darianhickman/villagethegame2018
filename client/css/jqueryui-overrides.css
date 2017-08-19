@@ -51,8 +51,12 @@
 /*}*/
 
 .ui-dialog-titlebar {
-    height: 30px;
+    height: 23px;
     position: relative;
+    padding-top: 10px !important;
+}
+.ui-dialog .ui-dialog-titlebar-close {
+    margin: -10px 0 0 0 !important;
 }
 
 .ui-dialog-title {
@@ -99,6 +103,10 @@
 .ui-widget {
     font-family: arial;
     font-size: 1em !important;
+}
+.ui-widget.ui-widget-content {
+    border: 2px solid #222222;
+    border-radius: 6px;
 }
 
 .ui-progressbar-value {
