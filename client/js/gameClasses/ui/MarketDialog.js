@@ -164,7 +164,7 @@ var MarketDialog = Dialog.extend({
 						cash: parseInt(price.cash, 10)}).status) {
 				// Not enough money?
 				ga("send",  "Not enough money");
-				prize = 'Buy the missing' + '<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
+				prize = LocalizationManager.getValueByLabel('unsufficientVbucks');
                 new BuyConfirm(LocalizationManager.getValueByLabel('notEnoughCashString'), prize,
 					function () {
 						ige.$('cashDialog').show();

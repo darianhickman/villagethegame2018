@@ -149,6 +149,11 @@ var GraphUi = IgeSceneGraph.extend({
         $("#editorLink").hide();
     }
 
+    if(parseInt(GameConfig.config["zoomLevels"]) === 1){
+        $("#zoomInButton").hide();
+        $("#zoomOutButton").hide();
+    }
+
     new IgeParticleEmitter()
         .id('coinEmitter')
         .layer(10)
@@ -267,7 +272,8 @@ var GraphUi = IgeSceneGraph.extend({
                 .mousePan.enabled(false)
                 .scrollZoom.enabled(false)
                 .camera.translateTo(0, 0, 0)
-                .camera.scaleTo(1.0,1.0,0);
+                .camera.scaleTo(parseFloat(GameConfig.config['scaleMax']), parseFloat(GameConfig.config['scaleMax']), 0);
+            ige.$('vp1').scrollZoom.currentZoomLevel = ige.$('vp1').scrollZoom._options.zoomLevels
 
             ige.$('level1').hide();
             ige.addGraph('GraphEditor');
@@ -320,7 +326,7 @@ var GraphUi = IgeSceneGraph.extend({
             .click(function () {
                 self.toggleGoalDialog();
           });
-        
+
         $('#signinButton')
             .click(function () {
                 ga("send",  "Click login");
@@ -349,6 +355,16 @@ var GraphUi = IgeSceneGraph.extend({
             .click(function () {
                 ige.client.fsm.enterState('move');
             });
+
+      $('#zoomInButton')
+          .click(function () {
+              ige.$('vp1').scrollZoom._handleManualZoom("in")
+          });
+
+      $('#zoomOutButton')
+          .click(function () {
+              ige.$('vp1').scrollZoom._handleManualZoom("out")
+          });
     },
 
     removeActions: function () {
@@ -373,6 +389,8 @@ var GraphUi = IgeSceneGraph.extend({
         $("#coinbar").unbind("click");
         $("#waterbar").unbind("click");
         $("#moveButton").unbind("click");
+        $("#zoomInButton").unbind("click");
+        $("#zoomOutButton").unbind("click");
     },
 
   toggleDialog: function(name){

@@ -98,16 +98,6 @@ var GameObjects = {
                 this.mouseOverPanel.find("h3 button").first().click(function() {
                     self.hideMouseOverPanel();
                 });
-                this.mouseOverPanel.mouseover(function(){
-                    self.cancelTimeouts("Off");
-                });
-                this.mouseOverPanel.mouseout(function(){
-                    self.cancelTimeouts("Off");
-                    //add a timeout before hiding panel
-                    self.mouseOverPanelOffTimeout = new IgeTimeout(function () {
-                        self.hideMouseOverPanel();
-                    }, parseInt(GameConfig.config['mouseOverPanelOffTimeout']));
-                });
                 this.mouseOverPanel.find(".currentStateAction").first().click(function(){
                     if(ige.client.fsm.currentStateName() === "select"){
                         self.handleMouseClick();
@@ -117,23 +107,14 @@ var GameObjects = {
                 $("#objectInfoContainer").append(this.mouseOverPanel);
 
                 this.mouseDown(function(){
-                    if(ige.client.fsm.currentStateName() === "select"){
+                    if(ige.client.fsm.currentStateName() === "select" || ige.client.fsm.currentStateName() === "view"){
                         ige.input.stopPropagation();
                     }
                 });
 
                 this.mouseUp(function(){
-                    if(ige.client.fsm.currentStateName() === "select"){
-                        ige.input.stopPropagation();
-                        self.handleMouseClick();
-                    }
-                });
-
-                this.mouseOver(function(){
-                    var self = this;
                     if(ige.client.fsm.currentStateName() === "select" || ige.client.fsm.currentStateName() === "view"){
-                        this.layer(1)
-                            .highlight(true);
+                        ige.input.stopPropagation();
 
                         if(ige.client.fsm.currentStateName() === "select"){
                             self.updateMouseOverPanelContents();
@@ -142,33 +123,29 @@ var GameObjects = {
                         self.updateMouseOverPanelPosition(true);
 
                         if(ige.client.currentMouseOverPanelOwner && ige.client.currentMouseOverPanelOwner !== self){
-                            ige.client.currentMouseOverPanelOwner.cancelTimeouts();
                             ige.client.currentMouseOverPanelOwner.hideMouseOverPanel();
                         }
 
                         ige.client.currentMouseOverPanelOwner = self;
 
-                        self.cancelTimeouts("Off");
-                        //add a timeout before showing panel
-                        self.mouseOverPanelOnTimeout = new IgeTimeout(function () {
-                            self.showMouseOverPanel();
-                        }, parseInt(GameConfig.config['mouseOverPanelOnTimeout']));
+                        self.showMouseOverPanel();
+                    }
+                });
+
+                this.mouseOver(function(){
+                    var self = this;
+                    if(ige.client.fsm.currentStateName() === "select" || ige.client.fsm.currentStateName() === "view"){
+                        this.layer(1)
+                            .highlight(true);
                     }
                 })
 
                 this.mouseOut(function(){
                     this.layer(0)
                         .highlight(false);
-
-                    self.cancelTimeouts();
-                    //add a timeout before hiding panel
-                    self.mouseOverPanelOffTimeout = new IgeTimeout(function () {
-                        self.hideMouseOverPanel();
-                    }, parseInt(GameConfig.config['mouseOverPanelOffTimeout']));
                 })
 
                 this.mouseMove(function(){
-                    self.cancelTimeouts("Off");
                     if(ige.client.fsm.currentStateName() === "select" || ige.client.fsm.currentStateName() === "view")
                         ige.input.stopPropagation();
                 })
@@ -393,15 +370,15 @@ var GameObjects = {
                 price.cash = this.getCurrentStateSpeedValue();
 
                 if(price.cash === -1){
-                    message  = 'Progress already finished!';
+                    message  = LocalizationManager.getValueByLabel('progressFinished');
                     confirmOnly = true;
                 }else{
                     //show are you sure and reduce assets
-                    message  = 'Speed progress for ' + price.cash + ' VBuck' + ((price.cash > 1) ? "s" : "") + '?';
+                    message  = LocalizationManager.getValueByLabel('speedProgressFor') + " " + price.cash + ' VBuck' + ((price.cash > 1) ? "s" : "") + '?';
                     prize = price.cash +'<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
                     callBack = function() {
                         if(self.getCurrentStateSpeedValue() === -1){
-                            new BuyConfirm('Progress already finished!', null, null,true)
+                            new BuyConfirm(LocalizationManager.getValueByLabel('progressFinished'), null, null,true)
                                 .layer(1)
                                 .show()
                                 .mount(ige.$('uiScene'));
@@ -412,7 +389,7 @@ var GameObjects = {
                                     cash: parseInt(price.cash, 10)}).status) {
                             // Not enough money?
                             ga("send",  "Not enough money");
-                            prize = 'Come back after having' + price.cash + '<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
+                            prize = LocalizationManager.getValueByLabel('comeBackLater') + " " + price.cash + '<img class="marketCashIcon" src="assets/images/ui/Banknotes.png">';
                             new BuyConfirm(LocalizationManager.getValueByLabel('notEnoughCashString'), prize,
                                 function () {
                                     ige.$('cashDialog').show();
@@ -445,19 +422,6 @@ var GameObjects = {
                 });
             },
 
-            cancelTimeouts: function(whichOne){
-                var self = this;
-
-                if(self.mouseOverPanelOnTimeout && whichOne !== "Off"){
-                    self.mouseOverPanelOnTimeout.cancel();
-                    self.mouseOverPanelOnTimeout = null;
-                }
-                if(self.mouseOverPanelOffTimeout && whichOne !== "On"){
-                    self.mouseOverPanelOffTimeout.cancel();
-                    self.mouseOverPanelOffTimeout = null;
-                }
-            },
-
             handleMouseClick: function(){
                 var self = this;
 
@@ -472,7 +436,7 @@ var GameObjects = {
                     if(!result.status) {
                         // Not enough assets?
                         ga("send",  "Not enough assets");
-                        var message = "You don't have enough ";
+                        var message = LocalizationManager.getValueByLabel('dontHave') + " ";
                         if(!result.coins)
                             message += "Coins "
                         if(!result.cash)
@@ -531,12 +495,12 @@ var GameObjects = {
                     self.mouseOverPanel.find(".currentStateCountdown").first().html("Ready!").attr("title","").tooltip().tooltip('destroy').css("display","table-cell");
                     self.mouseOverPanel.find(".currentStateAction").first().html(message).attr("title","").tooltip().tooltip('destroy').css("display","table-cell");
                 }else if (!API.stateObjectsLookup[this.id()].buildCompleted) {
-                    countDownTooltipContent = "Waiting ";
-                    speedProgressTooltipContent = "Click to speed progress ";
+                    countDownTooltipContent = LocalizationManager.getValueByLabel('waiting') + " ";
+                    speedProgressTooltipContent = LocalizationManager.getValueByLabel('clickToSpeed') + " ";
                     if(this.currentState === "building"){
                         self.mouseOverPanel.find(".currentStateName img").first().attr("src","assets/images/ui/Under-Construction-48.png");
-                        countDownTooltipContent += "on construction";
-                        speedProgressTooltipContent += "on construction";
+                        countDownTooltipContent += LocalizationManager.getValueByLabel('onConstruction');
+                        speedProgressTooltipContent += LocalizationManager.getValueByLabel('onConstruction');
                         iconTooltipContent = LocalizationManager.getValueByLabel('underConstructionString');
                     } else if(this.currentState === "waitingSpecialEvent"){
                         self.mouseOverPanel.find(".currentStateName img").first().attr("src",ige.client.textures[SpecialEvents.events[self.getCurrentSpecialEvent()].notifyIcon].url());

@@ -20,6 +20,7 @@ var RewardMechanism = IgeEventingClass.extend({
         _translateObj.x += self.uiScene._renderPos.x;
         _translateObj.y += self.uiScene._renderPos.y;
 
+
         switch(assetName){
             case "xp":
                 //add xp
@@ -34,8 +35,6 @@ var RewardMechanism = IgeEventingClass.extend({
                 API.addWater(parseInt(amount))
                 break;
         }
-
-        self.showVillageDashFont(self.textureListLookup[assetName].mount, amount, parseInt(self.textureListLookup[assetName].fontAnchorX), parseInt(self.textureListLookup[assetName].fontAnchorY));
 
         var animation = new AssetAnimation(assetName, self.textureListLookup[assetName].texture, self.textureListLookup[assetName].mount)
             .drawBounds(true)
@@ -57,28 +56,4 @@ var RewardMechanism = IgeEventingClass.extend({
         });
     },
 
-    showVillageDashFont: function(mountTo, amount, anchorX, anchorY){
-        var valueFontEntity = new IgeFontEntity()
-            .texture(ige.client.textures.villagedashFont)
-            .text(amount)
-            .width(200)
-            .translateTo(ige.$('uiScene')._renderPos.x + $('#' + mountTo).position().left + anchorX, ige.$('uiScene')._renderPos.y + anchorY,0)
-            .mount(ige.$('uiScene'))
-
-        valueFontEntity._translate.tween()
-            .stepTo({
-                y: ige.$('uiScene')._renderPos.y + 50
-            },500,'inOutSine')
-            .start();
-
-        valueFontEntity.tween()
-            .properties({
-                _opacity: 0
-            })
-            .duration(2000)
-            .afterTween(function(){
-                valueFontEntity.destroy()
-            })
-            .start();
-    }
 })
