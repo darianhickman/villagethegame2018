@@ -320,10 +320,13 @@ button, input, textarea {
     min-width: 100px;
 }
 .goalTaskPercent {
-    width: 100%;
+    width: 99%;
 	height: 1.5em;
     text-align: center;
     margin: 2px 0px 2px 0px;
+	border: 1px solid #d3d3d3 !important;
+	background-color: #56514D;
+	color: #FFFFFF;
 }
 #taskList {
 	display: block;
@@ -334,8 +337,9 @@ button, input, textarea {
 #taskList li {
 	display: block;
 	margin: 5px 5px 5px 5px;
-	border: 2px solid;
+	border: 1px solid #D5CEC4;
 	border-radius: 5px;
+	background-color: #FFFFEF;
 }
 #taskList li span {
 	display: block;
@@ -350,6 +354,7 @@ button, input, textarea {
 	min-width: 300px;
 	max-width: 500px;
     overflow: hidden;
+	background-color: #E7E7D6;
 }
 #goalDialogContent {
 	margin: 0px;
@@ -361,8 +366,8 @@ button, input, textarea {
 }
 .progressLabel {
 	position: absolute;
-	width: 100%;
-	margin-top: 7px;
+	width: 78%;
+	margin-top: 4px;
 	font-size: 14px;
 }
 .problemDetails {
@@ -689,6 +694,7 @@ button, input, textarea {
 	height: 25px;
 	float: left;
 	margin-right: 5px;
+	margin-top: -7px;
 }
 .tooltipImage{
 	width: 15px;
