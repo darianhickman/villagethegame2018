@@ -82,7 +82,7 @@ var GameLogic = IgeObject.extend({
                 items.push("<li><table ><tr><td rowspan=2>" + itemImg + " </td><td width= 320 ><span class='goalTaskTitle'>"+ value.title  +  "</td></tr><tr><td></span><div class='goalTaskPercent' id='task" + value.taskID + "' ><div class='progressLabel' id='taskLabel" + value.taskID + "'></div></div></td></tr></table></li>");
             });
             //add problem info
-            $('#goalDialogContent').html("<div class='goalDialogInfo'>Solves:" + GameProblems.problemsLookup[API.state.currentProblemID].title + "</div>");
+            $('#goalDialogContent').html("<div class='goalDialogInfo'>Solves: " + GameProblems.problemsLookup[API.state.currentProblemID].title + "</div>");
             var problemDetails = $('#goalDialogContent').find(".problemDetails").first();
             problemDetails.attr("title",GameProblems.problemsLookup[API.state.currentProblemID].details);
             problemDetails.tooltip({
@@ -112,7 +112,7 @@ var GameLogic = IgeObject.extend({
                 rewardsArr[i] = assets.reverse().join("");
             }
             //add rewards info
-            $('#goalDialogContent').append("<hr><div class='goalDialogInfo'>Rewards:" + rewardsArr + "</div>");
+            $('#goalDialogContent').append("<div class='goalDialogInfo'>Rewards: " + rewardsArr + "</div>");
             //if goal is complete and rewards not collected add 'collect rewards' button into dialog, and show 'goal complete' in ui
             if(API.stateGoalsLookup[data.id].isComplete && !API.stateGoalsLookup[data.id].isRewardsCollected){
                 //add 'collect rewards' button
