@@ -1,4 +1,5 @@
-# Script partially based on the bitbucketpipelines logic.  
+#!/usr/bin/env bash
+# Script partially based on the bitbucketpipelines logic.
 
 # Should do all the download dependencies thing?  
 # Yes. 

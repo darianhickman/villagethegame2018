@@ -54,9 +54,13 @@
     height: 23px;
     position: relative;
     padding-top: 10px !important;
+    border-radius: 0px;
+    border: 0px;
+    text-align: center;
+    color: #fff;
 }
 .ui-dialog .ui-dialog-titlebar-close {
-    margin: -10px 0 0 0 !important;
+    margin: -11px 0 0 0 !important;
 }
 
 .ui-dialog-title {
@@ -104,11 +108,16 @@
     font-family: arial;
     font-size: 1em !important;
 }
+.ui-widget-header {
+    background: #56514d;
+}
 .ui-widget.ui-widget-content {
-    border: 2px solid #222222;
-    border-radius: 6px;
+    border: 5px solid #56514d;
+    border-radius: 7px;
+    padding: 0;
 }
 
 .ui-progressbar-value {
-    background: forestgreen;
+    background: linear-gradient(to bottom,  rgba(148,223,57,1) 0%,rgba(132,206,53,1) 50%,rgba(49,170,0,1) 51%,rgba(50,150,0,1) 100%);
+    border-radius: 7px;
 }

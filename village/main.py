@@ -181,6 +181,8 @@ def scan_config(config_key):
     sheet_config = dict(get_config())
     found_dict = {}
     for fn in files:
+        # if not os.path.isfile(fn):
+        #     continue
         with io.open(os.path.join(os.path.dirname(__file__), fn), 'r', encoding='utf-8') as file:
             if config_key == 'all':
                 for line in file:

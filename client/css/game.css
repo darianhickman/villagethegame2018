@@ -320,10 +320,13 @@ button, input, textarea {
     min-width: 100px;
 }
 .goalTaskPercent {
-    width: 100%;
+    width: 99%;
 	height: 1.5em;
     text-align: center;
     margin: 2px 0px 2px 0px;
+	border: 1px solid #d3d3d3 !important;
+	background-color: #56514D;
+	color: #FFFFFF;
 }
 #taskList {
 	display: block;
@@ -334,8 +337,9 @@ button, input, textarea {
 #taskList li {
 	display: block;
 	margin: 5px 5px 5px 5px;
-	border: 2px solid;
+	border: 1px solid #D5CEC4;
 	border-radius: 5px;
+	background-color: #FFFFEF;
 }
 #taskList li span {
 	display: block;
@@ -350,6 +354,7 @@ button, input, textarea {
 	min-width: 300px;
 	max-width: 500px;
     overflow: hidden;
+	background-color: #E7E7D6;
 }
 #goalDialogContent {
 	margin: 0px;
@@ -361,8 +366,8 @@ button, input, textarea {
 }
 .progressLabel {
 	position: absolute;
-	width: 100%;
-	margin-top: 7px;
+	width: 78%;
+	margin-top: 4px;
 	font-size: 14px;
 }
 .problemDetails {
@@ -389,6 +394,19 @@ button, input, textarea {
 #buyConfirmDialog{
 	max-width: 800px;
 	text-align: center;
+}
+#buyConfirmYes {
+	padding: 5px 17px;
+	background-color: #E3E3E3;
+	border: 1px solid #AAAAAA;
+	border-radius: 5px;
+	box-shadow: 0 3px #AAAAAA;
+	outline: none;
+}
+#buyConfirmYes:active {
+	background-color: #F1F1F1;
+	box-shadow: 0 1px #999;
+	transform: translateY(2px);
 }
 .notifyIconWrapper {
 	position: fixed;
@@ -676,6 +694,7 @@ button, input, textarea {
 	height: 25px;
 	float: left;
 	margin-right: 5px;
+	margin-top: -7px;
 }
 .tooltipImage{
 	width: 15px;
@@ -689,13 +708,16 @@ button, input, textarea {
 	text-align: center;
 	font-size: 14px;
 	width: 500px;
-	padding: 0.4em;
-	border: 2px solid;
+	padding: 0px;
+	border: 5px solid #56514D;
 	border-radius: 10px;
 }
 .objectInfoPanel h3 {
 	margin: 0;
-	padding: 0.4em;
+	padding: 0.5em;
+	color: #FFFFFF;
+	border: 0px;
+	border-radius: 0px;
 }
 .objectInfoPanelCloseButton{
 	float: right;
@@ -709,16 +731,18 @@ button, input, textarea {
 	float: left;
 	margin-top: -5px;
 	margin-right: 5px;
+	margin-left: 5px;
 }
 .objectInfoFooter{
-	background-color: cadetblue;
+	background-color: #7b7b7b;
 	height: 50px;
-	border: 2px solid forestgreen;
+	border: 2px solid #646464;
 	border-radius: 6px;
 	padding: 5px;
 	margin: 5px;
-	width: calc(100% - 22px);
+	width: calc(100% - 24px);
 	display: table;
+	color: #FFFFFF
 }
 .currentStateName{
 	width: 12%;
@@ -771,7 +795,7 @@ button, input, textarea {
 	height: 0;
 	border-left: 20px solid transparent;
 	border-right: 20px solid transparent;
-	border-bottom: 20px solid black;
+	border-bottom: 20px solid #56514D;
 }
 
 .arrow-down {
