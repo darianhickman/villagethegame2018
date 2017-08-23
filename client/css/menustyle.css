@@ -20,11 +20,15 @@
 .c-menu {
   position: fixed;
   z-index: 200;
-  background-color: rgba(86, 81, 77, 0.5);
+  background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(255, 255, 255, 0.5) 0%, rgba(79, 71, 65, 0.5) 100%) repeat scroll 0 0;
   border: 5px solid #56514D;
   color: #fff;
   -webkit-transition: -webkit-transform 0.3s;
           transition: transform 0.3s;
+}
+
+#loginID {
+  margin-top: 30px;
 }
 
 .c-menu__items {
@@ -33,7 +37,7 @@
   padding: 0;
 }
 .c-menu__items li:hover {
-  background-color: #2187e7;
+  background: linear-gradient(to bottom, rgba(129,120,105,1) 0%,rgba(79,71,65,1) 100%);
   color: white;
 }
 
@@ -77,7 +81,7 @@
   cursor: pointer;
   font-size: 14px;
   padding: 10px;
-  background: linear-gradient(to bottom, rgba(128,119,104,1) 0%,rgba(145,136,119,1) 49%,rgba(92,85,76,1) 53%,rgba(84,76,69,1) 100%);
+  background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgb(129, 120, 105) 0%, rgb(140, 130, 115) 55%, rgb(79, 71, 65) 100%, rgb(79, 71, 65) 100%) repeat scroll 0 0;
 }
 .c-menu--slide-left .c-menu__item:first-child,
 .c-menu--slide-right .c-menu__item:first-child,
