@@ -116,7 +116,7 @@ var GameLogic = IgeObject.extend({
             //if goal is complete and rewards not collected add 'collect rewards' button into dialog, and show 'goal complete' in ui
             if(API.stateGoalsLookup[data.id].isComplete && !API.stateGoalsLookup[data.id].isRewardsCollected){
                 //add 'collect rewards' button
-                $('#goalDialogContent').append("<div class='goalDialogInfo'><button id='collectRewardsGoal" + data.id + "'>Collect Rewards</button></div>");
+                $('#goalDialogContent').append("<div class='goalDialogInfo'><button class='collectRewards' id='collectRewardsGoal" + data.id + "'>Collect Rewards</button></div>");
                 $('#collectRewardsGoal' + data.id).click(function(){
                     $("#goalCompleteNotification").hide();
                     ige.client.eventEmitter.emit('collectRewards', {"goalID":data.id,
@@ -139,7 +139,7 @@ var GameLogic = IgeObject.extend({
             dataLayer.push({'event': 'goalComplete'});
             API.setGoalAsComplete(data.goalID);
             //add 'collect rewards' button
-            $('#goalDialogContent').append("<div class='goalDialogInfo'><button id='collectRewardsGoal" + data.goalID + "'>Collect Rewards</button></div>");
+            $('#goalDialogContent').append("<div class='goalDialogInfo'><button class='collectRewards' id='collectRewardsGoal" + data.goalID + "'>Collect Rewards</button></div>");
             $('#collectRewardsGoal' + data.goalID).click(function(){
                 $("#goalCompleteNotification").hide();
                 ige.client.eventEmitter.emit('collectRewards', data);
