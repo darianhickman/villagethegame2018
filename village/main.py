@@ -206,13 +206,15 @@ def info_route():
     current_version = modules.get_current_version_name()
     config_docid = get_config_docid()
     commit_head = get_commit_head()
+    found_dict = scan_config('all')
 
-    return render_template('info.html', id=app_id, version=current_version, docid=config_docid, commit=commit_head, cache_keys=cache_dict)
+    return render_template('info.html', id=app_id, version=current_version, docid=config_docid, commit=commit_head, cache_keys=cache_dict, scan_results=found_dict)
 
 @root.route('/config/scan')
 def scan_config_all():
     found_dict = scan_config('all')
     return render_template('scan_results.html', results=found_dict)
+
 
 @root.route('/config/scan/<config_key>')
 def scan_config_by_key(config_key):

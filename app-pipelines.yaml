@@ -47,6 +47,7 @@ handlers:
 
 - url: /js
   static_dir: client/js
+  application_readable: true
   secure: always
 
 - url: /client

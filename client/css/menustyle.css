@@ -20,9 +20,15 @@
 .c-menu {
   position: fixed;
   z-index: 200;
-  background-color: #67b5d1;
+  background: rgba(0, 0, 0, 0) linear-gradient(to right, rgba(255, 255, 255, 0.5) 0%, rgba(79, 71, 65, 0.5) 100%) repeat scroll 0 0;
+  border: 5px solid #56514D;
+  color: #fff;
   -webkit-transition: -webkit-transform 0.3s;
           transition: transform 0.3s;
+}
+
+#loginID {
+  margin-top: 30px;
 }
 
 .c-menu__items {
@@ -31,7 +37,7 @@
   padding: 0;
 }
 .c-menu__items li:hover {
-  background-color: #2187e7;
+  background: linear-gradient(to bottom, rgba(129,120,105,1) 0%,rgba(79,71,65,1) 100%);
   color: white;
 }
 
@@ -70,11 +76,12 @@
 .c-menu--push-right .c-menu__item {
   display: block;
   text-align: center;
-  border-top: solid 1px #b5dbe9;
-  border-bottom: solid 1px #3184a1;
+  border-top: 0px;
+  border-bottom: 0px;
   cursor: pointer;
   font-size: 14px;
   padding: 10px;
+  background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgb(129, 120, 105) 0%, rgb(140, 130, 115) 55%, rgb(79, 71, 65) 100%, rgb(79, 71, 65) 100%) repeat scroll 0 0;
 }
 .c-menu--slide-left .c-menu__item:first-child,
 .c-menu--slide-right .c-menu__item:first-child,
@@ -103,7 +110,7 @@
 .c-menu--push-left .c-menu__close,
 .c-menu--push-right .c-menu__close {
   display: block;
-  padding: 12px 24px;
+  padding: 8px 24px 13px 24px;
   width: 100%;
 }
 
@@ -148,9 +155,9 @@
 @media all and (min-width: 320px) {
   .c-menu--slide-right,
   .c-menu--push-right {
-    -webkit-transform: translateX(300px);
-        -ms-transform: translateX(300px);
-            transform: translateX(300px);
+    -webkit-transform: translateX(311px);
+        -ms-transform: translateX(311px);
+            transform: translateX(311px);
   }
 }
 
@@ -317,7 +324,7 @@ body.has-active-menu {
  */
 .c-menu__close {
   color: #fff;
-  background-color: #3184a1;
+  background-color: #56514D;
   font-size: 14px;
   border: none;
   box-shadow: none;
@@ -326,6 +333,7 @@ body.has-active-menu {
   -moz-appearance: none;
   appearance: none;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .c-menu__close:focus {

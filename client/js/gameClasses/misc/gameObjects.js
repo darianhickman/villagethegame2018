@@ -417,6 +417,7 @@ var GameObjects = {
 
             hideMouseOverPanel: function(){
                 var self = this;
+                self.mouseOverPanel.find(".currentStateAction").first().tooltip().tooltip('destroy');
                 self.mouseOverPanel.hide(GameConfig.config['mouseOverPanelHideEffect'], parseInt(GameConfig.config['mouseOverPanelHideDuration']), function(){
                     self.isMouseOverPanelOn = false;
                 });
@@ -509,7 +510,7 @@ var GameObjects = {
                         speedProgressTooltipContent += SpecialEvents.events[this.currentSpecialEvent].speedText;
                         iconTooltipContent = SpecialEvents.events[this.currentSpecialEvent].description;
                     }
-                    self.mouseOverPanel.find(".currentStateCountdown").first().attr("title",countDownTooltipContent).tooltip().css("display","table-cell");
+                    self.mouseOverPanel.find(".currentStateCountdown").first().attr("title",countDownTooltipContent).tooltip({position: { my: "center top+15", at: "center bottom" }}).css("display","table-cell");
                     self.mouseOverPanel.find(".currentStateAction").first().html("<img src='assets/images/ui/Fast-Forward-48.png' width='25' height='25'><br>" +
                         "<span class='currentStateSpeedValue'>" + self.getCurrentStateSpeedValue() + "</span>" +
                         "<img src='assets/images/ui/Banknotes.png' width='15' height='15'>").attr("title",speedProgressTooltipContent).tooltip().css("display","table-cell");

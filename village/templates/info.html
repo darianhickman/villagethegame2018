@@ -17,4 +17,9 @@
     {% endfor %}
 </table>
 <p>Config Scan Result</p>
-<iframe src="../config/scan" width="800"></iframe>
+<table>
+    <tr><th>Key</th><th>Result</th></tr>
+    {% for item in scan_results|sort %}
+    <tr><td><a href="../config/scan/{{ item }}">{{ item }}</a></td><td>{{ scan_results[item] }}</td></tr>
+    {% endfor %}
+</table>

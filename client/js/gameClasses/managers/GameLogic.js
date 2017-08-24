@@ -82,7 +82,7 @@ var GameLogic = IgeObject.extend({
                 items.push("<li><table ><tr><td rowspan=2>" + itemImg + " </td><td width= 320 ><span class='goalTaskTitle'>"+ value.title  +  "</td></tr><tr><td></span><div class='goalTaskPercent' id='task" + value.taskID + "' ><div class='progressLabel' id='taskLabel" + value.taskID + "'></div></div></td></tr></table></li>");
             });
             //add problem info
-            $('#goalDialogContent').html("<div class='goalDialogInfo'>Solves:" + GameProblems.problemsLookup[API.state.currentProblemID].title + "</div>");
+            $('#goalDialogContent').html("<div class='goalDialogInfo'>Solves: " + GameProblems.problemsLookup[API.state.currentProblemID].title + "</div>");
             var problemDetails = $('#goalDialogContent').find(".problemDetails").first();
             problemDetails.attr("title",GameProblems.problemsLookup[API.state.currentProblemID].details);
             problemDetails.tooltip({
@@ -112,11 +112,11 @@ var GameLogic = IgeObject.extend({
                 rewardsArr[i] = assets.reverse().join("");
             }
             //add rewards info
-            $('#goalDialogContent').append("<hr><div class='goalDialogInfo'>Rewards:" + rewardsArr + "</div>");
+            $('#goalDialogContent').append("<div class='goalDialogInfo'>Rewards: " + rewardsArr + "</div>");
             //if goal is complete and rewards not collected add 'collect rewards' button into dialog, and show 'goal complete' in ui
             if(API.stateGoalsLookup[data.id].isComplete && !API.stateGoalsLookup[data.id].isRewardsCollected){
                 //add 'collect rewards' button
-                $('#goalDialogContent').append("<div class='goalDialogInfo'><button id='collectRewardsGoal" + data.id + "'>Collect Rewards</button></div>");
+                $('#goalDialogContent').append("<div class='goalDialogInfo'><button class='collectRewards' id='collectRewardsGoal" + data.id + "'>Collect Rewards</button></div>");
                 $('#collectRewardsGoal' + data.id).click(function(){
                     $("#goalCompleteNotification").hide();
                     ige.client.eventEmitter.emit('collectRewards', {"goalID":data.id,
@@ -132,6 +132,20 @@ var GameLogic = IgeObject.extend({
             //show 'new goal' info in ui
             if(data.isNewGoal)
                 $('#newGoalNotification').show(GameConfig.config['newGoalEffect'], parseInt(GameConfig.config['newGoalEffectDuration']));
+
+            if(self.isGoalIntervalSet === undefined){
+                self.isGoalIntervalSet = true;
+                setInterval(function() {
+                    if(ige.client.fsm.currentStateName() === "select"){
+                        $("#goalButton img").rotate({
+                            angle: 0,
+                            animateTo: 360,
+                            duration: 3000,
+                            easing: $.easing.easeInOutElastic
+                        });
+                    }
+                }, 20000);
+            }
         })
 
         //on goal complete add 'collect rewards' button into dialog, and show 'goal complete' in ui
@@ -139,7 +153,7 @@ var GameLogic = IgeObject.extend({
             dataLayer.push({'event': 'goalComplete'});
             API.setGoalAsComplete(data.goalID);
             //add 'collect rewards' button
-            $('#goalDialogContent').append("<div class='goalDialogInfo'><button id='collectRewardsGoal" + data.goalID + "'>Collect Rewards</button></div>");
+            $('#goalDialogContent').append("<div class='goalDialogInfo'><button class='collectRewards' id='collectRewardsGoal" + data.goalID + "'>Collect Rewards</button></div>");
             $('#collectRewardsGoal' + data.goalID).click(function(){
                 $("#goalCompleteNotification").hide();
                 ige.client.eventEmitter.emit('collectRewards', data);
@@ -167,6 +181,8 @@ var GameLogic = IgeObject.extend({
             API.setGoalRewardsAsCollected(data.goalID);
 
             //add loadNextProblem action to the queueManager
+            var nextProblemID = ige.client.gameLogic.goals.getGoal(data.goalID).Load_Problem_On_Complete;
+            var nextProblemTimeout = GameProblems.problemsLookup[nextProblemID].timeout;
             ige.client.gameLogic.queueManager.addNewAction("loadNextProblem", function(){
                 //load next problem
                 var nextProblemID = ige.client.gameLogic.goals.getGoal(data.goalID).Load_Problem_On_Complete;
@@ -175,7 +191,7 @@ var GameLogic = IgeObject.extend({
                     API.state.currentProblemID = nextProblemID;
                     API.setProblemAsShown(nextProblemID);
                 }
-            });
+            }, nextProblemTimeout);
 
             //popup congrats message by entering state goalDialog explicitly
             ige.client.fsm.enterState('goalDialog', null, function (err) {
@@ -224,13 +240,15 @@ var GameLogic = IgeObject.extend({
         if(!API.state.goals){
             if(!API.state.problems){
                 //if goals and problems don't exist, start game by loading first problem
+                var firstProblemID = GameConfig.config['firstProblemID'];
+                var firstProblemTimeout = GameProblems.problemsLookup[firstProblemID].timeout;
                 self.queueManager.addNewAction("loadNextProblem", function(){
                     //load first problem
                     var firstProblemID = GameConfig.config['firstProblemID'];
                     self.problemManager.showProblem(firstProblemID);
                     API.state.currentProblemID = firstProblemID;
                     API.setProblemAsShown(firstProblemID);
-                });
+                }, firstProblemTimeout);
             }else{
                 //load goal for currentProblemID
                 self.goals.loadGoal(self.problemManager.getGoalIDbyProblemID(API.state.currentProblemID));
