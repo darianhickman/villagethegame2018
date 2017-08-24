@@ -16,6 +16,7 @@ var getGameProblems = function() {
                         'problemID': item.Problem_ID,
                         'title': item.Title,
                         'details': item.Details,
+                        'timeout' : item.Time_Padding,
                         'goalID': item.Load_Goal_ID
                     });
                     GameProblems.problemsLookup[item.Problem_ID] = GameProblems.goalsLookup[item.Load_Goal_ID] = GameProblems.problems[GameProblems.problems.length - 1];

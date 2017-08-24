@@ -64,8 +64,11 @@ var Client = IgeClass.extend({
 
                     ige.$('bob').walkToTile(tile.x, tile.y);
                 });
-                if(ige.client.eventEmitter)
-                    ige.client.eventEmitter.emit('executePendingAction', null);
+                if(ige.client.eventEmitter){
+                    ige.client.executePendingActionTimeout = new IgeTimeout(function () {
+                        ige.client.eventEmitter.emit('executePendingAction', null);
+                    }, 5000);
+                }
                 completeCallback();
             },
             exit: function (data, completeCallback) {
@@ -74,6 +77,11 @@ var Client = IgeClass.extend({
 
                 var self = this,
                     tileMap = ige.$('tileMap1');
+
+                if(ige.client.executePendingActionTimeout){
+                    ige.client.executePendingActionTimeout.cancel();
+                    ige.client.executePendingActionTimeout = null;
+                }
 
                 tileMap.off('mouseUp', self.mouseUpHandle);
 

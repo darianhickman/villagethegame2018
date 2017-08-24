@@ -8,10 +8,10 @@ var QueueManager = IgeEventingClass.extend({
         self.queue = [];
     },
 
-    addNewAction: function (actionID, callback) {
+    addNewAction: function (actionID, callback, timeout) {
         var self = this;
 
-        self.queue.push({"actionID" : actionID, "callback" : callback})
+        self.queue.push({"actionID" : actionID, "callback" : callback, "timeout" : timeout})
     },
 
     callNextPendingAction: function(){
@@ -37,5 +37,14 @@ var QueueManager = IgeEventingClass.extend({
         var self = this;
 
         return self.queue.length > 0 ? true : false;
+    },
+
+    getPendingActionTimeout: function(){
+        var self = this;
+
+        if(self.queue[0]){
+            return parseInt(self.queue[0].timeout);
+        }
+        return 0;
     }
 });
