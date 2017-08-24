@@ -181,6 +181,8 @@ var GameLogic = IgeObject.extend({
             API.setGoalRewardsAsCollected(data.goalID);
 
             //add loadNextProblem action to the queueManager
+            var nextProblemID = ige.client.gameLogic.goals.getGoal(data.goalID).Load_Problem_On_Complete;
+            var nextProblemTimeout = GameProblems.problemsLookup[nextProblemID].timeout;
             ige.client.gameLogic.queueManager.addNewAction("loadNextProblem", function(){
                 //load next problem
                 var nextProblemID = ige.client.gameLogic.goals.getGoal(data.goalID).Load_Problem_On_Complete;
@@ -189,7 +191,7 @@ var GameLogic = IgeObject.extend({
                     API.state.currentProblemID = nextProblemID;
                     API.setProblemAsShown(nextProblemID);
                 }
-            });
+            }, nextProblemTimeout);
 
             //popup congrats message by entering state goalDialog explicitly
             ige.client.fsm.enterState('goalDialog', null, function (err) {
@@ -238,13 +240,15 @@ var GameLogic = IgeObject.extend({
         if(!API.state.goals){
             if(!API.state.problems){
                 //if goals and problems don't exist, start game by loading first problem
+                var firstProblemID = GameConfig.config['firstProblemID'];
+                var firstProblemTimeout = GameProblems.problemsLookup[firstProblemID].timeout;
                 self.queueManager.addNewAction("loadNextProblem", function(){
                     //load first problem
                     var firstProblemID = GameConfig.config['firstProblemID'];
                     self.problemManager.showProblem(firstProblemID);
                     API.state.currentProblemID = firstProblemID;
                     API.setProblemAsShown(firstProblemID);
-                });
+                }, firstProblemTimeout);
             }else{
                 //load goal for currentProblemID
                 self.goals.loadGoal(self.problemManager.getGoalIDbyProblemID(API.state.currentProblemID));
