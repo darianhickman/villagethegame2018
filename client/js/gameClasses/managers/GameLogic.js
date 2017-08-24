@@ -132,6 +132,20 @@ var GameLogic = IgeObject.extend({
             //show 'new goal' info in ui
             if(data.isNewGoal)
                 $('#newGoalNotification').show(GameConfig.config['newGoalEffect'], parseInt(GameConfig.config['newGoalEffectDuration']));
+
+            if(self.isGoalIntervalSet === undefined){
+                self.isGoalIntervalSet = true;
+                setInterval(function() {
+                    if(ige.client.fsm.currentStateName() === "select"){
+                        $("#goalButton img").rotate({
+                            angle: 0,
+                            animateTo: 360,
+                            duration: 3000,
+                            easing: $.easing.easeInOutElastic
+                        });
+                    }
+                }, 20000);
+            }
         })
 
         //on goal complete add 'collect rewards' button into dialog, and show 'goal complete' in ui
