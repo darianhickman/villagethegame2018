@@ -100,7 +100,7 @@ var API = {
             result.coins = false
         if(assets.cash > API.state.cash)
             result.cash = false
-        if(assets.water && assets.water > API.state.water)
+        if(assets.water > API.state.water)
             result.water = false
         if(!result.coins || !result.cash || !result.water){
             result.status = false;

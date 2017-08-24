@@ -1167,55 +1167,7 @@ var Client = IgeClass.extend({
                     // Set initial state of object by calling the place() method
                     ige.client.cursorObject.currentState = "building"
                     ige.client.cursorObject.place();
-
-                    //we don't need a coin animation and particle effect for zero coin
-                    if (ige.client.cursorObjectData.coins > 0) {
-                        // Create a cash value rising from placement that fades out
-                        var coinAnim;
-
-                        coinAnim = new IgeEntity()
-                            .layer(10)
-                            .texture(ige.client.textures.coin)
-                            .dimensionsFromCell()
-                            .scaleTo(1, 1, 1)
-                            .translateToPoint(buildPoint)
-                            .translateBy(-10, -50, 0)
-                            .mount(ige.$('tileMap1'));
-
-                        new IgeFontEntity()
-                            .layer(2)
-                            .textAlignX(0)
-                            .colorOverlay('#ffffff')
-                            .nativeFont('12px Verdana')
-                            .textLineSpacing(0)
-                            .text('-' + ige.client.cursorObjectData.coins)
-                            .width(45)
-                            .center(28)
-                            .mount(coinAnim);
-
-                        coinAnim
-                            ._translate.tween(
-                            {y: buildPoint.y - 100},
-                            2000
-                        )
-                            .start(200);
-
-                        coinAnim.tween(
-                            {_opacity: 0},
-                            2000,
-                            {easing: 'inQuad'}
-                        )
-                            .afterTween(function () {
-                                coinAnim.destroy();
-                            })
-                            .start(200);
-
-                        // Play the coin particle effect
-                        ige.$('coinEmitter')
-                            .quantityMax(parseInt(ige.client.cursorObjectData.coins, 10))
-                            .start();
-                    }
-
+                    
                     ige.client.eventEmitter.emit('build', {
                         "id": cursorClassId,
                         "type": ige.client.cursorObject.type,
