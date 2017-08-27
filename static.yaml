@@ -19,7 +19,8 @@ handlers:
 - url: /$
   static_files: client/index_deploy.html
   upload: client/index_deploy.html
-
+  http_headers:
+    Access-Control-Allow-Origin: '*' 
 
 - url: /client/$
   static_files: client/index_deploy.html
@@ -29,12 +30,14 @@ handlers:
 - url: /dev$
   static_files: client/index.html
   upload: client/index.html
-
+  http_headers:
+    Access-Control-Allow-Origin: '*'
 
 - url: /pay
   static_files: client/pay.html
   upload: client/pay.html
-
+  http_headers:
+    Access-Control-Allow-Origin: '*'
 
 - url: /favicon.ico
   static_files: assets/images/ui/faviconlogo.svg
@@ -75,16 +78,9 @@ handlers:
 - url: /sheets/.*
   script: village.sheets.root
 
+
   
 - url: /.*
-  script: village.main.root
-
-
-- url: /css2/.*
-  script: village.main.root
-
-
-- url: /js2/.*
   script: village.main.root
 
 

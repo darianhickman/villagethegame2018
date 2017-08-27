@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="https://assetserver-1327.appspot.com/" target="_blank">
+    <script type="text/javascript">
+        var gameLoadTimer = Date.now();
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W27P4W3');</script>
+    <!-- End Google Tag Manager -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="game-engine-origin" content="http://www.isogenicengine.com">
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+
+    <title>Village Makeover</title>
+    <!-- STYLES -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+    <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+
+    <link href="https://assetserver-1327.appspot.com/client/css/jqueryui-overrides.css" rel="stylesheet" type="text/css" />
+    <link href="https://assetserver-1327.appspot.com/client/css/game.css" rel="stylesheet" type="text/css"/>
+    <link href="https://assetserver-1327.appspot.com/client/css/menustyle.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="shortcut icon" href="/favicon.ico?v=2">
+    <!-- Isogenic Loader -->
+    <script type="text/javascript">
+        var igeRoot = '/ige/engine/';
+    </script>
+
+    <script id="gameStartScript" data-location="deploy" type="text/javascript" src="https://assetserver-1327.appspot.com/client/deploy/gameStart.min.js"></script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W27P4W3"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<ul class="igeLoading loadingFloat">
+    <li class="loadingTitle">Village Makeover</li>
+    <li>
+        <div class="loadingLogo">
+            <div class="loadingCircle"></div>
+            <div class="loadingCircleInner"></div>
+        </div>
+
+    </li>
+    <li class="loadingText">
+        Loading
+    </li>
+</ul>
+<div id="hudcontainer">
+    <ul class="nonePointerEvents" id="topToolbar">
+        <li class="allPointerEvents" id="cashbar" title="Buy VBucks"><img src="assets/images/ui/Banknotes.png"/><span class="cashbarProgress"
+                                                                            id="cashbarProgress"></span></li>
+        <li class="allPointerEvents" id="coinbar" title="Buy Coins"><img src="assets/images/ui/Coin1.png"/><span class="coinbarProgress"
+                                                                        id="coinbarProgress"></span></li>
+        <li class="allPointerEvents" id="waterbar" title="Buy Water"><img src="assets/images/ui/Water-48.png"/><span class="waterbarProgress"
+                                                                                              id="waterbarProgress"></span></li>
+        <li class="allPointerEvents" id="fullscreenIcon" title="Toggle Fullscreen Mode"><img src="assets/images/ui/Expand_2.png"/><img src="assets/images/ui/Collapse_2.png" style="display:none;"></li>
+        <li class="allPointerEvents" id="volume" title="Toggle Sound"><img src="assets/images/ui/Speaker-48.png"/><img src="/client/assets/images/ui/Mute-48.png" style="display:none;"/></li>
+        <li class="allPointerEvents" id="marketButton" title="Buy New Items"><img src="assets/images/ui/Shop.png"/></li>
+
+        <li class="allPointerEvents" id="goalButton" title="Current Goals">
+            <img src="assets/images/ui/star.png"/>
+            <span class="toolbarNotification" id="newGoalNotification">New Goal!</span>
+            <span class="toolbarNotification" id="goalCompleteNotification">Goal Complete!</span>
+        </li>
+        <li class="allPointerEvents" id="moveButton" title="Move Items">
+            <img src="assets/images/ui/FourDirections52.png"/>
+            <span class="toolbarNotification" id="endMove">End Move</span>
+        </li>
+        <li class="allPointerEvents" id="zoomInButton" title="Zoom in"><img src="assets/images/ui/Zoom-In.png"/></li>
+        <li class="allPointerEvents" id="zoomOutButton" title="Zoom out"><img src="assets/images/ui/Zoom-Out.png"/></li>
+        <li class="allPointerEvents" id="saveButton" title="Login to Save">
+            <img src="assets/images/ui/save.png"/>
+            <span class="toolbarNotification" id="Loggedin">Auto Saved</span>
+        </li>
+        <li class="allPointerEvents" id="dropDownIcon" title="Player Menu">
+            <img src="assets/images/ui/Menu.png"/>
+        </li>
+    </ul>
+    <span id="notificationMessage"></span>
+    <div id="villageTitle"></div>
+    <div id="o-wrapper" class="o-wrapper"></div>
+    <nav id="c-menu--slide-right" class="c-menu c-menu--slide-right">
+        <button class="c-menu__close">Close Menu &rarr;</button>
+        <div id="dropDownContent"></div>
+    </nav><!-- /c-menu slide-right -->
+    <div id="c-mask" class="c-mask"></div><!-- /c-mask -->
+    <div id="marketDialog" title="Market" style="display:none">
+        <!--Pages are created based on this template-->
+        <div class="marketDialogPage" id="marketDialogPageTemplate">
+            <!--This ul is populated by catalog items. Number of items per page is set in config sheet-->
+            <ul class="marketDialogList">
+                <table>
+                    <tr class="marketDialogItem">
+                        <td class="iconcell" >
+                            <img  class="marketItemImage" src="/favicon.ico?v=2"></td>
+                        <td class="marketItemTitle">Title</td>
+                        <td class="marketItemCoins">
+                            <img class="marketCoinIcon" src="assets/images/ui/Coin1.png">
+                            0
+                        </td>
+                        <td class="marketItemCash">
+                            <img class="marketCashIcon" src="assets/images/ui/Banknotes.png">
+                            0
+                        </td>
+                        <td width="120">
+                            <span class="unlock" role="button">
+                                Unlock
+                                <img src="assets/images/ui/Banknotes.png"/>
+                                <span class="unlockprice"> </span>
+                            </span>
+                        </td>
+                        <td width="20">
+                            <span class="marketItemInfo">
+                                <img class="marketItemInfoIcon" src="/assets/images/ui/Info-50.png">
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </ul>
+        </div>
+        <div class="pagination" id="marketDialogPagination">
+            <a href="#" class="first" data-action="first">&laquo;</a>
+            <a href="#" class="previous" data-action="previous">&lsaquo;</a>
+            <input type="text" readonly="readonly"/>
+            <a href="#" class="next" data-action="next">&rsaquo;</a>
+            <a href="#" class="last" data-action="last">&raquo;</a>
+        </div>
+    </div>
+    <div id="editorMarketDialog" title="Market" style="display:none">
+        <!--Pages are created based on this template-->
+        <div class="marketDialogPage" id="editorMarketDialogPageTemplate">
+            <!--This ul is populated by catalog items. Number of items per page is set in cofig sheet-->
+            <ul class="marketDialogList">
+                <li class="marketDialogItem">
+                    <span class="marketItemTitle">Title</span>
+                    <span class="marketItemImage"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="pagination" id="editorMarketDialogPagination">
+            <a href="#" class="first" data-action="first">&laquo;</a>
+            <a href="#" class="previous" data-action="previous">&lsaquo;</a>
+            <input type="text" readonly="readonly"/>
+            <a href="#" class="next" data-action="next">&rsaquo;</a>
+            <a href="#" class="last" data-action="last">&raquo;</a>
+        </div>
+    </div>
+    <div id="cashBuyDialog" title="Buy VBucks" style="display:none">
+        <ui class="assetList" id="cashAssetList">
+            <table width="250">
+                <tr class="assetItem">
+                    <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
+                    <td width="30%" align="left"><span class="assetAmount"></span></td>
+                    <td width="50%" align="right"><span class="assetPay"></span></td>
+                    <td align="left"><img class="cashIcon" src="/assets/images/ui/Bank_2.png"></td>
+                    <td><button>Buy</button></td>
+                </tr>
+            </table>
+        </ui>
+    </div>
+    <div id="coinBuyDialog" title="Buy Coins" style="display:none">
+        <ui class="assetList" id="coinAssetList">
+            <table width="250">
+                <tr class="assetItem">
+                    <td align="left"><img class="coinIcon" src="/assets/images/ui/Coin1.png"></td>
+                    <td width="30%" align="left" class="assetAmount"></td>
+                    <td width="50%" align="right" class="assetPay"></td>
+                    <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
+                    <td><button>Buy</button></td>
+                </tr>
+            </table>
+        </ui>
+    </div>
+    <div id="waterBuyDialog" title="Buy Water" style="display:none">
+        <ui class="assetList" id="waterAssetList">
+            <table width="250">
+                <tr class="assetItem">
+                    <td align="left"><img class="waterIcon" src="/assets/images/ui/Water-48.png"></td>
+                    <td width="30%" align="left" class="assetAmount"></td>
+                    <td width="50%" align="right" class="assetPay"></td>
+                    <td align="left"><img class="cashIcon" src="/assets/images/ui/Banknotes.png"></td>
+                    <td><button>Buy</button></td>
+                </tr>
+            </table>
+        </ui>
+    </div>
+    <div class="editorTopNavBar" id="editorTopNavBar">
+        <ul class="editorTopNavList" id="editorTopNavList"></ul>
+    </div>
+    <div id="newsFeedDialog" title="News Feed" style="display:none">
+        <ul id="newsList"></ul>
+    </div>
+    <div id="goalDialog" title="" style="display:none">
+        <div id="goalDialogContent"></div>
+    </div>
+    <div id="tutorialDialog" title="Tutorial" style="display:none">
+        <div id="tutorialContent"></div>
+    </div>
+    <div id="editorDialog" title="Editor" style="display:none">
+        <div id="editorContent"></div>
+    </div>
+    <div id="shareMyVillageDialog" title="Share Village" style="display:none">
+        <div id="shareMyVillageContent"></div>
+    </div>
+    <div id="processingDialog" title="Processing" style="display:none">
+        <div id="processingContent"></div>
+    </div>
+    <div id="buyConfirmDialog" title="Confirm" style="display:none">
+        <p id="buyConfirmMessage"></p>
+        <button id="buyConfirmOK">OK</button>
+        <button id="buyConfirmYes"><span id="buyConfirmPrize"></span></button>
+    </div>
+    <div id="messageDialog" title="Message from Game" style="display:none">
+        <p id="messageDialogMessage"></p>
+        <button id="messageDialogOK">OK</button>
+    </div>
+    <div id="feedBackDialog" title="Send Feedback" style="display:none;">
+        <div>
+            <!-- Form -->
+            <form id="contact-form" action="javascript:void(0);">
+                <div>
+                    <label>
+                        <span>Name: (required)</span>
+                        <input id="contactName" placeholder="Please enter your name" type="text" tabindex="1" required autofocus>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span>Email: (required)</span>
+                        <input id="contactEmail" placeholder="Please enter your email address" type="email" tabindex="2" required>
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span>Message: (required)</span>
+                        <textarea id="contactMessage" placeholder="Include all the details you can" tabindex="5" required></textarea>
+                    </label>
+                </div>
+                <div>
+                    <button name="submit" type="submit" id="contact-submit">Send</button>
+                </div>
+                <div id="contactSending" style="display:none;">
+                    <label>
+                        <span>Sending...</span>
+                    </label>
+                </div>
+            </form>
+            <!-- /Form -->
+        </div>
+    </div>
+    <div id="aboutDialog" title="About" style="display: none;">
+      <div>
+        <div>
+          <table cellspacing="0">
+            <tbody>
+              <tr>
+                <td>
+                  <div>
+                    <div>
+                      <span>In America, $100 can buy a nice pair of slacks. In Kenya, $100 can buy a water pump that will take an entire family permanently out of poverty. Millions of people in America care about people overseas but do not realize the power they have to transform lives overseas. Let's change that.</span>
+                    </div>
+                    <div>
+                      <div>
+                        <div>
+                          <span>
+                            <font size="3">
+                              <br>
+                            </font>
+                          </span>
+                        </div>
+                        <div>
+                          <span>
+                            <font size="3">The mission of Village the Game is to spread the proven solutions to poverty. &nbsp;The strategy is to inspire to people fall in love with these solutions and become the supporters and volunteer sales force of these companies. Our tactic is to let them discover solutions via online game. &nbsp;</font>
+                          </span>
+                        </div>
+                        <div>
+                          <span>
+                            <font size="3">
+                              <br>
+                            </font>
+                          </span>
+                        </div>
+                        <div>
+                          <span>
+                            <font size="3">In the picture to the right a woman talks on a cell phone she rents to farmers to get critical information for their harvest.  The solar panel in the background gives clean energy at affordable prices, and the farmer uses Kickstart's MoneyMaker pump to irrigate 10 times more crop than a watering bucket.  These ideas have already proved to work in Bangladesh, Brazil, and Kenya respectively.</font>
+                          </span>
+                        </div>
+                        <div>
+                          <span>
+                            <font size="3">
+                              <br>
+                            </font>
+                          </span>
+                        </div>
+                        <div>
+                          <span>
+                            <font size="3">Virtual Good / Donation Guide</font>
+                          </span>
+                        </div>
+                        <div>
+                          <div>
+                            <div>
+                              <table cellpadding="0" cellspacing="0">
+                                <thead>
+                                  <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>
+                                      <font size="3"><b>Item</b></font>
+                                    </td>
+                                    <td>
+                                      <font size="3"><b>Price in $USD<br></b></font>
+                                    </td>
+                                    <td>
+                                      <font size="3"><b>Village Bucks</b></font><br>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Pile of Cash</td>
+                                    <td>$4.99</td>
+                                    <td>500</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Bag of Cash</td>
+                                    <td>$9.99</td>
+                                    <td>1200</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Sack of Cash</td>
+                                    <td>$19.99</td>
+                                    <td>2500</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Box of Cash</td>
+                                    <td>$49.99</td>
+                                    <td>6500</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Chest of Cash</td>
+                                    <td>$99.99</td>
+                                    <td>1400</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div >
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div >
+                    <span >Mail:&nbsp;</span>
+                    <div >Village the Game</div>
+                    <div>
+                      <span >2014 Edgewater Dr</span>
+                    </div>
+                    <div>
+                      <span >Unit 196,&nbsp;</span>
+                    </div>
+                    <div>
+                      <span >Orlando, FL 32804</span>
+                    </div>
+                    <div>
+                      <span ><br></span>
+                    </div>
+                    <div >Voicemail: 310 439 8573.&nbsp;</div>
+                    <div >Email: info@villagethegame.com</div>
+                    <img border="0" src="https://sites.google.com/a/villagethegame.com/www/_/rsrc/1468871988048/about/colorsmall%20%281%29.jpg" >
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="contactDialog" title="Contact" style="display: none;">
+      <div>
+        <table cellspacing="0">
+          <tbody>
+            <tr>
+              <td>
+                <div>
+                  <div>Connect with <a target="_blank" href="https://www.facebook.com/VillagetheGamecom-188596954538058/timeline/" rel="nofollow">Village the Game on Facebook</a></div>
+                  <div>Join the <a target="_blank" href="https://groups.google.com/forum/#!forum/villagethegame">Google Group for Village the Game</a>.&nbsp;</div>
+                  <div><br></div>
+                </div>
+              </td>
+              <td>
+                <div>
+                  <div>
+                  </div>
+                  <div>
+                    <img border="0" src="https://sites.google.com/a/villagethegame.com/www/_/rsrc/1468871987561/connect/Village_Vladimir.jpg">
+                  </div>
+                  <br>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="notifyIconContainer nonePointerEvents" id="notifyIconContainer"></div>
+    <div id="objectInfoContainer">
+        <div id="objectInfoPanelTemplate" class="objectInfoPanelWrapper">
+            <div class="ui-widget-content ui-corner-all objectInfoPanel">
+                <h3 class="ui-widget-header ui-corner-all">Object Title
+                    <button type="button" class="ui-button ui-corner-all ui-widget ui-button-icon-only ui-dialog-titlebar-close objectInfoPanelCloseButton" title="Close">
+                        <span class="ui-button-icon ui-icon ui-icon-closethick"></span>
+                        <span class="ui-button-icon-space"> </span>Close
+                    </button>
+                </h3>
+                <div class="objectInfoDetails">
+                    <div class="objectInfoDetailsIcon">
+                        <img src="" height="60px">
+                    </div>
+                    <div>
+                        <p>
+                            Description
+                        </p>
+                    </div>
+                </div>
+                <div class="objectInfoFooter">
+                    <div class="currentStateName objectInfoColumn"><img src="" width="48" height="48"></div>
+                    <div class="currentStateCountdown objectInfoColumn"></div>
+                    <div class="currentStateAction objectInfoColumn">
+                        <img src="" width="25" height="25"><br>
+                        <span class="currentStateSpeedValue"></span>
+                        <img src="" width="25" height="25"></div>
+                    <div class="currentStateInactiveInfo">Not active</div>
+                </div>
+            </div>
+            <div class="arrow arrow-down"></div>
+        </div>
+    </div>
+</div> <!-- End hudcontainer -->
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-5656121-3', 'auto');
+    ga("send", 'pageview');
+</script>
+</body>
+</html>
