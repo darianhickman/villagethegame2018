@@ -1,0 +1,108 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+automatic_scaling:
+  max_idle_instances: 1
+
+
+handlers:
+
+
+- url: /client/assets
+  static_dir: assets
+
+
+- url: /assets
+  static_dir: assets
+
+
+- url: /$
+  static_files: client/index_deploy.html
+  upload: client/index_deploy.html
+
+
+- url: /client/$
+  static_files: client/index_deploy.html
+  upload: client/index_deploy.html
+
+
+- url: /dev$
+  static_files: client/index.html
+  upload: client/index.html
+
+
+- url: /pay
+  static_files: client/pay.html
+  upload: client/pay.html
+
+
+- url: /favicon.ico
+  static_files: assets/images/ui/faviconlogo.svg
+  upload: assets/images/ui/faviconlogo.svg
+
+  
+- url: /ClientConfig.js
+  static_files: client/ClientConfig.js
+  upload: client/ClientConfig.js
+
+
+- url: /js
+  static_dir: client/js
+  http_headers:
+    Access-Control-Allow-Origin: http://mygame.appspot.com
+
+- url: /client
+  static_dir: client
+  application_readable: true
+
+
+- url: /$
+  static_dir: client
+
+
+- url: /client/mailchimp/.*
+  static_dir: client/mailchimp
+
+
+- url: /ige
+  static_dir: ige
+
+
+- url: /api/.*
+  script: village.api.root
+
+
+- url: /sheets/.*
+  script: village.sheets.root
+
+  
+- url: /.*
+  script: village.main.root
+
+
+- url: /css2/.*
+  script: village.main.root
+
+
+- url: /js2/.*
+  script: village.main.root
+
+
+libraries:
+- name: pycrypto
+  version: latest
+
+skip_files:
+- .venv/
+- libs/Crypto/
+- (.*).pyc$
+- .git/
+- .idea/
+- (.*).pack$
+- \(
+- ^ige/
+- (.*)/.DS_Store
+- (.*)/.meta$
+- (.*).tmpl
+- (.*).tar.gz
+- ige(.*)merge
