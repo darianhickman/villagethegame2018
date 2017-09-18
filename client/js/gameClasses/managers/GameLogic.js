@@ -196,7 +196,7 @@ var GameLogic = IgeObject.extend({
             //popup congrats message by entering state goalDialog explicitly
             ige.client.fsm.enterState('goalDialog', null, function (err) {
                 if (!err) {
-                    $('#goalDialogContent').html("<p style='text-align:center;'>" + data.message + "</p>");
+                    $('#goalDialogContent').html("<div class='goalDialogMascot'><img class='goalDialogMascotImg' src='" + GameConfig.config['goalDialogMascotURL'] + "'></div><div class='goalDialogInfo speechBubble'>" + data.message + "</div>");
                     $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog({ resizable: false, draggable: true, closeOnEscape: true, title: data.title, close: function( event, ui ) {ige.client.fsm.enterState('select')}, width: 'auto', height: 'auto', modal: true, autoOpen: false });
                     $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog( "open" );
                 }
