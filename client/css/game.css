@@ -369,6 +369,14 @@ button, input, textarea {
 .goalDialogMascotImg {
 	float: right;
 }
+.problemDialogMascot {
+	width: 25%;
+	float: left;
+	margin: 5px;
+}
+.problemDialogMascotImg {
+	float: right;
+}
 .speechBubble {
 	position: relative;
 	background: #00aabb;
@@ -405,6 +413,14 @@ button, input, textarea {
 	width: 78%;
 	margin-top: 4px;
 	font-size: 14px;
+}
+.problemDialogInfo{
+	min-height: 30px;
+	max-width: 200px;
+	width: 60%;
+	float: left;
+	margin: 15px;
+	text-align: center;
 }
 .problemDetails {
 	cursor: pointer;

@@ -11,7 +11,7 @@ var ProblemManager = IgeEventingClass.extend({
     showProblem: function (problemID) {
         ige.client.eventEmitter.emit('showMessage', {
             "title" : GameProblems.problemsLookup[problemID].title,
-            "message" : GameProblems.problemsLookup[problemID].details,
+            "message" : "<div class='problemDialogMascot'><img class='problemDialogMascotImg' src='" + GameConfig.config['problemDialogMascotURL'] + "'></div><div class='problemDialogInfo speechBubble'>" + GameProblems.problemsLookup[problemID].details + "</div>",
             "callback" : function(){
                 ige.client.eventEmitter.emit('loadGoal', {
                     "goalID" : GameProblems.problemsLookup[problemID].goalID
