@@ -992,8 +992,7 @@ var Client = IgeClass.extend({
 
                 // Create a new instance of the object we are going to build
                 ige.client.cursorObject = new ige.newClassInstance(data.classId)
-                    .mount(ige.$('tileMap1'))
-                    .layer(24);
+                    .mount(ige.$('tileMap1'));
                 var cursorClassId = data.classId
 
                 ige.client.cursorObjectData = data;
@@ -1164,7 +1163,6 @@ var Client = IgeClass.extend({
 
                     // Tween the object to the position by "bouncing" it
                     ige.client.cursorObject
-                        .layer(5)
                         .translate().z(100)
                         ._translate.tween(
                         {z: 0},
