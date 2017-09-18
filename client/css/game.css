@@ -329,6 +329,7 @@ button, input, textarea {
 	color: #FFFFFF;
 }
 #taskList {
+	clear: both;
 	display: block;
 	list-style-type: none;
 	margin: 0;
@@ -360,7 +361,50 @@ button, input, textarea {
 	margin: 0px;
 	padding: 0px;
 }
+.goalDialogMascot {
+	width: 25%;
+	float: left;
+	margin: 5px;
+}
+.goalDialogMascotImg {
+	float: right;
+}
+.problemDialogMascot {
+	width: 25%;
+	float: left;
+	margin: 5px;
+}
+.problemDialogMascotImg {
+	float: right;
+}
+.speechBubble {
+	position: relative;
+	background: #00aabb;
+	border-radius: .4em;
+}
+
+.speechBubble:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 30%;
+	width: 0;
+	height: 0;
+	border: 5px solid transparent;
+	border-right-color: #00aabb;
+	border-left: 0;
+	margin-top: -5px;
+	margin-left: -5px;
+}
 .goalDialogInfo{
+	min-height: 30px;
+	max-width: 200px;
+	width: 60%;
+	float: left;
+	margin: 15px;
+	text-align: center;
+}
+.goalDialogRewards{
 	margin: 15px;
 	text-align: center;
 }
@@ -369,6 +413,14 @@ button, input, textarea {
 	width: 78%;
 	margin-top: 4px;
 	font-size: 14px;
+}
+.problemDialogInfo{
+	min-height: 30px;
+	max-width: 200px;
+	width: 60%;
+	float: left;
+	margin: 15px;
+	text-align: center;
 }
 .problemDetails {
 	cursor: pointer;
