@@ -314,15 +314,6 @@ def get_goals_tasks():
             items.append(dict(zip(headers, row)))
     return items
 
-@memcached('goals_settings')
-def get_goals_settings():
-    sheet_config = get_config()
-    goals_docid = sheet_config['goals_docid']
-    data = get_worksheet(goals_docid,"settings")
-    d = {}
-    for row in data[1:]:
-        d[row[0]] = row[1]
-    return d
 
 @memcached('config')
 def get_config():
