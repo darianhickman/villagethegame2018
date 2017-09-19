@@ -64,10 +64,10 @@ var Client = IgeClass.extend({
 
                     ige.$('bob').walkToTile(tile.x, tile.y);
                 });
-                if(ige.client.eventEmitter){
+                if(ige.client.gameLogic){
                     ige.client.executePendingActionTimeout = new IgeTimeout(function () {
                         ige.client.eventEmitter.emit('executePendingAction', null);
-                    }, 5000);
+                    }, ige.client.gameLogic.queueManager.getPendingActionTimeout() * 1000);
                 }
                 completeCallback();
             },
