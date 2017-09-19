@@ -26,5 +26,18 @@ var ProblemManager = IgeEventingClass.extend({
 
     getProblemIDbyGoalID: function (goalID) {
         return GameProblems.goalsLookup[goalID].problemID;
+    },
+
+    getNextProblemID: function (completedProblemID) {
+        var nextIndex, nextProblemID = "";
+
+        for(var i = 0; i < GameProblems.problemOrder.length - 1; i++) {
+            if(GameProblems.problemOrder[i] === completedProblemID) {
+                nextIndex = i + 1;
+                nextProblemID = GameProblems.problemOrder[nextIndex];
+                break;
+            }
+        }
+        return nextProblemID;
     }
 });
