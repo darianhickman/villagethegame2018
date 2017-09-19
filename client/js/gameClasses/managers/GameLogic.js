@@ -181,17 +181,19 @@ var GameLogic = IgeObject.extend({
             API.setGoalRewardsAsCollected(data.goalID);
 
             //add loadNextProblem action to the queueManager
-            var nextProblemID = ige.client.gameLogic.goals.getGoal(data.goalID).Load_Problem_On_Complete;
-            var nextProblemTimeout = GameProblems.problemsLookup[nextProblemID].timeout;
-            ige.client.gameLogic.queueManager.addNewAction("loadNextProblem", function(){
-                //load next problem
-                var nextProblemID = ige.client.gameLogic.goals.getGoal(data.goalID).Load_Problem_On_Complete;
-                if(nextProblemID !== "None" && nextProblemID !== "none" && nextProblemID !== "" && nextProblemID !== null && nextProblemID !== undefined){
-                    ige.client.gameLogic.problemManager.showProblem(nextProblemID);
-                    API.state.currentProblemID = nextProblemID;
-                    API.setProblemAsShown(nextProblemID);
-                }
-            }, nextProblemTimeout);
+            var nextProblemID = ige.client.gameLogic.problemManager.getNextProblemID(API.state.currentProblemID);
+            if(nextProblemID !== "None" && nextProblemID !== "none" && nextProblemID !== "" && nextProblemID !== null && nextProblemID !== undefined){
+                var nextProblemTimeout = GameProblems.problemsLookup[nextProblemID].timeout;
+                ige.client.gameLogic.queueManager.addNewAction("loadNextProblem", function(){
+                    //load next problem
+                    var nextProblemID = ige.client.gameLogic.problemManager.getNextProblemID(API.state.currentProblemID);
+                    if(nextProblemID !== "None" && nextProblemID !== "none" && nextProblemID !== "" && nextProblemID !== null && nextProblemID !== undefined){
+                        ige.client.gameLogic.problemManager.showProblem(nextProblemID);
+                        API.state.currentProblemID = nextProblemID;
+                        API.setProblemAsShown(nextProblemID);
+                    }
+                }, nextProblemTimeout);
+            }
 
             //popup congrats message by entering state goalDialog explicitly
             ige.client.fsm.enterState('goalDialog', null, function (err) {
@@ -258,7 +260,8 @@ var GameLogic = IgeObject.extend({
             //if goal complete and rewards collected, load next problem
             if(API.stateGoalsLookup[currentGoalID].isComplete && API.stateGoalsLookup[currentGoalID].isRewardsCollected){
                 //load next problem
-                var nextProblemID = self.goals.getGoal(API.state.currentGoalID).Load_Problem_On_Complete;
+                var completedProblemID = self.problemManager.getProblemIDbyGoalID(currentGoalID);
+                var nextProblemID = self.problemManager.getNextProblemID(completedProblemID);
                 if(nextProblemID !== "None" && nextProblemID !== "none" && nextProblemID !== "" && nextProblemID !== null && nextProblemID !== undefined){
                     self.problemManager.showProblem(nextProblemID);
                     API.state.currentProblemID = nextProblemID;
