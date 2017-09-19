@@ -39,7 +39,8 @@ var GameObjects = {
         }
     },
     createGameObjectClass: function(classId, options) {
-        GameObjects.gameObjectTextures[classId] = [options.textureUrl, options.cellCount || 1, options.textureID]
+        var atlasTextureID = options.textureUrl.substr(options.textureUrl.lastIndexOf('/') + 1);
+        GameObjects.gameObjectTextures[classId] = [options.textureUrl, options.cellCount || 1, atlasTextureID]
 
         if(options.enabled) GameObjects._marketCallbacks.push(function(marketDialog) {
             marketDialog.addItem({
