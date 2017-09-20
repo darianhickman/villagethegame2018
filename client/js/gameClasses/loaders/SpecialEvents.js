@@ -17,6 +17,7 @@ var getSpecialEvents = function(){
                         'displayName': item.DisplayName,
                         'description': item.Description,
                         'cost': item.Cost,
+                        'earnings': item.Earnings,
                         'time': item.Time,
                         'startCell': item.StartCell,
                         'endCell': item.EndCell,

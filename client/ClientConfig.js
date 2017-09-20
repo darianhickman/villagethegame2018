@@ -49,7 +49,6 @@ var igeClientConfig = {
 		'/js/gameClasses/base/HiEntity.js',
 
 		'/js/gameClasses/loaders/GameAssets.js',
-		'/js/gameClasses/loaders/GameEarnings.js',
 		'/js/gameClasses/loaders/GameProblems.js',
 		'/js/gameClasses/loaders/AssetBundle.js',
 		'/js/gameClasses/loaders/GameGoals.js',

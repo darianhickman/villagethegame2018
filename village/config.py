@@ -230,18 +230,6 @@ def get_config_assets():
             items.append(dict(zip(headers, row)))
     return items
 
-@memcached('config_earnings')
-def get_config_earnings():
-    conf = local_config['spreadsheet']
-    config_docid = conf['config_docid']
-    data = get_worksheet(config_docid,"earnings")
-    headers = data[0]
-    items = []
-    for row in data[2:]:
-        if row and row[0]:
-            items.append(dict(zip(headers, row)))
-    return items
-
 @memcached('problems')
 def get_problems():
     sheet_config = get_config()

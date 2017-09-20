@@ -286,22 +286,29 @@ var GameLogic = IgeObject.extend({
         self.rewardMechanism = new RewardMechanism();
 
         //set earnings on handlers
-        for(var item in GameEarnings.earnings){
-            var arr = GameEarnings.earnings[item]
-            for(var i = 0; i < arr.length; i++){
-                (function(i, arr){
-                    ige.client.eventEmitter.on(item, function(data){
-                        var translateObj = null;
-                        if(data.positionX || data.positionY){
-                            translateObj = {};
-                            translateObj.x = data.positionX || 0;
-                            translateObj.y = data.positionY || 0;
-                            translateObj.z = 0;
-                        }
-                        self.rewardMechanism.claimReward(arr[i].asset, arr[i].amount, translateObj, data.itemRef)
-                    })
-                })(i, arr)
-            }
+        for(var item in SpecialEvents.events){
+            if(SpecialEvents.events[item].earnings === "0")
+                continue;
+            var earnings = SpecialEvents.events[item].earnings.split(",");
+            var price = ClientHelpers.convertToPrice(earnings);
+            (function(price){
+                ige.client.eventEmitter.on(item, function(data){
+                    var translateObj = null;
+                    if(data.positionX || data.positionY){
+                        translateObj = {};
+                        translateObj.x = data.positionX || 0;
+                        translateObj.y = data.positionY || 0;
+                        translateObj.z = 0;
+                    }
+                    if(price.coins > 0)
+                        self.rewardMechanism.claimReward("coins", price.coins, translateObj, data.itemRef)
+                    if(price.cash > 0)
+                        self.rewardMechanism.claimReward("cash", price.cash, translateObj, data.itemRef)
+                    if(price.water > 0)
+                        self.rewardMechanism.claimReward("water", price.water, translateObj, data.itemRef)
+                })
+            })(price)
+
         }
 
         //on item build unlock new item
