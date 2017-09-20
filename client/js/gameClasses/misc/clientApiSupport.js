@@ -14,7 +14,11 @@ var API = {
                     ga("send",  "Online user");
                     dataLayer.push({'userEmail': API.user.email});
                     API.loginStatus = "online"
-                    history.replaceState({'villageID':API.user.key_id},"load_village",'?v='+API.user.key_id+location.hash);
+                    var aboutQuery = "";
+                    if (getParameterByName(location.search, 's')) {
+                        aboutQuery = "s=about&";
+                    }
+                    history.replaceState({'villageID':API.user.key_id},"load_village",'?' + aboutQuery + 'v='+API.user.key_id+location.hash);
                 } else if(result.status === 'fail'){
                     location.href = result.login_url
                 } else {
