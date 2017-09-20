@@ -14,6 +14,11 @@ var RewardMechanism = IgeEventingClass.extend({
     },
 
     claimReward: function(assetName, amount, translateObj, itemRef){
+        var self = this
+        _translateObj = translateObj || {x:-self.uiScene._renderPos.x,y:-self.uiScene._renderPos.y,z:0};
+        _translateObj.x += self.uiScene._renderPos.x;
+        _translateObj.y += self.uiScene._renderPos.y;
+
         switch(assetName){
             case "xp":
                 //add xp
@@ -28,6 +33,21 @@ var RewardMechanism = IgeEventingClass.extend({
                 API.addWater(parseInt(amount))
                 break;
         }
+        var animation = new AssetAnimation(assetName, self.textureListLookup[assetName].texture, self.textureListLookup[assetName].mount)
+            .drawBounds(true)
+            .width(50)
+            .height(60)
+            .translateTo(_translateObj.x,_translateObj.y,_translateObj.z)
+            .mount(self.uiScene);
+        animation.update = function(){
+            AssetAnimation.prototype.update.call(this);
+            if(itemRef !== null && itemRef !== undefined)
+            this.translateTo(itemRef.screenPosition().x + self.uiScene._renderPos.x, itemRef.screenPosition().y + self.uiScene._renderPos.y, _translateObj.z);
+        }
+        new IgeTimeout(function () { animation.gotoTopNavBar(); }, parseInt(GameConfig.config['assetAnimationTimerDuration']) * 100);
+        animation.mouseOver(function(){
+            animation.gotoTopNavBar();
+        });
 
     },
 
