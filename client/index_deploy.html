@@ -33,15 +33,17 @@
     <script type="text/javascript">
         var igeRoot = '/ige/engine/';
     </script>
-
-    <script id="gameStartScript" data-location="deploy" type="text/javascript" src="client/deploy/gameStart.min.js"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W27P4W3"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<ul class="igeLoading loadingFloat">
+<div id="villageTitleScreen">
+    <button id="titleScreenPlay" class="titleScreenButton">Play</button>
+    <button id="titleScreenAbout" class="titleScreenButton">About</button>
+</div>
+<ul id="loadingContainer" class="igeLoading loadingFloat">
     <li class="loadingTitle">Village Makeover</li>
     <li>
         <div class="loadingLogo">
@@ -477,6 +479,35 @@
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-5656121-3', 'auto');
     ga("send", 'pageview');
+</script>
+<script>
+    $(document).ready(function (){
+        if(location.hash !== "" || location.search !== ""){
+            startGame();
+            return;
+        }
+        $("#villageTitleScreen").show();
+        $("#titleScreenPlay").click(function (){
+            startGame();
+        });
+        $("#titleScreenAbout").click(function (){
+            history.replaceState({},"about_village",'?s=about');
+            startGame();
+        });
+        function startGame(){
+            $("#villageTitleScreen").hide();
+            $("#hudcontainer").show();
+            $("#loadingContainer").show();
+            $("body").css("background-image","url('../assets/images/backgrounds/FullVillage.webp')");
+
+            var s = document.createElement("script");
+            s.id = "gameStartScript";
+            s.type = "text/javascript";
+            s.src = "client/deploy/gameStart.min.js";
+            $(s).attr('data-location', 'deploy');
+            $("head").append(s);
+        }
+    });
 </script>
 </body>
 </html>

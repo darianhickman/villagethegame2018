@@ -31,7 +31,16 @@ var Client = IgeClass.extend({
                 vlg.music['welcome'].fadeOut(0, 2000);
                 vlg.music['levelfull1'].fadeIn(1.0, 2000);
                 //hope this works this simply.
-                ige.client.fsm.enterState('select');
+                if(getParameterByName(location.search, 's') && getParameterByName(location.search, 'v')){
+                    history.replaceState({'villageID':API.user.key_id},"load_village",'?v='+API.user.key_id+location.hash);
+                    ige.client.fsm.enterState('aboutDialog');
+                }
+                else if(getParameterByName(location.search, 's')){
+                    history.replaceState({},"about_village",location.href.split("?")[0]);
+                    ige.client.fsm.enterState('aboutDialog');
+                }
+                else
+                    ige.client.fsm.enterState('select');
                 completeCallback();
             },
 
@@ -850,7 +859,7 @@ var Client = IgeClass.extend({
             enter: function (data, completeCallback) {
                 vlg.log.info('entering state this.fsm.aboutDialog');
                 dataLayer.push({'event': 'aboutDialog'});
-                $( "#" + GameFSM.settings["aboutDialog"].dialogID ).dialog({width: "80%", minWidth: 925, maxWidth: 1215, height: 650, close: function( event, ui ) {}});
+                $( "#" + GameFSM.settings["aboutDialog"].dialogID ).dialog({width: "80%", minWidth: 925, maxWidth: 1215, height: 650, close: function( event, ui ) {ige.client.fsm.enterState('select')}});
 
                 completeCallback();
             },

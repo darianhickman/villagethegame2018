@@ -7,7 +7,6 @@ html {
 }
 body {
 	background: #000;
-	background-image: url("../assets/images/backgrounds/FullVillage.webp");
 	width: 100%;
 	height: 100%;
 	margin: 0;
@@ -19,6 +18,39 @@ body {
 button, input, textarea {
 	font-family: arial;
 
+}
+#villageTitleScreen {
+	display: none;
+	text-align: center;
+	background-image: url("../assets/images/backgrounds/villageTitleScreen.jpg");
+	height: 435px;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.titleScreenButton{
+	font-family: arial;
+	padding: 5px 17px;
+	background-color: #E3E3E3;
+	border: 1px solid #AAAAAA;
+	border-radius: 5px;
+	box-shadow: 0 3px #AAAAAA;
+	outline: none;
+	cursor: pointer;
+}
+.titleScreenButton:active {
+	background-color: #F1F1F1;
+	box-shadow: 0 1px #999;
+	transform: translateY(2px);
+}
+#titleScreenPlay {
+	margin-top: 300px;
+	margin-right: 50px;
+}
+#loadingContainer {
+	display: none;
 }
 .loadingFloat {
 	padding: 20px;
@@ -120,6 +152,7 @@ button, input, textarea {
 	opacity: 0.7;
 }
 #hudcontainer {
+	display: none;
 	position: absolute;
 	top: 5px;
 	z-index: 10;
