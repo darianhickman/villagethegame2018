@@ -28,7 +28,7 @@ var AssetAnimation = IgeEntity.extend({
                     x: -20,
                 }, 400, 'inOutSine')
                 .repeatMode(1, -1)
-                .startTime(ige._currentTime + i * 100)
+                .startTime(ige._currentTime + i * 10)
                 .start();
 
             self.tweenRefs.push(obj.tweenRef)
@@ -41,7 +41,7 @@ var AssetAnimation = IgeEntity.extend({
                     y: 40
                 }, 200, 'inSine')
                 .repeatMode(1, -1)
-                .startTime(ige._currentTime + i * 100)
+                .startTime(ige._currentTime + i * 10)
                 .start();
 
             self.tweenRefs.push(obj.tweenRef)
@@ -70,7 +70,7 @@ var AssetAnimation = IgeEntity.extend({
                     },500,'inSine')
                     .afterTween(function(tween){
                         self.objects[i].hide()})
-                    .startTime(ige._currentTime + i * 30)
+                    .startTime(ige._currentTime + i * 10)
                     .start();
             })(i)
         }
