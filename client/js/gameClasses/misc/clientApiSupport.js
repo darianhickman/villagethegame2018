@@ -49,16 +49,16 @@ var API = {
             console.log('loaded state from local storage', localStorage.getItem('state'))
             var first = !API.state.objects
             API.state = JSON.parse(localStorage.getItem('state'))
-            postinit_cb(API.state.isTutorialShown)
+            postinit_cb()
             API._buyCallback()
             if(first)
                 API.firstReloadState()
             API.reloadState()
-            if(API.state.isTutorialShown){
-                //start game logic
-                ige.client.eventEmitter = ige.client.eventEmitter || new EventEmitter()
-                ige.client.gameLogic = ige.client.gameLogic || new GameLogic()
-            }
+
+            //start game logic
+            ige.client.eventEmitter = ige.client.eventEmitter || new EventEmitter()
+            ige.client.gameLogic = ige.client.gameLogic || new GameLogic()
+
             ige.client.isFirstLoadFinished = true;
         }else if(API.loginStatus === "online"){
             $.ajax({
@@ -81,16 +81,16 @@ var API = {
                         API.state = result
                         //could show a warning that this is an existing user and local storage stands still
                     }
-                    postinit_cb(API.state.isTutorialShown)
+                    postinit_cb()
                     API._buyCallback()
                     if(first)
                         API.firstReloadState()
                     API.reloadState()
-                    if(API.state.isTutorialShown){
-                        //start game logic
-                        ige.client.eventEmitter = new EventEmitter()
-                        ige.client.gameLogic = new GameLogic()
-                    }
+
+                    //start game logic
+                    ige.client.eventEmitter = new EventEmitter()
+                    ige.client.gameLogic = new GameLogic()
+
                     ige.client.isFirstLoadFinished = true;
                 }
             })

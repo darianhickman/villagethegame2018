@@ -39,8 +39,7 @@ var Client = IgeClass.extend({
                     history.replaceState({},"about_village",location.href.split("?")[0]);
                     ige.client.fsm.enterState('aboutDialog');
                 }
-                else
-                    ige.client.fsm.enterState('select');
+
                 completeCallback();
             },
 
@@ -548,13 +547,6 @@ var Client = IgeClass.extend({
 
                 dataLayer.push({'event': 'tutorial'});
 
-                if(API.state.isTutorialShown !== true){
-                    vlg.bindSounds();
-                    // start Level Music.
-                    vlg.music['welcome'].fadeOut(0, 2000);
-                    vlg.music['levelfull1'].fadeIn(1.0, 2000);
-                }
-
                 ige.$('vp1')
                     .mousePan.enabled(false)
                     .scrollZoom.enabled(false)
@@ -603,8 +595,6 @@ var Client = IgeClass.extend({
 
                 self.eventEmitter = self.eventEmitter || new EventEmitter()
                 self.gameLogic = self.gameLogic || new GameLogic()
-
-                API.setTutorialAsShown();
 
                 completeCallback();
             }
@@ -958,7 +948,7 @@ var Client = IgeClass.extend({
                 ige.removeGraph('GraphLevel1');
                 ige.removeGraph('GraphUi');
 
-                API.state = {coins: parseInt(GameConfig.config['startCoins']), cash: parseInt(GameConfig.config['startCash']), water: parseInt(GameConfig.config['startWater']), isTutorialShown: true };
+                API.state = {coins: parseInt(GameConfig.config['startCoins']), cash: parseInt(GameConfig.config['startCash']), water: parseInt(GameConfig.config['startWater']) };
                 API.stateObjectsLookup = {};
                 API.stateGoalsLookup = {};
                 API.user = null;
@@ -1694,7 +1684,7 @@ var Client = IgeClass.extend({
             // Start the engine
             ige.start(function (success) {
                 // Check if the engine started successfully
-                function postinit(isTutorialShown) {
+                function postinit() {
                     // Add base scene data
                     ige.addGraph('IgeBaseScene');
 
@@ -1748,13 +1738,7 @@ var Client = IgeClass.extend({
                         .id('bob')
                         .mount(ige.$('tileMap1'))
 
-                    if (isTutorialShown === true) {
-                        // Set the initial fsm state
-                        self.fsm.initialState('loaded');
-                    } else {
-                        // Set the initial fsm state
-                        self.fsm.initialState('tutorial');
-                    }
+                    self.fsm.initialState('loaded');
 
                     var loadedTime = (Date.now() - gameLoadTimer) / 1000 + "";
                     dataLayer.push({'loadTime': loadedTime});

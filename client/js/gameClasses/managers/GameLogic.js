@@ -326,9 +326,11 @@ var GameLogic = IgeObject.extend({
         })
 
         //if coming from login/logout enter select state explicitly
-        if(ige.client.fsm.currentStateName() === "reloadGame"){
-            ige.client.fsm.enterState('select');
-        }
+        setTimeout(function(){
+            if(ige.client.fsm.currentStateName() === "reloadGame" || ige.client.fsm.currentStateName() === "loaded"){
+                ige.client.fsm.enterState('select');
+            }
+        },100);
     },
 
     unlockMarketDialogItem: function(itemData){
