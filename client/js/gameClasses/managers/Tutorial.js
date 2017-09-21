@@ -19,7 +19,7 @@ var Tutorial = IgeEventingClass.extend({
             .appendTo("#hudcontainer").insertAfter("#topToolbarTutorial");
         $("#tutorialArrowSpan").hide()
 
-        self.tutorialArrow.image = $("<img id='tutorialArrowImage' src='" + ige.client.textures.tutorialArrow.url() + "'>")
+        self.tutorialArrow.image = $("<img id='tutorialArrowImage' src='" + ige.client.textures.actionIconSelect.url() + "'>")
             .appendTo("#tutorialArrowSpan")
             .rotate({angle:40});
 

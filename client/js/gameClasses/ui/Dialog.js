@@ -25,7 +25,7 @@ var Dialog = IgeUiElement.extend({
         this.closeButton = new IgeEntity()
             .id('closeButton_' + this.id())
             .layer(2)
-            .texture(ige.client.textures.closeButton)
+            .texture(ige.client.textures.close)
             .dimensionsFromTexture()
             .mouseDown(function () {
                 ige.input.stopPropagation();

@@ -218,11 +218,11 @@ def get_special_events():
             items.append(dict(zip(headers, row)))
     return items
 
-@memcached('config_assets')
-def get_config_assets():
-    conf = local_config['spreadsheet']
-    config_docid = conf['config_docid']
-    data = get_worksheet(config_docid,"assets")
+@memcached('assets')
+def get_assets():
+    sheet_config = get_config()
+    assets_docid = sheet_config['assets_docid']
+    data = get_sheet(assets_docid)
     headers = data[0]
     items = []
     for row in data[2:]:

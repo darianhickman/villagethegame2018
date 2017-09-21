@@ -11,7 +11,7 @@ import io
 from flask import render_template
 import config as config_module
 from .app_common import config
-from .config import get_config_docid, get_commit_head, get_config, get_catalog, get_news_feed, get_secret_key, get_config_assets, get_problems, get_asset_bundle, get_messages, get_fsm, get_goals_data, get_goals_tasks, get_dropdown_menu, get_special_events
+from .config import get_config_docid, get_commit_head, get_config, get_catalog, get_news_feed, get_secret_key, get_assets, get_problems, get_asset_bundle, get_messages, get_fsm, get_goals_data, get_goals_tasks, get_dropdown_menu, get_special_events
 from . import models
 from google.appengine.api import mail, app_identity, modules
 import cloudstorage
@@ -21,13 +21,13 @@ import webapp2
 root = flask.Flask(__name__)
 
 root.secret_key  = get_secret_key()
-cache_dict = {'config':'get_config','assets':'get_config_assets','problems':'get_problems','assetbundle':'get_asset_bundle','messages':'get_messages','fsm':'get_fsm','goalsdata':'get_goals_data','goalstasks':'get_goals_tasks','catalog':'get_catalog','dropdownmenu':'get_dropdown_menu','specialevents':'get_special_events'}
+cache_dict = {'config':'get_config','assets':'get_assets','problems':'get_problems','assetbundle':'get_asset_bundle','messages':'get_messages','fsm':'get_fsm','goalsdata':'get_goals_data','goalstasks':'get_goals_tasks','catalog':'get_catalog','dropdownmenu':'get_dropdown_menu','specialevents':'get_special_events'}
 
 @root.route('/_ah/warmup')
 def warmup():
     get_config()
     get_catalog()
-    get_config_assets()
+    get_assets()
     get_problems()
     get_asset_bundle()
     get_messages()
@@ -47,10 +47,7 @@ def config_route():
     worksheet_name = flask.request.form.get("worksheet")
     logging.info(['worksheet_name',worksheet_name ])
 
-    if worksheet_name == "assets":
-        return flask.Response(json.dumps(get_config_assets()),content_type='application/json')
-    else:
-        return flask.Response(json.dumps(dict(get_config()),indent=4),content_type='application/json')
+    return flask.Response(json.dumps(dict(get_config()),indent=4),content_type='application/json')
 
 @root.route('/getclientid')
 def client_id_route():
@@ -61,6 +58,10 @@ def client_id_route():
 @root.route('/problems')
 def problems_route():
     return flask.Response(json.dumps(get_problems()),content_type='application/json')
+
+@root.route('/assets')
+def assets_route():
+    return flask.Response(json.dumps(get_assets()),content_type='application/json')
 
 @root.route('/assetbundle')
 def asset_bundle_route():
