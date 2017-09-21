@@ -7,7 +7,7 @@ var Villager = IgeEntity.extend({
 		
 		self.isometric(true)
 			.bounds3d(20, 20, 30)
-			.texture(ige.client.textures.villager1)
+			.texture(ige.client.textures.villager)
 			.dimensionsFromCell()
 			.addComponent(IgeAnimationComponent)
 			.animation.define('NW', [1, 2, 3, 2], 12, -1)
