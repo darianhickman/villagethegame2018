@@ -36,6 +36,7 @@ var LoginManager = IgeEventingClass.extend({
                     success: function (result) {
                         dataLayer.push({'userEmail': result.email});
                         dataLayer.push({'event': 'userLogin'});
+                        ige.client.eventEmitter.emit('playerLogin', {});
                         ige.client.fsm.enterState('reloadGame');
                     },
                     processData: false,

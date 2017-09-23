@@ -14,7 +14,11 @@ var API = {
                     ga("send",  "Online user");
                     dataLayer.push({'userEmail': API.user.email});
                     API.loginStatus = "online"
-                    history.replaceState({'villageID':API.user.key_id},"load_village",'?v='+API.user.key_id+location.hash);
+                    var aboutQuery = "";
+                    if (getParameterByName(location.search, 's')) {
+                        aboutQuery = "s=about&";
+                    }
+                    history.replaceState({'villageID':API.user.key_id},"load_village",'?' + aboutQuery + 'v='+API.user.key_id+location.hash);
                 } else if(result.status === 'fail'){
                     location.href = result.login_url
                 } else {
@@ -45,16 +49,16 @@ var API = {
             console.log('loaded state from local storage', localStorage.getItem('state'))
             var first = !API.state.objects
             API.state = JSON.parse(localStorage.getItem('state'))
-            postinit_cb(API.state.isTutorialShown)
+            postinit_cb()
             API._buyCallback()
             if(first)
                 API.firstReloadState()
             API.reloadState()
-            if(API.state.isTutorialShown){
-                //start game logic
-                ige.client.eventEmitter = ige.client.eventEmitter || new EventEmitter()
-                ige.client.gameLogic = ige.client.gameLogic || new GameLogic()
-            }
+
+            //start game logic
+            ige.client.eventEmitter = ige.client.eventEmitter || new EventEmitter()
+            ige.client.gameLogic = ige.client.gameLogic || new GameLogic()
+
             ige.client.isFirstLoadFinished = true;
         }else if(API.loginStatus === "online"){
             $.ajax({
@@ -77,16 +81,16 @@ var API = {
                         API.state = result
                         //could show a warning that this is an existing user and local storage stands still
                     }
-                    postinit_cb(API.state.isTutorialShown)
+                    postinit_cb()
                     API._buyCallback()
                     if(first)
                         API.firstReloadState()
                     API.reloadState()
-                    if(API.state.isTutorialShown){
-                        //start game logic
-                        ige.client.eventEmitter = new EventEmitter()
-                        ige.client.gameLogic = new GameLogic()
-                    }
+
+                    //start game logic
+                    ige.client.eventEmitter = new EventEmitter()
+                    ige.client.gameLogic = new GameLogic()
+
                     ige.client.isFirstLoadFinished = true;
                 }
             })

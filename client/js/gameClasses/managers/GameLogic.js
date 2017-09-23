@@ -82,7 +82,7 @@ var GameLogic = IgeObject.extend({
                 items.push("<li><table ><tr><td rowspan=2>" + itemImg + " </td><td width= 320 ><span class='goalTaskTitle'>"+ value.title  +  "</td></tr><tr><td></span><div class='goalTaskPercent' id='task" + value.taskID + "' ><div class='progressLabel' id='taskLabel" + value.taskID + "'></div></div></td></tr></table></li>");
             });
             //add problem info
-            $('#goalDialogContent').html("<div class='goalDialogInfo'>Solves: " + GameProblems.problemsLookup[API.state.currentProblemID].title + "</div>");
+            $('#goalDialogContent').html("<div class='goalDialogMascot'><img class='goalDialogMascotImg' src='" + GameConfig.config['goalDialogMascotURL'] + "'></div><div class='goalDialogInfo speechBubble'>" + GameProblems.problemsLookup[API.state.currentProblemID].title + "</div>");
             var problemDetails = $('#goalDialogContent').find(".problemDetails").first();
             problemDetails.attr("title",GameProblems.problemsLookup[API.state.currentProblemID].details);
             problemDetails.tooltip({
@@ -112,11 +112,11 @@ var GameLogic = IgeObject.extend({
                 rewardsArr[i] = assets.reverse().join("");
             }
             //add rewards info
-            $('#goalDialogContent').append("<div class='goalDialogInfo'>Rewards: " + rewardsArr + "</div>");
+            $('#goalDialogContent').append("<div class='goalDialogRewards'>Rewards: " + rewardsArr + "</div>");
             //if goal is complete and rewards not collected add 'collect rewards' button into dialog, and show 'goal complete' in ui
             if(API.stateGoalsLookup[data.id].isComplete && !API.stateGoalsLookup[data.id].isRewardsCollected){
                 //add 'collect rewards' button
-                $('#goalDialogContent').append("<div class='goalDialogInfo'><button class='collectRewards' id='collectRewardsGoal" + data.id + "'>Collect Rewards</button></div>");
+                $('#goalDialogContent').append("<div class='goalDialogRewards'><button class='collectRewards' id='collectRewardsGoal" + data.id + "'>Collect Rewards</button></div>");
                 $('#collectRewardsGoal' + data.id).click(function(){
                     $("#goalCompleteNotification").hide();
                     ige.client.eventEmitter.emit('collectRewards', {"goalID":data.id,
@@ -153,7 +153,7 @@ var GameLogic = IgeObject.extend({
             dataLayer.push({'event': 'goalComplete'});
             API.setGoalAsComplete(data.goalID);
             //add 'collect rewards' button
-            $('#goalDialogContent').append("<div class='goalDialogInfo'><button class='collectRewards' id='collectRewardsGoal" + data.goalID + "'>Collect Rewards</button></div>");
+            $('#goalDialogContent').append("<div class='goalDialogRewards'><button class='collectRewards' id='collectRewardsGoal" + data.goalID + "'>Collect Rewards</button></div>");
             $('#collectRewardsGoal' + data.goalID).click(function(){
                 $("#goalCompleteNotification").hide();
                 ige.client.eventEmitter.emit('collectRewards', data);
@@ -181,22 +181,24 @@ var GameLogic = IgeObject.extend({
             API.setGoalRewardsAsCollected(data.goalID);
 
             //add loadNextProblem action to the queueManager
-            var nextProblemID = ige.client.gameLogic.goals.getGoal(data.goalID).Load_Problem_On_Complete;
-            var nextProblemTimeout = GameProblems.problemsLookup[nextProblemID].timeout;
-            ige.client.gameLogic.queueManager.addNewAction("loadNextProblem", function(){
-                //load next problem
-                var nextProblemID = ige.client.gameLogic.goals.getGoal(data.goalID).Load_Problem_On_Complete;
-                if(nextProblemID !== "None" && nextProblemID !== "none" && nextProblemID !== "" && nextProblemID !== null && nextProblemID !== undefined){
-                    ige.client.gameLogic.problemManager.showProblem(nextProblemID);
-                    API.state.currentProblemID = nextProblemID;
-                    API.setProblemAsShown(nextProblemID);
-                }
-            }, nextProblemTimeout);
+            var nextProblemID = ige.client.gameLogic.problemManager.getNextProblemID(API.state.currentProblemID);
+            if(nextProblemID !== "None" && nextProblemID !== "none" && nextProblemID !== "" && nextProblemID !== null && nextProblemID !== undefined){
+                var nextProblemTimeout = GameProblems.problemsLookup[nextProblemID].timeout;
+                ige.client.gameLogic.queueManager.addNewAction("loadNextProblem", function(){
+                    //load next problem
+                    var nextProblemID = ige.client.gameLogic.problemManager.getNextProblemID(API.state.currentProblemID);
+                    if(nextProblemID !== "None" && nextProblemID !== "none" && nextProblemID !== "" && nextProblemID !== null && nextProblemID !== undefined){
+                        ige.client.gameLogic.problemManager.showProblem(nextProblemID);
+                        API.state.currentProblemID = nextProblemID;
+                        API.setProblemAsShown(nextProblemID);
+                    }
+                }, nextProblemTimeout);
+            }
 
             //popup congrats message by entering state goalDialog explicitly
             ige.client.fsm.enterState('goalDialog', null, function (err) {
                 if (!err) {
-                    $('#goalDialogContent').html("<p style='text-align:center;'>" + data.message + "</p>");
+                    $('#goalDialogContent').html("<div class='goalDialogMascot'><img class='goalDialogMascotImg' src='" + GameConfig.config['goalDialogMascotURL'] + "'></div><div class='goalDialogInfo speechBubble'>" + data.message + "</div>");
                     $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog({ resizable: false, draggable: true, closeOnEscape: true, title: data.title, close: function( event, ui ) {ige.client.fsm.enterState('select')}, width: 'auto', height: 'auto', modal: true, autoOpen: false });
                     $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog( "open" );
                 }
@@ -258,7 +260,8 @@ var GameLogic = IgeObject.extend({
             //if goal complete and rewards collected, load next problem
             if(API.stateGoalsLookup[currentGoalID].isComplete && API.stateGoalsLookup[currentGoalID].isRewardsCollected){
                 //load next problem
-                var nextProblemID = self.goals.getGoal(API.state.currentGoalID).Load_Problem_On_Complete;
+                var completedProblemID = self.problemManager.getProblemIDbyGoalID(currentGoalID);
+                var nextProblemID = self.problemManager.getNextProblemID(completedProblemID);
                 if(nextProblemID !== "None" && nextProblemID !== "none" && nextProblemID !== "" && nextProblemID !== null && nextProblemID !== undefined){
                     self.problemManager.showProblem(nextProblemID);
                     API.state.currentProblemID = nextProblemID;
@@ -283,22 +286,29 @@ var GameLogic = IgeObject.extend({
         self.rewardMechanism = new RewardMechanism();
 
         //set earnings on handlers
-        for(var item in GameEarnings.earnings){
-            var arr = GameEarnings.earnings[item]
-            for(var i = 0; i < arr.length; i++){
-                (function(i, arr){
-                    ige.client.eventEmitter.on(item, function(data){
-                        var translateObj = null;
-                        if(data.positionX || data.positionY){
-                            translateObj = {};
-                            translateObj.x = data.positionX || 0;
-                            translateObj.y = data.positionY || 0;
-                            translateObj.z = 0;
-                        }
-                        self.rewardMechanism.claimReward(arr[i].asset, arr[i].amount, translateObj, data.itemRef)
-                    })
-                })(i, arr)
-            }
+        for(var item in SpecialEvents.events){
+            if(SpecialEvents.events[item].earnings === "0")
+                continue;
+            var earnings = SpecialEvents.events[item].earnings.split(",");
+            var price = ClientHelpers.convertToPrice(earnings);
+            (function(price){
+                ige.client.eventEmitter.on(item, function(data){
+                    var translateObj = null;
+                    if(data.positionX || data.positionY){
+                        translateObj = {};
+                        translateObj.x = data.positionX || 0;
+                        translateObj.y = data.positionY || 0;
+                        translateObj.z = 0;
+                    }
+                    if(price.coins > 0)
+                        self.rewardMechanism.claimReward("coins", price.coins, translateObj, data.itemRef)
+                    if(price.cash > 0)
+                        self.rewardMechanism.claimReward("cash", price.cash, translateObj, data.itemRef)
+                    if(price.water > 0)
+                        self.rewardMechanism.claimReward("water", price.water, translateObj, data.itemRef)
+                })
+            })(price)
+
         }
 
         //on item build unlock new item
@@ -316,9 +326,11 @@ var GameLogic = IgeObject.extend({
         })
 
         //if coming from login/logout enter select state explicitly
-        if(ige.client.fsm.currentStateName() === "reloadGame"){
-            ige.client.fsm.enterState('select');
-        }
+        setTimeout(function(){
+            if(ige.client.fsm.currentStateName() === "reloadGame" || ige.client.fsm.currentStateName() === "loaded"){
+                ige.client.fsm.enterState('select');
+            }
+        },100);
     },
 
     unlockMarketDialogItem: function(itemData){

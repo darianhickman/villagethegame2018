@@ -1,4 +1,4 @@
-var GameProblems = {problems:[],problemsLookup:{},goalsLookup:{}}
+var GameProblems = {problems:[],problemsLookup:{},goalsLookup:{},problemOrder:[]}
 var getGameProblems = function() {
     var deferred = $.Deferred(),
         retryCount = 1,
@@ -20,6 +20,7 @@ var getGameProblems = function() {
                         'goalID': item.Load_Goal_ID
                     });
                     GameProblems.problemsLookup[item.Problem_ID] = GameProblems.goalsLookup[item.Load_Goal_ID] = GameProblems.problems[GameProblems.problems.length - 1];
+                    GameProblems.problemOrder = GameConfig.config['problemOrder'].split(",");
                 }
                 deferred.resolve("ok");
             },

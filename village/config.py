@@ -218,23 +218,11 @@ def get_special_events():
             items.append(dict(zip(headers, row)))
     return items
 
-@memcached('config_assets')
-def get_config_assets():
-    conf = local_config['spreadsheet']
-    config_docid = conf['config_docid']
-    data = get_worksheet(config_docid,"assets")
-    headers = data[0]
-    items = []
-    for row in data[2:]:
-        if row and row[0]:
-            items.append(dict(zip(headers, row)))
-    return items
-
-@memcached('config_earnings')
-def get_config_earnings():
-    conf = local_config['spreadsheet']
-    config_docid = conf['config_docid']
-    data = get_worksheet(config_docid,"earnings")
+@memcached('assets')
+def get_assets():
+    sheet_config = get_config()
+    assets_docid = sheet_config['assets_docid']
+    data = get_sheet(assets_docid)
     headers = data[0]
     items = []
     for row in data[2:]:
@@ -314,15 +302,6 @@ def get_goals_tasks():
             items.append(dict(zip(headers, row)))
     return items
 
-@memcached('goals_settings')
-def get_goals_settings():
-    sheet_config = get_config()
-    goals_docid = sheet_config['goals_docid']
-    data = get_worksheet(goals_docid,"settings")
-    d = {}
-    for row in data[1:]:
-        d[row[0]] = row[1]
-    return d
 
 @memcached('config')
 def get_config():

@@ -39,7 +39,8 @@ var GameObjects = {
         }
     },
     createGameObjectClass: function(classId, options) {
-        GameObjects.gameObjectTextures[classId] = [options.textureUrl, options.cellCount || 1, options.textureID]
+        var atlasTextureID = options.textureUrl.substr(options.textureUrl.lastIndexOf('/') + 1);
+        GameObjects.gameObjectTextures[classId] = [options.textureUrl, options.cellCount || 1, atlasTextureID]
 
         if(options.enabled) GameObjects._marketCallbacks.push(function(marketDialog) {
             marketDialog.addItem({
@@ -135,14 +136,12 @@ var GameObjects = {
                 this.mouseOver(function(){
                     var self = this;
                     if(ige.client.fsm.currentStateName() === "select" || ige.client.fsm.currentStateName() === "view"){
-                        this.layer(1)
-                            .highlight(true);
+                        this.highlight(true);
                     }
                 })
 
                 this.mouseOut(function(){
-                    this.layer(0)
-                        .highlight(false);
+                    this.highlight(false);
                 })
 
                 this.mouseMove(function(){

@@ -1,4 +1,4 @@
-var GameGoals = {goals:[],settings:{},tasks:[]}
+var GameGoals = {goals:[],tasks:[]}
 var getGameGoals = function() {
     var deferred = $.Deferred(),
         retryCount = 1,
@@ -11,7 +11,6 @@ var getGameGoals = function() {
             url: '/goals',
             success: function (data) {
                 GameGoals.goals = data.goals;
-                GameGoals.settings = data.settings;
                 GameGoals.tasks = data.tasks;
                 deferred.resolve("ok");
             },
