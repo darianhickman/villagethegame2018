@@ -40,11 +40,11 @@
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <div id="villageTitleScreen">
-    <button id="titleScreenPlay" class="titleScreenButton">Play</button>
-    <button id="titleScreenAbout" class="titleScreenButton">About</button>
+    <img id="titleScreenPlay" class="titleScreenButton" src="assets/images/ui/play_button.png">
+    <img id="titleScreenAbout" class="titleScreenButton" src="assets/images/ui/about_button.png">
 </div>
 <ul id="loadingContainer" class="igeLoading loadingFloat">
-    <li class="loadingTitle">Village Makeover</li>
+    <li><img class="loadingTitle" src="assets/images/ui/title.png"></li>
     <li>
         <div class="loadingLogo">
             <div class="loadingCircle"></div>
@@ -200,6 +200,46 @@
     </div>
     <div id="newsFeedDialog" title="News Feed" style="display:none">
         <ul id="newsList"></ul>
+    </div>
+    <div id="missionDialog" title="Missions" style="display:none">
+        <!--Pages are created based on this template-->
+        <div class="missionDialogPage" id="missionDialogPageTemplate">
+            <!--This ul is populated by catalog items. Number of items per page is set in config sheet-->
+            <ul class="missionDialogList">
+                <table>
+                    <tr class="missionDialogItem">
+                        <td class="iconcell" >
+                            <img  class="missiongoalImage" src="/favicon.ico?v=2"></td>
+                        <td class="missiongoalTitle">Title</td>
+                        <td class="missiongoalDiscription">
+                                0
+                        </td>
+                        <td class="missiongoalProcess">
+                                0
+                        </td>
+                        <td width="120">
+                            <span class="unlock" role="button">
+                                Unlock
+                                <img src="assets/images/ui/Banknotes.png"/>
+                                <span class="unlockprice"> </span>
+                            </span>
+                        </td>
+                        <td width="20">
+                            <span class="missiongoalReward">
+                                <img class="missiongoalReward" src="/assets/images/ui/Info-50.png">
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </ul>
+        </div>
+        <div class="pagination" id="missionDialogPagination">
+            <a href="#" class="first" data-action="first">&laquo;</a>
+            <a href="#" class="previous" data-action="previous">&lsaquo;</a>
+            <input type="text" readonly="readonly"/>
+            <a href="#" class="next" data-action="next">&rsaquo;</a>
+            <a href="#" class="last" data-action="last">&raquo;</a>
+        </div>
     </div>
     <div id="goalDialog" title="" style="display:none">
         <div id="goalDialogContent"></div>
