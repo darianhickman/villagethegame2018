@@ -22,7 +22,7 @@ button, input, textarea {
 #villageTitleScreen {
 	display: none;
 	text-align: center;
-	background-image: url("../assets/images/backgrounds/villageTitleScreen.jpg");
+	background-image: url("../assets/images/backgrounds/villageTitleScreen.png");
 	height: 435px;
 	margin: 0;
 	padding: 0;
