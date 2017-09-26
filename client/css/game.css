@@ -14,6 +14,7 @@ body {
 	overflow: hidden;
 	background-size: 100%;
 	background-repeat: no-repeat;
+    background-color: #bf6048
 }
 button, input, textarea {
 	font-family: arial;
@@ -22,27 +23,23 @@ button, input, textarea {
 #villageTitleScreen {
 	display: none;
 	text-align: center;
-	background: url("../assets/images/backgrounds/villageTitleScreen.png");
+    background: url("../assets/images/backgrounds/villageTitleScreen.png");
+    background-repeat: no-repeat;
+    background-position: center top;
 	background-size: 100%;
     height: 650px;
     margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-repeat: no-repeat;
-	background-position: center;
 }
 .titleScreenButton{
-	background-color: #FFFFFF;
-	box-shadow: 0 3px #AAAAAA;
+	background-color: none;
+    box-shadow: none;
 	outline: none;
 	cursor: pointer;
     width: 150px;
 }
-.titleScreenButton:active {
-	background-color: #F1F1F1;
-	box-shadow: 0 1px #999;
-	transform: translateY(2px);
-}
+
 #titleScreenPlay {
     margin-top: 200px;
     margin-right:50px;
