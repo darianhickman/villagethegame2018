@@ -146,6 +146,12 @@ var Goals = IgeEventingClass.extend({
 
     getTask: function(taskID){
         var elementPos = GameGoals.tasks.map(function(x) {return x.Task_ID; }).indexOf(taskID);
+        this.tutorialArrow = $("<span id='tutorialArrowSpan'></span>")
+            .appendTo("#hudcontainer").insertAfter("#topToolbar");
+        $("#tutorialArrowSpan").hide()
+                                    
+        this.tutorialArrow.image = $("<img id='tutorialArrowImage' src='" + ige.client.textures.actionIconSelect.url() + "'>").appendTo("#tutorialArrowSpan")
+            .rotate({angle:40});
         return GameGoals.tasks[elementPos];
     },
 
