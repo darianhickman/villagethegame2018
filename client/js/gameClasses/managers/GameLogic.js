@@ -125,6 +125,7 @@ var GameLogic = IgeObject.extend({
                         "reward":data.gameGoalObj.goalReward});
                 });
                 //show 'goal complete' info in ui
+                $("#newGoalNotification").hide();
                 $("#goalCompleteNotification").show(GameConfig.config['goalCompleteEffect'], parseInt(GameConfig.config['goalCompleteEffectDuration']));
             }
             //jquery prepare dialog
