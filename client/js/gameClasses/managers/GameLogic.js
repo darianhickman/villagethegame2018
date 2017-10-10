@@ -125,12 +125,13 @@ var GameLogic = IgeObject.extend({
                         "reward":data.gameGoalObj.goalReward});
                 });
                 //show 'goal complete' info in ui
+                $('#newGoalNotification').hide();
                 $("#goalCompleteNotification").show(GameConfig.config['goalCompleteEffect'], parseInt(GameConfig.config['goalCompleteEffectDuration']));
             }
             //jquery prepare dialog
             $( "#goalDialog" ).dialog({ resizable: false, draggable: true, closeOnEscape: true, title: data.gameGoalObj.goalTitle, close: function( event, ui ) {ige.client.fsm.enterState('select')}, width: 'auto', height: 'auto', modal: true, autoOpen: false });
             //show 'new goal' info in ui
-            if(data.isNewGoal)
+            if(data.isNewGoal && !API.stateGoalsLookup[data.id].isComplete)
                 $('#newGoalNotification').show(GameConfig.config['newGoalEffect'], parseInt(GameConfig.config['newGoalEffectDuration']));
 
             if(self.isGoalIntervalSet === undefined){
