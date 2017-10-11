@@ -677,13 +677,14 @@ var Client = IgeClass.extend({
             enter: function (data, completeCallback) {
                 vlg.log.info('entering state this.fsm.goalDialog');
                 dataLayer.push({'event': 'goalDialog'});
+                $("#tutorialArrowSpan").hide();
                 completeCallback();
             },
             exit: function (data, completeCallback) {
                 vlg.log.info('exiting state this.fsm.goalDialog');
                 $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog({close: function( event, ui ) {}});
                 $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog( "close" );
-
+                $("#tutorialArrowSpan").show();
                 completeCallback();
             }
         });
