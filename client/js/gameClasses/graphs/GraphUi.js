@@ -118,7 +118,7 @@ var GraphUi = IgeSceneGraph.extend({
     $("#NotLoggedin").show();
     $("#Loggedin").hide();
     $("#endMove").hide();
-    $("toturialArrowSpan").hide();
+    $("marketArrow").hide();
 
     $("#dropDownContent")
         .html(DropDownMenu.dropDownContent);
@@ -322,7 +322,7 @@ var GraphUi = IgeSceneGraph.extend({
     $('#marketButton')
         .click(function () {
         // Open the build menu
-                $("#tutorialArrowSpan").hide();
+                $("#marketArrow").hide();
                 ga("send",  "Open market dialog");
                 self.toggleDialog('marketDialog');
         });
@@ -330,7 +330,7 @@ var GraphUi = IgeSceneGraph.extend({
         $('#goalButton')
             .click(function () {
                 self.toggleGoalDialog();
-                $("#tutorialArrowSpan").show();
+                $("#marketArrow").show();
           });
 
         $('#signinButton')
