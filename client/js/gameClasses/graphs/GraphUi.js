@@ -118,7 +118,8 @@ var GraphUi = IgeSceneGraph.extend({
     $("#NotLoggedin").show();
     $("#Loggedin").hide();
     $("#endMove").hide();
-    $("marketArrow").hide();
+    $("#topArrow").hide();
+    $("#marketArrow").hide();
 
     $("#dropDownContent")
         .html(DropDownMenu.dropDownContent);
@@ -325,12 +326,13 @@ var GraphUi = IgeSceneGraph.extend({
                 $("#marketArrow").hide();
                 ga("send",  "Open market dialog");
                 self.toggleDialog('marketDialog');
+                $("#topArrow").show();
         });
 
         $('#goalButton')
             .click(function () {
-                self.toggleGoalDialog();
-                $("#marketArrow").show();
+               $("#marketArrow").show();
+               self.toggleGoalDialog();
           });
 
         $('#signinButton')
@@ -359,7 +361,8 @@ var GraphUi = IgeSceneGraph.extend({
 
         $('#moveButton')
             .click(function () {
-                ige.client.fsm.enterState('move');
+               $("#topArrow").hide();
+               ige.client.fsm.enterState('move');
             });
 
       $('#zoomInButton')

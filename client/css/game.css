@@ -773,21 +773,26 @@ button, input, textarea {
 	padding: 0;
 }
 #marketArrow {
-	position: fixed;
+    position: fixed;
     margin-top: -35px;
+    margin-left: 5px;
     width: 31px;
 	height: 33px;
 	z-index: 1000;
+    -moz-animation: pointing 1s infinite linear;
+    -webkit-animation: pointing 1s infinite linear;
 }
 #topArrow {
     position: fixed;
     margin-top: 35px;
-    margin-left: -30px;
+    margin-left: 0px;
     background: none;
     border: none;
     width: 31px;
     height: 33px;
     z-index:1000;
+    -moz-animation: pointing 1s infinite linear;
+    -webkit-animation: pointing 1s infinite linear;
 }
 #arrowDown {
 	position: relative;
@@ -1039,6 +1044,18 @@ button, input, textarea {
 	100% {
 		-webkit-transform: rotate(360deg);
 	}
+}
+
+@keyframes pointing {
+    0% {
+        -webkit-transform:translateY(0px);
+    }
+    50% {
+        -webkit-transform:translateY(10px);
+    }
+    100% {
+        -webkit-transform:translateY(0px);
+    }
 }
 
 .sgButton {
