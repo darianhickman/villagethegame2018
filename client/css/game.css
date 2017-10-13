@@ -200,7 +200,7 @@ button, input, textarea {
 #topToolbar > li:nth-last-child(2) {
     float: right;
 }
-#topToolbar img {
+.topToolImg {
 	display: block;
 	background-image: url('../assets/images/ui/beigefade.png');
 	background-repeat: no-repeat;
@@ -772,16 +772,35 @@ button, input, textarea {
 	list-style: none;
 	padding: 0;
 }
-#tutorialArrowSpan {
-	position: fixed;
+#marketArrow {
+    position: fixed;
     margin-top: -35px;
+    margin-left: 5px;
     width: 31px;
 	height: 33px;
 	z-index: 1000;
+    -moz-animation: pointing 1s infinite linear;
+    -webkit-animation: pointing 1s infinite linear;
 }
-#tutorialArrowImage {
+#topArrow {
+    position: fixed;
+    margin-top: 35px;
+    margin-left: 0px;
+    background: none;
+    border: none;
+    width: 31px;
+    height: 33px;
+    z-index:1000;
+    -moz-animation: pointing 1s infinite linear;
+    -webkit-animation: pointing 1s infinite linear;
+}
+#arrowDown {
 	position: relative;
     transform: rotate(220deg);
+}
+#arrowUp {
+    position:relative;
+    transform:rotate(40deg);
 }
 #skipTutorial {
 	position: absolute;
@@ -1025,6 +1044,18 @@ button, input, textarea {
 	100% {
 		-webkit-transform: rotate(360deg);
 	}
+}
+
+@keyframes pointing {
+    0% {
+        -webkit-transform:translateY(0px);
+    }
+    50% {
+        -webkit-transform:translateY(10px);
+    }
+    100% {
+        -webkit-transform:translateY(0px);
+    }
 }
 
 .sgButton {
