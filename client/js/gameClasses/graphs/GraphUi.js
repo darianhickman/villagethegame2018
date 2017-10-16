@@ -326,12 +326,10 @@ var GraphUi = IgeSceneGraph.extend({
                 $("#marketArrow").hide();
                 ga("send",  "Open market dialog");
                 self.toggleDialog('marketDialog');
-                $("#topArrow").show();
         });
 
         $('#goalButton')
             .click(function () {
-               $("#marketArrow").show();
                self.toggleGoalDialog();
           });
 
