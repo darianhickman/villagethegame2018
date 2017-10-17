@@ -683,7 +683,6 @@ var Client = IgeClass.extend({
                 vlg.log.info('exiting state this.fsm.goalDialog');
                 $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog({close: function( event, ui ) {}});
                 $( "#" + GameFSM.settings["goalDialog"].dialogID ).dialog( "close" );
-
                 completeCallback();
             }
         });
