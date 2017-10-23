@@ -12,6 +12,7 @@
     })(window,document,'script','dataLayer','GTM-W27P4W3');</script>
     <!-- End Google Tag Manager -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href='https://fonts.googleapis.com/css?family=Press+Start+2P' rel='stylesheet' type='text/css'>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -33,30 +34,29 @@
     <script type="text/javascript">
         var igeRoot = '/ige/engine/';
     </script>
+
+    <script id="gameStartScript" data-location="deploy" type="text/javascript" src="client/deploy/gameStart.min.js"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W27P4W3"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<div data-role="page" id="villageTitleScreen">
-    <div data-role="content">
-        <a href="#loadingContainer" data-role="button"><img id="titleScreenPlay" class="titleScreenButton" src="assets/images/ui/play_button.png"></a>
-        <a href="#aboutDialog" data-role="button"><img id="titleScreenAbout" class="titleScreenButton" src="assets/images/ui/about_button.png"></a>
-    </div>
-</div>
-<div data-role="page" id="loadingContainer" class="igeLoading loadingFloat">
-    <img class="loadingTitle" src="assets/images/ui/title.png">
-    <div class="loadingLogo">
-        <div class="loadingCircle"></div>
-        <div class="loadingCircleInner"></div>
-    </div>
-    <p class="loadingText">
+<ul class="igeLoading loadingFloat">
+    <li class="loadingTitle">Village Makeover</li>
+    <li>
+        <div class="loadingLogo">
+            <div class="loadingCircle"></div>
+            <div class="loadingCircleInner"></div>
+        </div>
+
+    </li>
+    <li class="loadingText">
         Loading
-    </p>
-</div>
+    </li>
+</ul>
 <div id="hudcontainer">
-    <ul data-role="header" class="nonePointerEvents" id="topToolbar">
+    <ul class="nonePointerEvents" id="topToolbar">
         <li class="allPointerEvents" id="cashbar" title="Buy VBucks"><img src="assets/images/ui/Banknotes.png"/><span class="cashbarProgress"
                                                                             id="cashbarProgress"></span></li>
         <li class="allPointerEvents" id="coinbar" title="Buy Coins"><img src="assets/images/ui/Coin1.png"/><span class="coinbarProgress"
@@ -76,8 +76,6 @@
             <img src="assets/images/ui/FourDirections52.png"/>
             <span class="toolbarNotification" id="endMove">End Move</span>
         </li>
-        <li class="allPointerEvents" id="zoomInButton" title="Zoom in"><img src="assets/images/ui/Zoom-In.png"/></li>
-        <li class="allPointerEvents" id="zoomOutButton" title="Zoom out"><img src="assets/images/ui/Zoom-Out.png"/></li>
         <li class="allPointerEvents" id="saveButton" title="Login to Save">
             <img src="assets/images/ui/save.png"/>
             <span class="toolbarNotification" id="Loggedin">Auto Saved</span>
@@ -112,17 +110,12 @@
                             <img class="marketCashIcon" src="assets/images/ui/Banknotes.png">
                             0
                         </td>
-                        <td width="120">
-                            <span class="unlock" role="button">
-                                Unlock
-                                <img src="assets/images/ui/Banknotes.png"/>
-                                <span class="unlockprice"> </span>
-                            </span>
+                        <td class="unlock" role="button">Unlock
+                            <img src="assets/images/ui/Banknotes.png"/>
+                            <span class="unlockprice"> </span>
                         </td>
-                        <td width="20">
-                            <span class="marketItemInfo">
-                                <img class="marketItemInfoIcon" src="/assets/images/ui/Info-50.png">
-                            </span>
+                        <td class="marketItemInfo">
+                            <img class="marketItemInfoIcon" src="/assets/images/ui/Info-50.png">
                         </td>
                     </tr>
                 </table>
@@ -200,46 +193,6 @@
     <div id="newsFeedDialog" title="News Feed" style="display:none">
         <ul id="newsList"></ul>
     </div>
-    <div id="missionDialog" title="Missions" style="display:none">
-        <!--Pages are created based on this template-->
-        <div class="missionDialogPage" id="missionDialogPageTemplate">
-            <!--This ul is populated by catalog items. Number of items per page is set in config sheet-->
-            <ul class="missionDialogList">
-                <table>
-                    <tr class="missionDialogItem">
-                        <td class="iconcell" >
-                            <img  class="missiongoalImage" src="/favicon.ico?v=2"></td>
-                        <td class="missiongoalTitle">Title</td>
-                        <td class="missiongoalDiscription">
-                            0
-                        </td>
-                        <td class="missiongoalProcess">
-                            0
-                        </td>
-                        <td width="120">
-                            <span class="unlock" role="button">
-                                Unlock
-                                <img src="assets/images/ui/Banknotes.png"/>
-                                <span class="unlockprice"> </span>
-                            </span>
-                        </td>
-                        <td width="20">
-                            <span class="missiongoalReward">
-                                <img class="missiongoalReward" src="/assets/images/ui/Info-50.png">
-                                    </span>
-                        </td>
-                    </tr>
-                </table>
-            </ul>
-        </div>
-        <div class="pagination" id="missionDialogPagination">
-            <a href="#" class="first" data-action="first">&laquo;</a>
-            <a href="#" class="previous" data-action="previous">&lsaquo;</a>
-            <input type="text" readonly="readonly"/>
-            <a href="#" class="next" data-action="next">&rsaquo;</a>
-            <a href="#" class="last" data-action="last">&raquo;</a>
-        </div>
-    </div>
     <div id="goalDialog" title="" style="display:none">
         <div id="goalDialogContent"></div>
     </div>
@@ -258,7 +211,8 @@
     <div id="buyConfirmDialog" title="Confirm" style="display:none">
         <p id="buyConfirmMessage"></p>
         <button id="buyConfirmOK">OK</button>
-        <button id="buyConfirmYes"><span id="buyConfirmPrize"></span></button>
+        <button id="buyConfirmYes">Yes</button>
+        <button id="buyConfirmNo">No</button>
     </div>
     <div id="messageDialog" title="Message from Game" style="display:none">
         <p id="messageDialogMessage"></p>
@@ -518,35 +472,6 @@
     })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
     ga('create', 'UA-5656121-3', 'auto');
     ga("send", 'pageview');
-</script>
-<script>
-    $(document).ready(function (){
-      if(location.hash !== "" || location.search !== ""){
-         startGame();
-         return;
-      }
-         $("#villageTitleScreen").show();
-         $("#titleScreenPlay").click(function (){
-            startGame();
-         });
-         $("#titleScreenAbout").click(function (){
-            history.replaceState({},"about_village",'?s=about');
-            startGame();
-         });
-         function startGame(){
-            $("#villageTitleScreen").hide();
-            $("#hudcontainer").show();
-            $("#loadingContainer").show();
-            $("body").css("background-image","url('../assets/images/backgrounds/FullVillage.webp')");
-                      
-            var s = document.createElement("script");
-            s.id = "gameStartScript";
-            s.type = "text/javascript";
-            s.src = "client/deploy/gameStart.min.js";
-            $(s).attr('data-location', 'deploy');
-            $("head").append(s);
-         }
-    });
 </script>
 </body>
 </html>
