@@ -81,6 +81,7 @@ var MissionDialog = Dialog.extend({
 	},
 
 	addItem: function (itemData) {
+		if itemData == null { return; }
 		// Create backing tile for item
 		var self = this,
 			pageIndex = 1,
