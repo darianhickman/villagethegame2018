@@ -77,7 +77,7 @@ var Goals = IgeEventingClass.extend({
                 percent = Math.floor(goalStateLookup[tasksArray[i]].value * 100 / task.Task_Value)
             }
 
-            gameGoalObj.tasks.push({"taskID":tasksArray[i],"targetOBJ":task.Target_Object,"title":task.Title,"currentValue":value,"totalValue":task.Task_Value,"percent":percent})
+        gameGoalObj.tasks.push({"taskID":tasksArray[i],"targetOBJ":task.Target_Object,"title":task.Title,"currentValue":value,"totalValue":task.Task_Value,"percent":percent,"pointer":task.Pointer})
 
             if(goalStateLookup[tasksArray[i]] && goalStateLookup[tasksArray[i]].value === parseInt(task.Task_Value))
                 continue;
@@ -146,12 +146,6 @@ var Goals = IgeEventingClass.extend({
 
     getTask: function(taskID){
         var elementPos = GameGoals.tasks.map(function(x) {return x.Task_ID; }).indexOf(taskID);
-        this.tutorialArrow = $("<span id='tutorialArrowSpan'></span>")
-            .appendTo("#hudcontainer").insertAfter("#topToolbar");
-        $("#tutorialArrowSpan").hide()
-                                    
-        this.tutorialArrow.image = $("<img id='tutorialArrowImage' src='" + ige.client.textures.actionIconSelect.url() + "'>").appendTo("#tutorialArrowSpan")
-            .rotate({angle:40});
         return GameGoals.tasks[elementPos];
     },
 

@@ -58,26 +58,30 @@
 </ul>
 <div id="hudcontainer">
     <ul class="nonePointerEvents" id="topToolbar">
-        <li class="allPointerEvents" id="cashbar" title="Buy VBucks"><img src="assets/images/ui/Banknotes.png"/><span class="cashbarProgress"
+        <li class="allPointerEvents" id="cashbar" title="Buy VBucks"><img class="topToolImg" src="assets/images/ui/Banknotes.png"/><span class="cashbarProgress"
                                                                             id="cashbarProgress"></span></li>
-        <li class="allPointerEvents" id="coinbar" title="Buy Coins"><img src="assets/images/ui/Coin1.png"/><span class="coinbarProgress"
+        <li class="allPointerEvents" id="coinbar" title="Buy Coins"><img class="topToolImg" src="assets/images/ui/Coin1.png"/><span class="coinbarProgress"
                                                                         id="coinbarProgress"></span></li>
-        <li class="allPointerEvents" id="waterbar" title="Buy Water"><img src="assets/images/ui/Water-48.png"/><span class="waterbarProgress"
+        <li class="allPointerEvents" id="waterbar" title="Buy Water"><img class="topToolImg" src="assets/images/ui/Water-48.png"/><span class="waterbarProgress"
                                                                                               id="waterbarProgress"></span></li>
-        <li class="allPointerEvents" id="fullscreenIcon" title="Toggle Fullscreen Mode"><img src="assets/images/ui/Expand_2.png"/><img src="assets/images/ui/Collapse_2.png" style="display:none;"></li>
-        <li class="allPointerEvents" id="volume" title="Toggle Sound"><img src="assets/images/ui/Speaker-48.png"/><img src="/client/assets/images/ui/Mute-48.png" style="display:none;"/></li>
+        <li class="allPointerEvents" id="fullscreenIcon" title="Toggle Fullscreen Mode"><img class="topToolImg" src="assets/images/ui/Expand_2.png"/><img class ="topToolImg" src="assets/images/ui/Collapse_2.png" style="display:none;"></li>
+        <li class="allPointerEvents" id="volume" title="Toggle Sound"><img class="topToolImg" src="assets/images/ui/Speaker-48.png"/><img class="topToolImg" src="assets/images/ui/Mute-48.png" style="display:none;"/></li>
         <li class="allPointerEvents" id="moveButton" title="Move Items">
-            <img src="assets/images/ui/FourDirections52.png"/>
+            <img class="topToolImg" src="assets/images/ui/FourDirections52.png"/>
             <span class="toolbarNotification" id="endMove">End Move</span>
+            <span id="topArrow">
+                <img id="arrowUp" src="./assets/images/ui/actionIconSelect.png">
+            </span>
         </li>
-        <li class="allPointerEvents" id="zoomInButton" title="Zoom in"><img src="assets/images/ui/Zoom-In.png"/></li>
-        <li class="allPointerEvents" id="zoomOutButton" title="Zoom out"><img src="assets/images/ui/Zoom-Out.png"/></li>
+        <li class="allPointerEvents" id="zoomInButton" title="Zoom in"><img class="topToolImg" src="assets/images/ui/Zoom-In.png"/></li>
+        <li class="allPointerEvents" id="zoomOutButton" title="Zoom out"><img class="topToolImg" src="assets/images/ui/Zoom-Out.png"/></li>
         <li class="allPointerEvents" id="saveButton" title="Login to Save">
-            <img src="assets/images/ui/save.png"/>
+            <img class="topToolImg" src="assets/images/ui/save.png"/>
+            <span class="toolbarNotification" id="NotLoggedin">Click to save</span>
             <span class="toolbarNotification" id="Loggedin">Auto Saved</span>
         </li>
         <li class="allPointerEvents" id="dropDownIcon" title="Player Menu">
-            <img src="assets/images/ui/Menu.png"/>
+            <img class="topToolImg" src="assets/images/ui/Menu.png"/>
         </li>
     </ul>
     <div class="allPointerEvents" id="goalButton" title="current Goals">
@@ -86,6 +90,9 @@
         <span class="toolbarNotification" id="goalCompleteNotification">Goal Complete!</span>
     </div>
     <div class="allPointerEvents" id="marketButton" title="Buy New Items">
+        <span id="marketArrow">
+            <img id="arrowDown" src="./assets/images/ui/actionIconSelect.png">
+        </span>
         <img src="assets/images/ui/Shop.png"/>
     </div>
     <span id="notificationMessage"></span>

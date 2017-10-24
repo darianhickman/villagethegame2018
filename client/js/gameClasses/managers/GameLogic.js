@@ -80,9 +80,10 @@ var GameLogic = IgeObject.extend({
                     //     imgHeight + "px;background-position-x: "+ imgWidth / ige.client.textures[itemID]._cellColumns +"px;'></span>";
                 }
                 items.push("<li><table ><tr><td rowspan=2>" + itemImg + " </td><td width= 320 ><span class='goalTaskTitle'>"+ value.title  +  "</td></tr><tr><td></span><div class='goalTaskPercent' id='task" + value.taskID + "' ><div class='progressLabel' id='taskLabel" + value.taskID + "'></div></div></td></tr></table></li>");
-            });
             //add problem info
-            $('#goalDialogContent').html("<div class='goalDialogMascot'><img class='goalDialogMascotImg' src='" + GameConfig.config['goalDialogMascotURL'] + "'></div><div class='goalDialogInfo speechBubble'>" + GameProblems.problemsLookup[API.state.currentProblemID].title + "</div>");
+                $("#"+ value.pointer).show();
+           })
+           $('#goalDialogContent').html("<div class='goalDialogMascot'><img class='goalDialogMascotImg' src='" + GameConfig.config['goalDialogMascotURL'] + "'></div><div class='goalDialogInfo speechBubble'>" + GameProblems.problemsLookup[API.state.currentProblemID].title + "</div>");
             var problemDetails = $('#goalDialogContent').find(".problemDetails").first();
             problemDetails.attr("title",GameProblems.problemsLookup[API.state.currentProblemID].details);
             problemDetails.tooltip({
@@ -101,6 +102,8 @@ var GameLogic = IgeObject.extend({
                     },
                     complete: function() {
                         progressLabel.text( "Complete!" );
+                        $("#topArrow").hide();
+                        $("#marketArrow").hide();
                     }
                 });
                 $( "#task" + value.taskID ).data( "currentValue", value.currentValue );
