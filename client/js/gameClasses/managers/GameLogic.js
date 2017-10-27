@@ -338,6 +338,7 @@ var GameLogic = IgeObject.extend({
     },
 
     unlockMarketDialogItem: function(itemData){
+        if (itemData==null) {return;}
         var marketDialog = ige.$('marketDialog');
 
         marketDialog.removeItemCover(itemData);
