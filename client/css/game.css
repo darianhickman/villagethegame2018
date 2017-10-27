@@ -27,7 +27,7 @@ button, input, textarea {
     background-repeat: no-repeat;
     background-position: center top;
 	background-size: 100%;
-    height: 650px;
+    height: 1600px;
     margin: 0;
 	padding: 0;
 	overflow: hidden;
@@ -41,7 +41,7 @@ button, input, textarea {
 }
 
 #titleScreenPlay {
-    margin-top: 200px;
+    margin-top: 300px;
     margin-right:50px;
 }
 #loadingContainer {
@@ -85,7 +85,7 @@ button, input, textarea {
 	box-shadow: 0 0 205px #2187e7;
 	width: 80px;
 	height: 80px;
-	-moz-animation: spinPulse 2s infinite ease-in-out;
+	-moz-animation: spinPulse 2s infinite linear;
 	-webkit-animation: spinPulse 2s infinite linear;
 }
 .loadingCircleInner {
@@ -161,14 +161,14 @@ button, input, textarea {
 	left: 0;
 }
 #topToolbar {
-	max-height: 35px;
 	list-style: none;
 	padding: 0;
 	margin: auto;
 }
 #topToolbar li {
 	opacity: .9;
-	border: 2px solid white;
+    min-width: 25px;
+    min-height: 25px;
 	background-color: white;
 	display: inline-block;
 	margin-left: 10px;
@@ -180,22 +180,53 @@ button, input, textarea {
 #topToolbar li:hover {
 	opacity: 1;
 }
+#goalButton {
+    margin-top: 40px;
+    margin-left:20px;
+    width: 50px;
+    min-height: 50px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #000;
+    background-image: url('../assets/images/ui/beigefade.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    border: 2px solid #99ccff;
+    border-radius: 5px;
+}
+#marketButton {
+    margin-left:20px;
+    position: absolute;
+    top: 0;
+    margin-top: 85vh;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #000;
+    background-image: url('../assets/images/ui/beigefade.png');
+    background-repeat: no-repeat;
+    background-size: 50px 50px;
+    border: 2px solid #99ccff;
+    border-radius: 5px;
+}
 #topToolbar > li:last-child {
 	float: right;
 }
 #topToolbar > li:nth-last-child(2) {
     float: right;
 }
-#topToolbar img {
+.topToolImg {
 	display: block;
 	background-image: url('../assets/images/ui/beigefade.png');
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 	border: 2px solid #99ccff;
 	border-radius: 5px;
-	width: 25px;
-	height: 25px;
+    width: 25px;
+    height: 25px;
 }
+
 #dropDownIcon {
 	position: relative;
 	right: 0px;
@@ -678,6 +709,7 @@ button, input, textarea {
 	min-width: 40px;
 	vertical-align: middle;
 	text-align: center;
+    background-color: white;
 }
 
 #topToolbarTutorial {
@@ -756,14 +788,33 @@ button, input, textarea {
 	list-style: none;
 	padding: 0;
 }
-#tutorialArrowSpan {
-	position: fixed;
-	width: 31px;
-	height: 33px;
+#marketArrow {
+    position: fixed;
+    margin-top: -75px;
 	z-index: 1000;
+    -moz-animation: pointing 1s infinite linear;
+    -webkit-animation: pointing 1s infinite linear;
 }
-#tutorialArrowImage {
+#topArrow {
+    position: fixed;
+    margin-top: 35px;
+    margin-left: 0px;
+    background: none;
+    border: none;
+    width: 31px;
+    height: 33px;
+    z-index:1000;
+    -moz-animation: pointing 1s infinite linear;
+    -webkit-animation: pointing 1s infinite linear;
+}
+#arrowDown {
 	position: relative;
+    width: 45px;
+    transform: rotate(220deg);
+}
+#arrowUp {
+    position:relative;
+    transform:rotate(40deg);
 }
 #skipTutorial {
 	position: absolute;
@@ -1007,6 +1058,18 @@ button, input, textarea {
 	100% {
 		-webkit-transform: rotate(360deg);
 	}
+}
+
+@keyframes pointing {
+    0% {
+        -webkit-transform:translateY(0px);
+    }
+    50% {
+        -webkit-transform:translateY(10px);
+    }
+    100% {
+        -webkit-transform:translateY(0px);
+    }
 }
 
 .sgButton {
