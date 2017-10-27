@@ -82,7 +82,8 @@ var MarketDialog = Dialog.extend({
 
 	addItem: function (itemData) {
 		// Create backing tile for item
-		var self = this,
+        if (itemData==null) {return;}
+        var self = this,
 			pageIndex = 1,
 			clonedItem, options, dummyElem, imgWidth, imgHeight;
 
@@ -151,7 +152,8 @@ var MarketDialog = Dialog.extend({
 	},
 
 	unlockItemByCash: function(itemData){
-		var message, callback, price = {coins:0}, self = this, prize;
+		if (itemData==null) {return;}
+        var message, callback, price = {coins:0}, self = this, prize;
 
 		price.cash = itemData.unlockValue;
 
@@ -188,7 +190,8 @@ var MarketDialog = Dialog.extend({
 	},
 
 	removeItemCover:function(itemData){
-		if(itemData.unlockButton){
+		if (itemData==null) {return;}
+        if(itemData.unlockButton){
 			itemData.unlockButton.remove();
 			itemData.unlockButton = null;
 			itemData.unlockInfo.remove();
@@ -198,7 +201,8 @@ var MarketDialog = Dialog.extend({
 	},
 
 	bindItemAction: function(itemData){
-		var self = this;
+		if (itemData==null) {return;}
+        var self = this;
 
 		if(itemData.isActionBound === undefined || itemData.isActionBound === null){
 			itemData.entity.click(function () {

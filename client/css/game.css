@@ -490,6 +490,7 @@ button, input, textarea {
 }
 #messageDialog{
 	max-width: 800px;
+    min-width: 320px;
 	text-align: center;
 }
 .messageDialogUnlockImage{
@@ -789,6 +790,7 @@ button, input, textarea {
 	padding: 0;
 }
 #marketArrow {
+    display: none;
     position: fixed;
     margin-top: -75px;
 	z-index: 1000;
@@ -796,9 +798,10 @@ button, input, textarea {
     -webkit-animation: pointing 1s infinite linear;
 }
 #topArrow {
+    display: none;
     position: fixed;
     margin-top: 35px;
-    margin-left: 0px;
+    margin-left: -30px;
     background: none;
     border: none;
     width: 31px;
