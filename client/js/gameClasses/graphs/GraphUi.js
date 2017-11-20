@@ -219,6 +219,11 @@ var GraphUi = IgeSceneGraph.extend({
                 $( "#fullscreenIcon img:nth-child(2)").hide();
             }
         }
+                                   
+        $('#titleScreenButton').on('mouseover',function(){
+            $("#titleScreenButton").css("width",300px);
+        })
+        
         $('#fullscreenIcon').on('click',function(){
             ga("send",  "Go fullscreen");
             $( "#fullscreenIcon" ).find('img').toggle();
