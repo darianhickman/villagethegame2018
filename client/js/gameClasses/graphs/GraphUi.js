@@ -221,7 +221,6 @@ var GraphUi = IgeSceneGraph.extend({
         }
                                    
         $('#titleScreenButton').on('mouseover',function(){
-            $("#titleScreenButton").css("width",300px);
         })
         
         $('#fullscreenIcon').on('click',function(){
