@@ -527,7 +527,7 @@ var GameObjects = {
                 var self = this;
 
                 if(self.isMouseOverPanelOn === true || force === true){
-                    var topCSS = this.screenPosition().y - self.mouseOverPanel.height() - (this.height() / 4),
+                    var topCSS = this.screenPosition().y - self.mouseOverPanel.height() - (this.height() / 5) - 60,
                         leftCSS = this.screenPosition().x - (self.mouseOverPanel.width() / 2),
                         arrowDiv = self.mouseOverPanel.find(".arrow").first(),
                         arrowTopCSS, arrowLeftCSS;
