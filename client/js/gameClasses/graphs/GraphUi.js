@@ -220,7 +220,9 @@ var GraphUi = IgeSceneGraph.extend({
             }
         }
                                    
-        $('#titleScreenButton').on('mouseover',function(){
+        $('img').on('mouseover',function(){
+            $(this).css("width",this.width*1.2);
+            $(this).css("height",this.height*1.2);
         })
         
         $('#fullscreenIcon').on('click',function(){
@@ -240,7 +242,7 @@ var GraphUi = IgeSceneGraph.extend({
 
         $('#saveButton').on('click',function(){
             if(API.loginStatus === 'offline'){
-                ga("send",  "Click login");
+                ga("send",  "Click login")；
                 ige.client.fsm.enterState('login');
             }
         })

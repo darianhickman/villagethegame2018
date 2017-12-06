@@ -137,11 +137,13 @@ var GameObjects = {
                     var self = this;
                     if(ige.client.fsm.currentStateName() === "select" || ige.client.fsm.currentStateName() === "view"){
                         this.highlight(true);
+                        this.css("width",this.width*1.2);
                     }
                 })
 
                 this.mouseOut(function(){
                     this.highlight(false);
+                    this.css("width",this.width/1.2);
                 })
 
                 this.mouseMove(function(){
