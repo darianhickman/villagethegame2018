@@ -242,7 +242,7 @@ var GraphUi = IgeSceneGraph.extend({
 
         $('#saveButton').on('click',function(){
             if(API.loginStatus === 'offline'){
-                ga("send",  "Click login")；
+                ga("send",  "Click login");
                 ige.client.fsm.enterState('login');
             }
         })
