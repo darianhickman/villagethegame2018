@@ -220,11 +220,16 @@ var GraphUi = IgeSceneGraph.extend({
             }
         }
                                    
-        $('img').on('mouseover',function(){
-            $(this).css("width",this.width*1.2);
-            $(this).css("height",this.height*1.2);
+        $('#goalButton').on('mouseover',function(){
+            $('#goalButton').css("width",$('#goalButton').width*1.1);
+            $('#goalButton').css("height",$('#goalButton').height*1.1);
         })
         
+        $('#goalButton').on('mouseout',function(){
+            $('#goalButton').css("width",$('#goalButton').width/1.1);
+            $('#goalButton').css("height",$('#goalButton').height/1.1);
+        })
+                                   
         $('#fullscreenIcon').on('click',function(){
             ga("send",  "Go fullscreen");
             $( "#fullscreenIcon" ).find('img').toggle();
