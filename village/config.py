@@ -7,7 +7,15 @@ import yaml
 import logging
 import os
 import ftfy
-from oauth2client.client import SignedJwtAssertionCredentials
+try:
+    from google.appengine.api import urlfetch
+    from requests_toolbelt.adapters import appengine
+    appengine.monkeypatch()
+except ImportError:
+    pass
+
+from oauth2client.service_account import ServiceAccountCredentials
+
 import httplib2
 from apiclient import errors
 from apiclient.discovery import build
@@ -85,8 +93,8 @@ def get_commit_head():
     return commit_head
 
 def login():
-    conf = local_config['spreadsheet']
-    credentials = SignedJwtAssertionCredentials(conf['client_email'], conf['private_key'], scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('villagethegame111-7c4fefc51ff2.json', scope)
+
     return gspread.authorize(credentials)
 
 def get_session():
@@ -105,7 +113,7 @@ def get_sheet(docid):
 def copy_village_sheet(title):
     sheet_config = get_config()
     conf = local_config['spreadsheet']
-    credentials = SignedJwtAssertionCredentials(conf['client_email'], conf['private_key'], scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('villagethegame111-7c4fefc51ff2.json', scope)
 
     http = httplib2.Http()
     http = credentials.authorize(http)
@@ -124,7 +132,7 @@ def copy_village_sheet(title):
 
 def rename_village_sheet(village_docid,new_title):
     conf = local_config['spreadsheet']
-    credentials = SignedJwtAssertionCredentials(conf['client_email'], conf['private_key'], scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('villagethegame111-7c4fefc51ff2.json', scope)
 
     http = httplib2.Http()
     http = credentials.authorize(http)
@@ -137,7 +145,7 @@ def rename_village_sheet(village_docid,new_title):
 
 def delete_village_sheet(village_docid):
     conf = local_config['spreadsheet']
-    credentials = SignedJwtAssertionCredentials(conf['client_email'], conf['private_key'], scope)
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('villagethegame111-7c4fefc51ff2.json', scope)
 
     http = httplib2.Http()
     http = credentials.authorize(http)

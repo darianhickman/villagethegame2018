@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "villagethegame111",
+  "private_key_id": "7c4fefc51ff21eb9a3b33aa60513e02e24f0c3c3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDIWjlH/wOAQImJ\n59PP2zB1jzOyszU8pJtWxiym1/tdhK31fw3vzimSbLwLIkMKGKwzGA1EAZTjOu7x\nTvX61ZWveyHziTq5eAXrhP9l/atVMUZwJQCp8YdSEsqVwUcHBBm7Cac5Ita5YGRh\nBDK/PXQBgJkndtuOKasGYE0waZG+36nM9gfPcFXIuEik22Ce73PZG97ehz40RmQS\nJVBHi3O8oV/0QO9+1tOrx5NDsymIuNO2hT7q+JfoV5zFF2f4vJX9XO7x1ATxOISw\nqZ0cYW2kdxNjn0HhzCXPUvzVwhgZrva70KUE5b/pz5JMq+I0vTMGD79uNmcC09W/\n28V/KG89AgMBAAECggEAHu4a2LwMSNDtys3w265tgUCdzREwf0+0MYW/n/RI+IuC\npZs7RhGwRkwmDZv4+IaNkwe8CIsr9paDC9rSS6qMhL5AJA5D9B0M4Oqz2QV73VeR\nlb+IpjPE3c1L3Cmt8u3VoRPg7oer2YuBg563zOFKVu8I9dg6Fezl28KjN/2cQ/iS\nm4iF8Ns7HpkO86AYTF1rN4KZD/7fIMUWUjivqgpKIZGfC04pigGqkadntiTYgf/u\n+zUwbQhRcSAqRhIq+P+zza9mO+9Ed1sKIYZMta6jAPCLPvk/ILwhToAhhSw4sSra\nO1wTnAxiOTA1hm2grrKor6brA6xOtqdrqKUlPhnbOwKBgQDi6L6vX72JoStp3IrM\nluPWsVpRkvlFA858a+kf+sKqxnn3QcvBuNNpe8xkMsXDostvjfIJZAjHUI8McnGp\n5kd+HJWOJ7t7Jf+pXlvXhqCv8BRg4TyaQxgeMUzzDDEBopYHbrC167hsNx2wmzlI\n2Sme8ynzJdftYvVouCFp3XD1dwKBgQDiCeA92KMSjQjtl7HHzT/Cu0nBJpBPjnZi\naQPa6QeU+xGlUv+DN2b0JGsjlxFwGVtEx5KmKAul/0tHr3wHperEuTz8rvvl6vbU\nZktwI2N7tpkrV4XV6WPoYLd8SXp4dyJc0ZBayJAW0WODhpS+A1mZqGib02L03/hG\n/6LUS0R96wKBgAgEyZhQ/dW7SFl5Xb5VJsATjGmNlBmIROfIuHhU2ERIt06xmI3E\nBlSX92UjFjIPsrjCf2ctjdHdWvDJqpKifKxMPkzDwrBba2mE2CIJs+wDw/SYgRfC\nfzux6lI8gA7avAqPMtd6+Q159SaklaWpZvsjBLx+/d55vMpyl1uyY6eJAoGBAK6j\nRrdByywn/v/iNZ7S+zIulVs/ujtdLCX4UNwvMoZuPEHpEDSG92olQQmsS/K6BIPt\nVWY+hlFoHvdxo3gdPndjTrVDVKdck/uiVSJ8lP4eI9USt/p/aYs+PkUuWAr+sHPa\nDZe2YWzfte0Ga6Eq4W0QalIKTeg3qpDgLSOsS2ylAoGAQhy3nqNT8iSeD9ckLd7k\nt9Y2kAij/qInQ0OcT9krbbhYevOfOashhkaIWVOmtQAR2fuQ6MZ8+2BF2it5g6vL\nZC3zgoPCOU2LkE5ax5g/ovc5rULwoUwawANLiyOEXqS1MN4wTejTTAVSSeME//Cs\n22bSCiQN6SqB1SfS8Sz8QL8=\n-----END PRIVATE KEY-----\n",
+  "client_email": "villagethegame111@appspot.gserviceaccount.com",
+  "client_id": "",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/villagethegame111%40appspot.gserviceaccount.com"
+}
