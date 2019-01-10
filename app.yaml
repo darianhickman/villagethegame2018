@@ -63,6 +63,11 @@ handlers:
   static_dir: client/mailchimp
   secure: always
 
+#- url: /config
+#  static_files: client/ClientConfig.js
+#  upload: client/ClientConfig.js
+#  secure: always
+
 - url: /ige
   static_dir: ige
   secure: always

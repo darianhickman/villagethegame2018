@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 import load_libs; load_libs.do()
 import flask
+import cloudstorage
+
 import json
 import braintree
 import urllib
@@ -14,8 +16,6 @@ from .app_common import config
 from .config import get_config_docid, get_commit_head, get_config, get_catalog, get_news_feed, get_secret_key, get_assets, get_problems, get_asset_bundle, get_messages, get_fsm, get_goals_data, get_goals_tasks, get_dropdown_menu, get_special_events
 from . import models
 from google.appengine.api import mail, app_identity, modules
-import cloudstorage
-import webapp2
 
 #import cloudstorage as storage
 root = flask.Flask(__name__)
@@ -108,7 +108,7 @@ def get_fixed_catalog():
 
     for item in catalog:
         item['cell'] = int(item['cell'])
-        item['builtCell'] = int(item['builtCell'])
+        # item['builtCell'] = int(item['builtCell'])
         item['coins'] = int(item['coins'])
         item['cash'] = int(item['cash'])
         item['cellCount'] = item['cell']

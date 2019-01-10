@@ -1,0 +1,92 @@
+[
+    {
+        "Type": "HTML",
+        "Notes": "Show your css skills.",
+        "Key": "dropDownContent",
+        "Value": "<div style=\"display: table-row;\"><div style=\"float:left;padding-left: 10px;padding-top: 10px;\"><img id=\"loginPicture\" width=\"75px\" height=\"75px\"></div><div id=\"loginID\" style=\"float: left;padding-left: 10px;padding-top:10px;\">Offline</div></div><div id=\"dropdownmenu\"><ul class=\"c-menu__items\"></ul></div>"
+    },
+    {
+        "Type": "HTML",
+        "Notes": "There should be nothing here but a <ul class=\"pulldownmenu\"> We'll control style through css.  Remove all the style information. This goes in ul with id dropDownLinksList. Enhance this with css as you like.",
+        "Key": "dropDownLinksList",
+        "Value": "<li class=\"c-menu__item\" id=\"loginLink\" ></li><li class=\"c-menu__item\" id=\"logoutLink\" ></li><li class=\"c-menu__item\" id=\"helpLink\" ></li><li class=\"c-menu__item\" id=\"feedbackLink\" ></li><li class=\"c-menu__item\" id=\"editorLink\" ></li><li class=\"c-menu__item\" id=\"shareMyVillageLink\" ></li><li class=\"c-menu__item\" id=\"toggleSFXLink\" ></li><li class=\"c-menu__item\" id=\"toggleMusicLink\" ></li><li class=\"c-menu__item\" id=\"aboutLink\" ></li><li class=\"c-menu__item\" id=\"contactLink\" ></li>"
+    },
+    {
+        "Type": "Setting",
+        "Notes": "I want this to change to a max-width and min-width",
+        "Key": "width",
+        "Value": "360"
+    },
+    {
+        "Type": "Setting",
+        "Notes": "This should just be as long as needed not hard set and have a scroll bar when it hits 100% of window",
+        "Key": "height",
+        "Value": "400"
+    },
+    {
+        "Type": "Setting",
+        "Notes": "",
+        "Key": "offlinePictureURL",
+        "Value": "/assets/images/ui/No_Image_Available_75.png"
+    },
+    {
+        "Type": "String",
+        "Notes": "These go into coressponding ids. Don't change ids.",
+        "Key": "loginLink",
+        "Value": "Login"
+    },
+    {
+        "Type": "String",
+        "Notes": "",
+        "Key": "logoutLink",
+        "Value": "Logout"
+    },
+    {
+        "Type": "String",
+        "Notes": "",
+        "Key": "helpLink",
+        "Value": "Tutorial"
+    },
+    {
+        "Type": "String",
+        "Notes": "",
+        "Key": "feedbackLink",
+        "Value": "Feedback"
+    },
+    {
+        "Type": "String",
+        "Notes": "",
+        "Key": "editorLink",
+        "Value": "Village Editor "
+    },
+    {
+        "Type": "String",
+        "Notes": "",
+        "Key": "shareMyVillageLink",
+        "Value": "Share my Village"
+    },
+    {
+        "Type": "String",
+        "Notes": "",
+        "Key": "toggleSFXLink",
+        "Value": "Toggle SFX"
+    },
+    {
+        "Type": "String",
+        "Notes": "",
+        "Key": "toggleMusicLink",
+        "Value": "Toggle Music"
+    },
+    {
+        "Type": "String",
+        "Notes": "",
+        "Key": "aboutLink",
+        "Value": "About"
+    },
+    {
+        "Type": "String",
+        "Notes": "",
+        "Key": "contactLink",
+        "Value": "Contact"
+    }
+]

@@ -19,10 +19,11 @@ var getGameConfig = function(retryCount){
             // load material for ige controlled content.
             var loaderScript = document.createElement('script'),
                 loaderLocation = document.getElementById("gameStartScript").getAttribute("data-location");
-            if(loaderLocation === "localhost")
-                loaderScript.src = '/ige/engine/loader.js';
-            else if(loaderLocation === "deploy")
-                loaderScript.src = '/client/deploy/gameStartMin.js';
+//            if(loaderLocation === "localhost")
+//                loaderScript.src = '/ige/engine/loader.js';
+//            else if(loaderLocation === "deploy")
+//                loaderScript.src = '/client/deploy/gameStartMin.js';
+            loaderScript.src = '/client/deploy/game.js';
 
             loaderScript.addEventListener('error', function () {
                 throw('ERROR LOADING loader/game.js - does it exist?');
