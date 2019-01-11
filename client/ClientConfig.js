@@ -11,7 +11,7 @@ var igeClientConfig = {
 		'/js/gameClasses/managers/GameLogic.js',
 		'/js/gameClasses/managers/EditorManager.js',
 		'/js/gameClasses/managers/LocalizationManager.js',
-		'/js/gameClasses/ui/Dialog.js',
+// 		'/js/gameClasses/ui/Dialog.js',
 		'/js/gameClasses/ui/MarketDialog.js',
 		'/js/gameClasses/ui/EditorMarketDialog.js',
 		'/js/gameClasses/ui/CoinParticle.js',
